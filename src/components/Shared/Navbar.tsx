@@ -26,7 +26,7 @@ const Navbar = () => {
             className="menu gap-2 menu-sm text-[#D7DFA3] font-bold bg-[#1A4862] dropdown-content mt-3 w-52 p-2 shadow"
           >
             <li className="">
-              <Link to={"/ourpackages"} className="rounded-sm ">
+              <Link to={"/allbikes"} className="rounded-sm text-white">
                 All Bikes
               </Link>
             </li>
@@ -55,7 +55,7 @@ const Navbar = () => {
             <NavLink
               to={"/allbikes"}
               className={({ isActive }) =>
-                `nav-link hover:bg-[#D7DFA3] rounded-sm text-xl hover:text-[#1A4862] ${
+                `nav-link hover:bg-[#D7DFA3] rounded-sm text-xl  hover:text-[#1A4862] ${
                   isActive ? "nav-link-active" : ""
                 }`
               }

@@ -6,7 +6,7 @@ const RootLayout = () => {
   return (
     <div className="bg-gradient-to-bl from-[#1A4862] to-[#D7DFA3]">
       <Navbar></Navbar>
-      <div className="min-h-screen">
+      <div className="min-h-screen mx-auto w-11/12">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>
