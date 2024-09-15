@@ -1,5 +1,14 @@
+// import OfferSection from "../OfferSection/OfferSection";
+
+import Banner from "../ui/Banner";
+
 const Home = () => {
-  return <div>This is home</div>;
+  return (
+    <div>
+      {/* <OfferSection></OfferSection> */}
+      <Banner></Banner>
+    </div>
+  );
 };
 
 export default Home;

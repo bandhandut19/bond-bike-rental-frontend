@@ -40,6 +40,11 @@ const Navbar = () => {
                 About Us
               </Link>
             </li>
+            <li className="">
+              <Link to={"/dashboard"} className="rounded-sm ">
+                Dashboard
+              </Link>
+            </li>
           </ul>
         </div>
         <Link
@@ -61,6 +66,18 @@ const Navbar = () => {
               }
             >
               All Bikes
+            </NavLink>
+          </li>
+          <li className="">
+            <NavLink
+              to={"/dashboard"}
+              className={({ isActive }) =>
+                `nav-link hover:bg-[#D7DFA3] rounded-sm text-xl  hover:text-[#1A4862] ${
+                  isActive ? "nav-link-active" : ""
+                }`
+              }
+            >
+              Dashboard
             </NavLink>
           </li>
           <li className="">

@@ -4,6 +4,7 @@ import Home from "@/components/Home/Home";
 import AllBikes from "../components/AllBikes/AllBikes";
 import Contact from "../components/Contact/Contact";
 import About from "../components/About/About";
+import Dashboard from "../components/Dashboard/Dashboard";
 
 const rootRoute = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const rootRoute = createBrowserRouter([
       {
         path: "/about",
         element: <About></About>,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
       },
     ],
   },
