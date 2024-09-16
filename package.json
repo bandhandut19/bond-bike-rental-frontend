@@ -16,6 +16,7 @@
     "@ts-morph/common": "^0.24.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "jwt-decode": "^4.0.0",
     "localforage": "^1.10.0",
     "lucide-react": "^0.406.0",
     "match-sorter": "^6.3.4",

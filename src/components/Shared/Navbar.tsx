@@ -1,6 +1,14 @@
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { RootState } from "@/redux/store";
+import { removeUser } from "@/redux/user/useSlice";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const userEmail = useAppSelector((state: RootState) => state.user.email);
+  const dispatch = useAppDispatch();
+  const handleLogout = () => {
+    dispatch(removeUser());
+  };
   return (
     <div className="navbar bg-[#1A4862] ">
       <div className="navbar-start">
@@ -107,12 +115,22 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end ">
-        <Link
-          to={"/login"}
-          className="lg:mr-5 py-1 px-2 lg:py-2 lg:px-4 rounded-sm lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
-        >
-          Login Now !
-        </Link>
+        {userEmail ? (
+          <Link
+            onClick={handleLogout}
+            to={"/login"}
+            className="lg:mr-5 py-1 px-2 lg:py-2 lg:px-4 rounded-sm lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
+          >
+            Logout
+          </Link>
+        ) : (
+          <Link
+            to={"/login"}
+            className="lg:mr-5 py-1 px-2 lg:py-2 lg:px-4 rounded-sm lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
+          >
+            Login Now !
+          </Link>
+        )}
       </div>
     </div>
   );

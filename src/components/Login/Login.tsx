@@ -4,10 +4,14 @@ import ButtonDefault from "../ui/buttonDefault";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "@/redux/auth/loginApi";
 import { toast } from "sonner";
+import { useAppDispatch } from "@/redux/hooks";
+import { addUser } from "@/redux/user/useSlice";
+import { jwtDecode } from "jwt-decode";
 interface FetchBaseQueryError {
   status: number;
   data: any;
 }
+
 interface FormValues {
   email: string;
   password: string;
@@ -15,6 +19,7 @@ interface FormValues {
 
 const Login = () => {
   const { register, handleSubmit } = useForm<FormValues>();
+  const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
   const navigate = useNavigate();
   const handleLogin = async (data: FormValues) => {
@@ -27,7 +32,14 @@ const Login = () => {
     } else {
       if (res?.data?.success) {
         toast(res?.data?.message);
-        navigate("/login");
+        const token = res?.data?.token;
+        dispatch(addUser(token));
+        const decodedToken: any = jwtDecode(token);
+        const userRole = decodedToken?.user_role;
+        if (userRole) {
+          console.log(userRole);
+          navigate("/");
+        }
       }
     }
   };
