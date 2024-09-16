@@ -29,6 +29,8 @@ const Login = () => {
           <Input
             className="bg-[#1A4862] w-4/5 lg:w-1/2 mx-auto bg-opacity-80 text-opacity-100 font-semibold text-[#D7DFA3] placeholder:text-opacity-80 placeholder:text-[#D7DFA3] placeholder:font-bold"
             placeholder="Enter Your Email"
+            type="email"
+            required
             {...register("useremail")}
           ></Input>
         </div>
@@ -37,6 +39,7 @@ const Login = () => {
             className="bg-[#1A4862] w-4/5 lg:w-1/2 mx-auto bg-opacity-80 text-opacity-100 font-semibold text-[#D7DFA3] placeholder:text-opacity-80 placeholder:text-[#D7DFA3] placeholder:font-bold"
             placeholder="Enter Your Password"
             type="password"
+            required
             {...register("password")}
           ></Input>
         </div>
