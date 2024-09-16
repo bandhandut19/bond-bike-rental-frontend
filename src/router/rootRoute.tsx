@@ -5,6 +5,8 @@ import AllBikes from "../components/AllBikes/AllBikes";
 import Contact from "../components/Contact/Contact";
 import About from "../components/About/About";
 import Dashboard from "../components/Dashboard/Dashboard";
+import Login from "../components/Login/Login";
+import Register from "../components/Register/Register";
 
 const rootRoute = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ const rootRoute = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard></Dashboard>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
     ],
   },

@@ -108,7 +108,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end ">
         <Link
-          to={"/contact"}
+          to={"/login"}
           className="lg:mr-5 py-1 px-2 lg:py-2 lg:px-4 rounded-sm lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
         >
           Login Now !
