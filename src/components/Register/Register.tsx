@@ -2,10 +2,11 @@ import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import ButtonDefault from "../ui/buttonDefault";
 import { Link } from "react-router-dom";
-
+import { useUserRegisterMutation } from "@/redux/auth/register";
+import { toast } from "sonner";
 interface FormValues {
-  username: string;
-  useremail: string;
+  name: string;
+  email: string;
   password: string;
   phone: string;
   address: string;
@@ -14,11 +15,19 @@ interface FormValues {
 
 const Register = () => {
   const { register, handleSubmit } = useForm<FormValues>();
-
-  const handleLogin = (data: FormValues) => {
-    // e.preventDefault();
+  const [userRegister] = useUserRegisterMutation();
+  const handleLogin = async (data: FormValues) => {
+    // e.preventDefault()
     const modifiedData = { ...data, role: "user" }; // Ensure 'role' is added
     console.log(modifiedData);
+
+    const res = await userRegister(modifiedData);
+    if (res?.error) {
+      console.log("error Occured", res.error);
+    } else {
+      toast("successfull");
+      console.log(res);
+    }
   };
 
   return (
@@ -33,10 +42,19 @@ const Register = () => {
         <div className="">
           <Input
             className="bg-[#1A4862] w-4/5 lg:w-1/2 mx-auto bg-opacity-80 text-opacity-100 font-semibold text-[#D7DFA3] placeholder:text-opacity-80 placeholder:text-[#D7DFA3] placeholder:font-bold"
+            placeholder="Enter Your Name"
+            type="text"
+            required
+            {...register("name")}
+          ></Input>
+        </div>
+        <div className="">
+          <Input
+            className="bg-[#1A4862] w-4/5 lg:w-1/2 mx-auto bg-opacity-80 text-opacity-100 font-semibold text-[#D7DFA3] placeholder:text-opacity-80 placeholder:text-[#D7DFA3] placeholder:font-bold"
             placeholder="Enter Your Email"
             type="email"
             required
-            {...register("useremail")}
+            {...register("email")}
           ></Input>
         </div>
         <div className="">

@@ -2,18 +2,25 @@ import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import ButtonDefault from "../ui/buttonDefault";
 import { Link } from "react-router-dom";
+import { useLoginMutation } from "@/redux/auth/loginApi";
 
 interface FormValues {
-  useremail: string;
+  email: string;
   password: string;
 }
 
 const Login = () => {
   const { register, handleSubmit } = useForm<FormValues>();
-
-  const handleLogin = (data: FormValues) => {
+  const [login] = useLoginMutation();
+  const handleLogin = async (data: FormValues) => {
     // e.preventDefault();
     console.log(data);
+    try {
+      const res = await login(data);
+      console.log(res);
+    } catch (err: any) {
+      console.log(err);
+    }
   };
 
   return (
@@ -31,7 +38,7 @@ const Login = () => {
             placeholder="Enter Your Email"
             type="email"
             required
-            {...register("useremail")}
+            {...register("email")}
           ></Input>
         </div>
         <div className="">
