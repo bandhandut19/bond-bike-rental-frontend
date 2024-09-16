@@ -1,9 +1,13 @@
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import ButtonDefault from "../ui/buttonDefault";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "@/redux/auth/loginApi";
-
+import { toast } from "sonner";
+interface FetchBaseQueryError {
+  status: number;
+  data: any;
+}
 interface FormValues {
   email: string;
   password: string;
@@ -12,14 +16,19 @@ interface FormValues {
 const Login = () => {
   const { register, handleSubmit } = useForm<FormValues>();
   const [login] = useLoginMutation();
+  const navigate = useNavigate();
   const handleLogin = async (data: FormValues) => {
     // e.preventDefault();
-    console.log(data);
-    try {
-      const res = await login(data);
-      console.log(res);
-    } catch (err: any) {
-      console.log(err);
+
+    const res = await login(data);
+    if (res?.error) {
+      const error = res?.error as FetchBaseQueryError;
+      toast(error.data.errorMessage[0].message);
+    } else {
+      if (res?.data?.success) {
+        toast(res?.data?.message);
+        navigate("/login");
+      }
     }
   };
 

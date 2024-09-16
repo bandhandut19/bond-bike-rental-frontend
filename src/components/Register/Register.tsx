@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import ButtonDefault from "../ui/buttonDefault";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserRegisterMutation } from "@/redux/auth/register";
 import { toast } from "sonner";
 interface FormValues {
@@ -13,20 +13,28 @@ interface FormValues {
   role: "user"; //will not define role here in future.. will handle in backend
 }
 
+interface FetchBaseQueryError {
+  status: number;
+  data: any;
+}
+
 const Register = () => {
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit, reset } = useForm<FormValues>();
   const [userRegister] = useUserRegisterMutation();
+  const navigate = useNavigate();
   const handleLogin = async (data: FormValues) => {
     // e.preventDefault()
     const modifiedData = { ...data, role: "user" }; // Ensure 'role' is added
-    console.log(modifiedData);
-
     const res = await userRegister(modifiedData);
     if (res?.error) {
-      console.log("error Occured", res.error);
+      const error = res?.error as FetchBaseQueryError;
+      toast(error.data.errorMessage[0].message);
     } else {
-      toast("successfull");
-      console.log(res);
+      if (res?.data?.success) {
+        reset();
+        toast(res?.data?.message);
+        navigate("/login");
+      }
     }
   };
 
