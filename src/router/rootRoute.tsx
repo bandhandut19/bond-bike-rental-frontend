@@ -8,11 +8,13 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import PrivateRoute from "@/components/PrivateRoutes/PrivateRoute";
+import NotFound from "@/components/Error/NotFound";
 
 const rootRoute = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
+    errorElement: <NotFound></NotFound>,
     children: [
       {
         path: "/",

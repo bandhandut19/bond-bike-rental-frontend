@@ -18,7 +18,7 @@ const UserDashboard = () => {
     <div className="">
       <div className="">
         <div className="bg-[#D7DFA3]">
-          <h1 className="text-center lg:ml-52  ml-20 text-lg lg:text-3xl py-4 font-bold text-[#1A4862]">
+          <h1 className="text-center lg:ml-52  ml-20 text-lg lg:text-3xl py-4 font-extrabold text-[#1A4862]">
             User Dashboard
           </h1>
         </div>
