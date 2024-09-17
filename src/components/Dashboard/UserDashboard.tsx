@@ -15,8 +15,8 @@ const UserDashboard = () => {
     setOption("welcome");
   };
   return (
-    <div className="">
-      <div className="">
+    <div>
+      <div>
         <div className="bg-[#D7DFA3]">
           <h1 className="text-center lg:ml-52  ml-20 text-lg lg:text-3xl py-4 font-extrabold text-[#1A4862]">
             User Dashboard
@@ -38,7 +38,7 @@ const UserDashboard = () => {
                   className="lg:text-xl text-sm w-full py-2 border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
                   onClick={handleOptionProfile}
                 >
-                  <span> Profile</span>
+                  <span> View Profile</span>
                 </button>
               </li>
             </ul>

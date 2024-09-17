@@ -15,6 +15,10 @@ const userApi = baseApi.injectEndpoints({
           },
         };
       },
+      providesTags: (result) =>
+        result
+          ? [{ type: "UserInfo" as const, id: "DETAILS" }]
+          : [{ type: "UserInfo" as const, id: "DETAILS" }],
     }),
     updateProfile: builder.mutation({
       query: ({ updatedInfo, payload }) => {
@@ -30,6 +34,7 @@ const userApi = baseApi.injectEndpoints({
           },
         };
       },
+      invalidatesTags: [{ type: "UserInfo" as const, id: "DETAILS" }],
     }),
   }),
 });
