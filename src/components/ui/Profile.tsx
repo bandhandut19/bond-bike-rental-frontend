@@ -5,6 +5,7 @@ import {
 import { Input } from "./input";
 import ButtonDefault from "./buttonDefault";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 interface TUser {
   name?: string;
@@ -17,22 +18,22 @@ const Profile = () => {
   const { data: userData } = useGetUserDetailsQuery({});
   const payload = { user_email: userData?.email, user_role: userData?.role };
   const { register, handleSubmit } = useForm<TUser>();
-  const [updateProfile, { data }] = useUpdateProfileMutation();
+  const [updateProfile] = useUpdateProfileMutation();
   const handleUpdateProfile = (updatedInfo: TUser) => {
     console.log(updatedInfo);
     updateProfile({ updatedInfo, payload })
       .then((response) => {
-        console.log("Profile updated successfully:", response);
+        toast(response?.data?.message);
       })
       .catch((error) => {
-        console.error("Error updating profile:", error);
+        toast("Error updating profile:", error);
       });
   };
   const userInfo = userData?.data;
   return (
     <form
       onSubmit={handleSubmit(handleUpdateProfile)}
-      className="mx-auto lg:w-1/2 flex flex-col gap-5 bg-gradient-to-bl border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5 h-1/2"
+      className="mx-auto lg:w-1/2 flex flex-col lg:gap-5 gap-1 bg-gradient-to-bl border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5 h-1/2"
     >
       <div>
         <label htmlFor="name" className="text-white font-bold">
