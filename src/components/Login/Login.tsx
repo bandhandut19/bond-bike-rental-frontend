@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { useAppDispatch } from "@/redux/hooks";
 import { addUser } from "@/redux/user/useSlice";
 import { jwtDecode } from "jwt-decode";
+import Cookies from "js-cookie";
 interface FetchBaseQueryError {
   status: number;
   data: any;
@@ -37,8 +38,8 @@ const Login = () => {
         const decodedToken: any = jwtDecode(token);
         const userRole = decodedToken?.user_role;
         if (userRole) {
-          console.log(userRole);
-          navigate("/");
+          Cookies.set("authToken", token, { expires: 7 });
+          navigate("/dashboard");
         }
       }
     }

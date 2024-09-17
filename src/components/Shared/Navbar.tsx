@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
 import { removeUser } from "@/redux/user/useSlice";
+import Cookies from "js-cookie";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -8,6 +9,8 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(removeUser());
+    Cookies.remove("authToken");
+    window.location.reload(); // removing cookies instanlty after logout
   };
   return (
     <div className="navbar bg-[#1A4862] ">
