@@ -1,19 +1,31 @@
-import Cookies from "js-cookie"; // Import js-cookie
+import Cookies from "js-cookie";
 import { baseApi } from "../api/baseApi";
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getUserDetails: builder.query({
       query: () => {
-        // Get the token from cookies using js-cookie
-        const token = Cookies.get("authToken"); // Replace "authToken" with your cookie's name
-
+        const token = Cookies.get("authToken");
         return {
           url: "/users/me",
           method: "GET",
-          credentials: "include", // Include cookies if needed
+          credentials: "include",
           headers: {
-            // Add the Bearer prefix if the token exists
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+        };
+      },
+    }),
+    updateProfile: builder.mutation({
+      query: ({ updatedInfo, payload }) => {
+        const token = Cookies.get("authToken");
+        return {
+          url: "/users/me",
+          method: "PUT",
+          body: updatedInfo,
+          user: payload,
+          credentials: "include",
+          headers: {
             Authorization: token ? `Bearer ${token}` : "",
           },
         };
@@ -22,5 +34,5 @@ const userApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetUserDetailsQuery } = userApi;
+export const { useGetUserDetailsQuery, useUpdateProfileMutation } = userApi;
 export default userApi;

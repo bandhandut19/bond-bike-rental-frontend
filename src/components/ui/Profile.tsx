@@ -1,12 +1,39 @@
-import { useGetUserDetailsQuery } from "@/redux/user/userApi";
+import {
+  useGetUserDetailsQuery,
+  useUpdateProfileMutation,
+} from "@/redux/user/userApi";
 import { Input } from "./input";
 import ButtonDefault from "./buttonDefault";
+import { useForm } from "react-hook-form";
+
+interface TUser {
+  name?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+}
 
 const Profile = () => {
-  const { data } = useGetUserDetailsQuery({});
-  const userInfo = data?.data;
+  const { data: userData } = useGetUserDetailsQuery({});
+  const payload = { user_email: userData?.email, user_role: userData?.role };
+  const { register, handleSubmit } = useForm<TUser>();
+  const [updateProfile, { data }] = useUpdateProfileMutation();
+  const handleUpdateProfile = (updatedInfo: TUser) => {
+    console.log(updatedInfo);
+    updateProfile({ updatedInfo, payload })
+      .then((response) => {
+        console.log("Profile updated successfully:", response);
+      })
+      .catch((error) => {
+        console.error("Error updating profile:", error);
+      });
+  };
+  const userInfo = userData?.data;
   return (
-    <div className="mx-auto w-1/2 flex flex-col gap-5 bg-gradient-to-bl border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5 h-1/2">
+    <form
+      onSubmit={handleSubmit(handleUpdateProfile)}
+      className="mx-auto lg:w-1/2 flex flex-col gap-5 bg-gradient-to-bl border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5 h-1/2"
+    >
       <div>
         <label htmlFor="name" className="text-white font-bold">
           Name
@@ -14,7 +41,8 @@ const Profile = () => {
         <Input
           id="name"
           className="bg-[#1A4862] placeholder:opacity-100 placeholder:font-extrabold placeholder:text-[#D7DFA3]"
-          placeholder={userInfo?.name}
+          defaultValue={userInfo?.name}
+          {...register("name")}
         ></Input>
       </div>
       <div>
@@ -25,7 +53,7 @@ const Profile = () => {
           id="email"
           disabled
           className="bg-[#1A4862] placeholder:opacity-100 placeholder:font-extrabold placeholder:text-[#D7DFA3]"
-          placeholder={userInfo?.email}
+          defaultValue={userInfo?.email}
         ></Input>
       </div>
       <div>
@@ -35,7 +63,8 @@ const Profile = () => {
         <Input
           id="phone"
           className="bg-[#1A4862] placeholder:opacity-100 placeholder:font-extrabold placeholder:text-[#D7DFA3]"
-          placeholder={userInfo?.phone}
+          defaultValue={userInfo?.phone}
+          {...register("phone")}
         ></Input>
       </div>
       <div>
@@ -45,13 +74,16 @@ const Profile = () => {
         <Input
           id="address"
           className="bg-[#1A4862] placeholder:opacity-100 placeholder:font-extrabold placeholder:text-[#D7DFA3]"
-          placeholder={userInfo?.address}
+          defaultValue={userInfo?.address}
+          {...register("address")}
         ></Input>
       </div>
       <div className="text-center">
-        <ButtonDefault buttontext={"Update Profile"}></ButtonDefault>
+        <button type="submit">
+          <ButtonDefault buttontext={"Update Profile"}></ButtonDefault>
+        </button>
       </div>
-    </div>
+    </form>
   );
 };
 
