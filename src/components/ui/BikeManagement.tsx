@@ -18,7 +18,7 @@ const BikeManagement = () => {
       <Table>
         <TableCaption className="text-white text-left py-2 px-1 md:hidden lg:hidden font-extrabold text-sm border-2">
           <span className="text-[#1A4862]">Tips: </span>Scroll Left To View More
-          Bike Details
+          Details
         </TableCaption>
         <TableHeader>
           <TableRow>
