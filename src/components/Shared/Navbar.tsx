@@ -37,22 +37,22 @@ const Navbar = () => {
             className="menu gap-2 menu-sm text-[#D7DFA3] font-bold bg-[#1A4862] dropdown-content mt-3 w-52 p-2 shadow"
           >
             <li className="">
-              <Link to={"/allbikes"} className="rounded-sm text-white">
+              <Link to={"/allbikes"} className="rounded-none text-white">
                 All Bikes
               </Link>
             </li>
             <li className="">
-              <Link to={"/contact"} className="rounded-sm ">
+              <Link to={"/contact"} className="rounded-none">
                 Contact Us
               </Link>
             </li>
             <li className="">
-              <Link to={"/about"} className="rounded-sm ">
+              <Link to={"/about"} className="rounded-none">
                 About Us
               </Link>
             </li>
             <li className="">
-              <Link to={"/dashboard"} className="rounded-sm ">
+              <Link to={"/dashboard"} className="rounded-none ">
                 Dashboard
               </Link>
             </li>
@@ -71,7 +71,7 @@ const Navbar = () => {
             <NavLink
               to={"/allbikes"}
               className={({ isActive }) =>
-                `nav-link hover:bg-[#D7DFA3] rounded-sm text-xl  hover:text-[#1A4862] ${
+                `nav-link hover:bg-[#D7DFA3]  rounded-none text-xl  hover:text-[#1A4862] ${
                   isActive ? "nav-link-active" : ""
                 }`
               }
@@ -83,7 +83,7 @@ const Navbar = () => {
             <NavLink
               to={"/dashboard"}
               className={({ isActive }) =>
-                `nav-link hover:bg-[#D7DFA3] rounded-sm text-xl  hover:text-[#1A4862] ${
+                `nav-link hover:bg-[#D7DFA3] rounded-none text-xl  hover:text-[#1A4862] ${
                   isActive ? "nav-link-active" : ""
                 }`
               }
@@ -95,7 +95,7 @@ const Navbar = () => {
             <NavLink
               to={"/contact"}
               className={({ isActive }) =>
-                `nav-link hover:bg-[#D7DFA3] hover:text-[#1A4862] text-xl rounded-sm ${
+                `nav-link hover:bg-[#D7DFA3] hover:text-[#1A4862] text-xl rounded-none ${
                   isActive ? "nav-link-active" : ""
                 }`
               }
@@ -107,7 +107,7 @@ const Navbar = () => {
             <NavLink
               to={"/about"}
               className={({ isActive }) =>
-                `nav-link hover:bg-[#D7DFA3] hover:text-[#1A4862] text-xl rounded-sm  ${
+                `nav-link hover:bg-[#D7DFA3] hover:text-[#1A4862] text-xl rounded-none  ${
                   isActive ? "nav-link-active" : ""
                 }`
               }
@@ -122,14 +122,14 @@ const Navbar = () => {
           <Link
             onClick={handleLogout}
             to={"/login"}
-            className="lg:mr-5 py-1 px-2 lg:py-2 lg:px-4 rounded-sm lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
+            className="lg:mr-5 py-1 px-2 lg:py-2 lg:px-4  lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
           >
             Logout
           </Link>
         ) : (
           <Link
             to={"/login"}
-            className="lg:mr-5 py-1 px-2 lg:py-2 lg:px-4 rounded-sm lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
+            className="lg:mr-5 py-1 px-2 lg:py-2 lg:px-4  lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
           >
             Login Now !
           </Link>

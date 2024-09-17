@@ -4,8 +4,8 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/api",
-    // baseUrl: "will later input here the hosted server api",
-    // credentials: "include",
+    // baseUrl: "https://bond-bike-rental-backend.vercel.app/api",
+    credentials: "include",
   }),
   endpoints: () => ({}),
 });
