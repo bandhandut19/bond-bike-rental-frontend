@@ -28,8 +28,13 @@ const BikeCard = ({ bike }: { bike: TBike }) => {
             <span className="text-xl font-bold"> {brand}</span>
           </div>
           <div>
-            <span className="text-lg font-semibold">CC: </span>{" "}
-            <span className="text-xl font-bold"> {cc}</span>
+            <span className="text-lg font-semibold ">
+              Price <span className="text-sm ">(Per Hour)</span>:{" "}
+            </span>{" "}
+            <span className="text-xl font-bold text-[#428c34]">
+              {" "}
+              {pricePerHour} BDT
+            </span>
           </div>
         </div>
         <div className=" justify-center flex flex-col">
