@@ -1,4 +1,5 @@
 export type TBike = {
+  _id?: string; // for admin dashboard map key.
   name: string;
   image: string;
   description: string;
@@ -9,3 +10,9 @@ export type TBike = {
   model: string;
   brand: string;
 };
+export interface TUser {
+  name?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+}

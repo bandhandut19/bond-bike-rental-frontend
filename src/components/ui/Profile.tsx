@@ -6,13 +6,7 @@ import { Input } from "./input";
 import ButtonDefault from "./buttonDefault";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-
-interface TUser {
-  name?: string;
-  email?: string;
-  phone?: string;
-  address?: string;
-}
+import { TUser } from "@/types";
 
 const Profile = () => {
   const { data: userData } = useGetUserDetailsQuery({});
@@ -20,7 +14,6 @@ const Profile = () => {
   const { register, handleSubmit } = useForm<TUser>();
   const [updateProfile] = useUpdateProfileMutation();
   const handleUpdateProfile = (updatedInfo: TUser) => {
-    console.log(updatedInfo);
     updateProfile({ updatedInfo, payload })
       .then((response) => {
         toast(response?.data?.message);
