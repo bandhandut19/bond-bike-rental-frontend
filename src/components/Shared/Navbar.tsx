@@ -60,7 +60,7 @@ const Navbar = () => {
         </div>
         <Link
           to={"/"}
-          className="lg:text-xl text-sm text-[#D7DFA3]  font-extrabold lg:ml-5"
+          className="lg:text-xl md:text-2xl text-sm text-[#D7DFA3]  font-extrabold lg:ml-5"
         >
           Bond Bike Rentals
         </Link>
@@ -122,7 +122,7 @@ const Navbar = () => {
           <Link
             onClick={handleLogout}
             to={"/login"}
-            className="lg:mr-5 py-1 px-2 lg:py-2 lg:px-4  lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
+            className="lg:mr-5 py-1 px-2 lg:py-2 lg:px-4 md:text-xl  lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
           >
             Logout
           </Link>
