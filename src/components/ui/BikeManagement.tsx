@@ -15,7 +15,7 @@ const BikeManagement = () => {
   const { data } = useGetAllBikesQuery({});
   const bikeData = data?.data;
   return (
-    <div className="mx-auto lg:w-4/5 w-full md:items-center flex flex-col lg:gap-5 gap-1 bg-gradient-to-tr border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5">
+    <div className="mx-auto lg:w-4/5 mb-5 w-full md:items-center flex flex-col lg:gap-5 gap-1 bg-gradient-to-tr border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5">
       <div className="w-full">
         <BikeSearchAdminDashboard></BikeSearchAdminDashboard>
       </div>

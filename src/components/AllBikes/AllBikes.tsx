@@ -13,7 +13,7 @@ const AllBikes = () => {
       <div className="pt-10 mb-20 text-center text-4xl font-extrabold text-[#D7DFA3]">
         <h1>All Bikes</h1>
       </div>
-      <div className="grid lg:grid-cols-3 grid-cols-1">
+      <div className="grid lg:grid-cols-3 grid-cols-1 mb-20 gap-y-8 gap-x-5">
         {bikes?.map((bike: TBike) => (
           <BikeCard bike={bike}></BikeCard>
         ))}
