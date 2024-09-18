@@ -29,10 +29,10 @@ const BikeManagement = () => {
               Model
             </TableHead>
             <TableHead className="text-[#1A4862] text-opacity-100 font-extrabold lg:text-lg">
-              Available
+              Brand
             </TableHead>
             <TableHead className="text-[#1A4862] text-opacity-100 px-2 font-extrabold lg:text-lg">
-              Price
+              Price (Hourly)
             </TableHead>
             <TableHead className="text-[#1A4862]  text-opacity-100 px-5 font-extrabold lg:text-lg text-center">
               <h1 className="text-center">Manage</h1>
@@ -47,8 +47,8 @@ const BikeManagement = () => {
             >
               <TableCell className="font-medium">{bike.name}</TableCell>
               <TableCell>{bike.model}</TableCell>
-              <TableCell>{bike.isAvailable}</TableCell>
-              <TableCell>{bike.pricePerHour}</TableCell>
+              <TableCell>{bike.brand}</TableCell>
+              <TableCell>{bike.pricePerHour} BDT</TableCell>
               <TableCell className="text-right">
                 <div className="flex gap-2 items-center justify-center">
                   <button className="py-2 px-5 bg-[#428c34] text-white border-2 hover:bg-[#D7DFA3] hover:text-[#1A4862]">
