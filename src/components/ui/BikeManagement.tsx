@@ -10,6 +10,16 @@ import {
 import { useGetAllBikesQuery } from "@/redux/Bikes/bikesApi";
 import { TBike } from "@/types";
 import BikeSearchAdminDashboard from "./BikeSearchAdminDashboard";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const BikeManagement = () => {
   const { data } = useGetAllBikesQuery({});
@@ -54,13 +64,46 @@ const BikeManagement = () => {
               <TableCell>{bike.brand}</TableCell>
               <TableCell>{bike.pricePerHour} BDT</TableCell>
               <TableCell className="text-right">
-                <div className="flex gap-2 items-center justify-center">
+                <div className="flex gap-4 items-center justify-center">
                   <button className="py-2 px-5 bg-[#428c34] text-white border-2 hover:bg-[#D7DFA3] hover:text-[#1A4862]">
                     Update
                   </button>
-                  <button className="py-2 px-5 bg-[#db3c30] text-white border-2 hover:text-[#1A4862]">
-                    Delete
-                  </button>
+                  {/* Delete Dialog */}
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="py-2 px-5 bg-[#db3c30] font-extrabold text-white border-2 hover:text-[#D7DFA3]">
+                        Delete
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px] bg-[#db3c30] bg-opacity-80">
+                      <DialogHeader>
+                        <DialogTitle className="text-white">
+                          Delete Bike
+                        </DialogTitle>
+                        <DialogDescription className="text-white">
+                          Delete{" "}
+                          <span className="font-extrabold text-[#D7DFA3]">
+                            {" "}
+                            {bike.name}{" "}
+                          </span>{" "}
+                          from Bond Bike Rental
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="grid gap-4 py-4">
+                        <h1 className="text-center text-3xl font-bold text-[#D7DFA3]">
+                          ARE YOU SURE ?{" "}
+                        </h1>
+                      </div>
+                      <DialogFooter>
+                        <Button
+                          type="submit"
+                          className="bg-[#D7DFA3] text-[#1A4862] font-bold border-[#1A4862] rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40"
+                        >
+                          Delete Bike
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </TableCell>
             </TableRow>
