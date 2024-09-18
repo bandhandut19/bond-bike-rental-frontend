@@ -3,6 +3,7 @@ import { useState } from "react";
 import Welcome from "../ui/Welcome";
 import Profile from "../ui/Profile";
 import BikeManagement from "../ui/BikeManagement";
+import UserManagement from "../ui/UserManagement";
 
 const AdminDashboard = () => {
   const { data } = useGetUserDetailsQuery({});
@@ -16,6 +17,9 @@ const AdminDashboard = () => {
   };
   const handleOptionBikeManagement = () => {
     setOption("bikeManagement");
+  };
+  const handleOptionUserManagement = () => {
+    setOption("userManagement");
   };
   return (
     <div>
@@ -52,6 +56,14 @@ const AdminDashboard = () => {
                   <span> Bike Management </span>
                 </button>
               </li>
+              <li>
+                <button
+                  className="lg:text-xl text-sm w-full py-2 border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
+                  onClick={handleOptionUserManagement}
+                >
+                  <span> User Management </span>
+                </button>
+              </li>
             </ul>
           </div>
           <div className="bg-[#1A4862] w-full overflow-auto  text-white p-2 lg:p-0">
@@ -61,6 +73,8 @@ const AdminDashboard = () => {
               <Welcome name={userInfo?.name}></Welcome>
             ) : option === "bikeManagement" ? (
               <BikeManagement></BikeManagement>
+            ) : option === "userManagement" ? (
+              <UserManagement></UserManagement>
             ) : (
               <Welcome name={userInfo?.name}></Welcome>
             )}

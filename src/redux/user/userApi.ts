@@ -20,6 +20,23 @@ const userApi = baseApi.injectEndpoints({
           ? [{ type: "UserInfo" as const, id: "DETAILS" }]
           : [{ type: "UserInfo" as const, id: "DETAILS" }],
     }),
+    getAllUsers: builder.query({
+      query: () => {
+        const token = Cookies.get("authToken");
+        return {
+          url: "/users/allusers",
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+        };
+      },
+      providesTags: (result) =>
+        result
+          ? [{ type: "UserInfo" as const, id: "DETAILS" }]
+          : [{ type: "UserInfo" as const, id: "DETAILS" }],
+    }),
     updateProfile: builder.mutation({
       query: ({ updatedInfo, payload }) => {
         const token = Cookies.get("authToken");
@@ -39,5 +56,9 @@ const userApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetUserDetailsQuery, useUpdateProfileMutation } = userApi;
+export const {
+  useGetUserDetailsQuery,
+  useUpdateProfileMutation,
+  useGetAllUsersQuery,
+} = userApi;
 export default userApi;
