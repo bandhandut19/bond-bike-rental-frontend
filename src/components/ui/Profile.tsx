@@ -26,7 +26,7 @@ const Profile = () => {
   return (
     <form
       onSubmit={handleSubmit(handleUpdateProfile)}
-      className="mx-auto lg:w-1/2 flex flex-col lg:gap-5 gap-1 bg-gradient-to-bl border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5 h-1/2"
+      className="mx-auto overflow-auto lg:w-1/2 flex flex-col lg:gap-5 gap-1 bg-gradient-to-bl border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5 "
     >
       <div>
         <label htmlFor="name" className="text-white font-bold">

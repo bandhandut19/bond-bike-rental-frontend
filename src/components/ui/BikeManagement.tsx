@@ -9,18 +9,22 @@ import {
 } from "@/components/ui/table";
 import { useGetAllBikesQuery } from "@/redux/Bikes/bikesApi";
 import { TBike } from "@/types";
+import BikeSearchAdminDashboard from "./BikeSearchAdminDashboard";
 
 const BikeManagement = () => {
   const { data } = useGetAllBikesQuery({});
   const bikeData = data?.data;
   return (
-    <div className="mx-auto lg:w-4/5 w-full md:items-center flex flex-col lg:gap-5 gap-1 bg-gradient-to-tr border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5 lg:h-1/2">
+    <div className="mx-auto lg:w-4/5 w-full md:items-center flex flex-col lg:gap-5 gap-1 bg-gradient-to-tr border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5">
+      <div className="w-full">
+        <BikeSearchAdminDashboard></BikeSearchAdminDashboard>
+      </div>
       <Table>
         <TableCaption className="text-white text-left py-2 px-1 md:hidden lg:hidden font-extrabold text-sm border-2">
-          <span className="text-[#1A4862]">Tips: </span>Scroll Left To View More
+          <span className="text-[#D7DFA3]">Tips: </span>Scroll Left To View More
           Details
         </TableCaption>
-        <TableHeader>
+        <TableHeader className="bg-white bg-opacity-50">
           <TableRow>
             <TableHead className="text-[#1A4862] text-opacity-100 font-extrabold lg:text-lg">
               Name
