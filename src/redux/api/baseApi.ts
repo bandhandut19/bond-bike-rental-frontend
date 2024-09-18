@@ -7,6 +7,6 @@ export const baseApi = createApi({
     // baseUrl: "https://bond-bike-rental-backend.vercel.app/api",
     credentials: "include",
   }),
-  tagTypes: ["UserInfo"],
+  tagTypes: ["UserInfo", "BikeInfo"],
   endpoints: () => ({}),
 });

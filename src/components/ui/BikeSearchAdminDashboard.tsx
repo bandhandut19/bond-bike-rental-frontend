@@ -14,15 +14,28 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TBike } from "@/types";
 import { useForm } from "react-hook-form";
+import { useCreateBikeMutation } from "@/redux/Bikes/bikesApi";
+import { toast } from "sonner";
 
 const BikeSearchAdminDashboard = () => {
   const [searchName, setSearchName] = useState("");
-  const { register, handleSubmit } = useForm<TBike>();
+  const { register, handleSubmit, reset } = useForm<TBike>();
+  const [createBike] = useCreateBikeMutation();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchName(e.target.value);
   };
-  const handleCreateBike = (data: TBike) => {
-    console.log(data);
+  const handleCreateBike = async (data: TBike) => {
+    const modifiedData = {
+      ...data, // Keeping other data fields unchanged
+      pricePerHour: parseInt(data.pricePerHour as unknown as string, 10),
+      year: parseInt(data.year as unknown as string, 10),
+      cc: parseInt(data.cc as unknown as string, 10),
+    };
+    const res = await createBike(modifiedData);
+    const message = res?.data?.message as string;
+    toast(message);
+    reset();
+    console.log(res);
   };
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -117,6 +130,7 @@ const BikeSearchAdminDashboard = () => {
                   <Input
                     id="year"
                     required
+                    type="number"
                     placeholder="Enter the Year"
                     {...register("year")}
                     className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
@@ -141,6 +155,7 @@ const BikeSearchAdminDashboard = () => {
                   <Input
                     id="pricePerHour"
                     required
+                    type="number"
                     placeholder="Enter the Price Per Hour"
                     {...register("pricePerHour")}
                     className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
@@ -165,6 +180,7 @@ const BikeSearchAdminDashboard = () => {
                   <Input
                     id="cc"
                     required
+                    type="number"
                     placeholder="Enter the the CC of the Bike"
                     {...register("cc")}
                     className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
