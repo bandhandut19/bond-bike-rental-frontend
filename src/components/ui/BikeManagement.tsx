@@ -24,6 +24,13 @@ import {
 const BikeManagement = () => {
   const { data } = useGetAllBikesQuery({});
   const bikeData = data?.data;
+  const handleDeleteBike = (id: string) => {
+    console.log(id);
+  };
+  const handleUpdateBike = (id: string) => {
+    console.log(id);
+  };
+
   return (
     <div className="mx-auto lg:w-4/5 mb-5 w-full md:items-center flex flex-col lg:gap-5 gap-1 bg-gradient-to-tr border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5">
       <div className="w-full">
@@ -65,6 +72,7 @@ const BikeManagement = () => {
               <TableCell>{bike.pricePerHour} BDT</TableCell>
               <TableCell className="text-right">
                 <div className="flex gap-4 items-center justify-center">
+                  {/* Update Dialog */}
                   <button className="py-2 px-5 bg-[#428c34] text-white border-2 hover:bg-[#D7DFA3] hover:text-[#1A4862]">
                     Update
                   </button>
@@ -97,6 +105,7 @@ const BikeManagement = () => {
                       <DialogFooter>
                         <Button
                           type="submit"
+                          onClick={() => handleDeleteBike(bike?._id as string)}
                           className="bg-[#D7DFA3] text-[#1A4862] font-bold border-[#1A4862] rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40"
                         >
                           Delete Bike
