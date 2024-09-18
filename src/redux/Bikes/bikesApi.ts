@@ -26,9 +26,26 @@ const bikesApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [{ type: "BikeInfo", id: "DETAILS" }],
     }),
+    deleteBike: builder.mutation({
+      query: (id: string) => {
+        const token = Cookies.get("authToken");
+        return {
+          url: `/bikes/${id}`,
+          method: "DELETE",
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+        };
+      },
+      invalidatesTags: [{ type: "BikeInfo", id: "DETAILS" }],
+    }),
   }),
 });
 
-export const { useGetAllBikesQuery, useCreateBikeMutation } = bikesApi; // Export the mutation hook
+export const {
+  useGetAllBikesQuery,
+  useCreateBikeMutation,
+  useDeleteBikeMutation,
+} = bikesApi; // Export the mutation hook
 
 export default bikesApi;

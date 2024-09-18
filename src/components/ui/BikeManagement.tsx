@@ -7,7 +7,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetAllBikesQuery } from "@/redux/Bikes/bikesApi";
+import {
+  useDeleteBikeMutation,
+  useGetAllBikesQuery,
+} from "@/redux/Bikes/bikesApi";
 import { TBike } from "@/types";
 import BikeSearchAdminDashboard from "./BikeSearchAdminDashboard";
 import { Button } from "@/components/ui/button";
@@ -21,16 +24,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
 import { Input } from "./input";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const BikeManagement = () => {
   const { data } = useGetAllBikesQuery({});
+  const [deleteBike] = useDeleteBikeMutation();
   const bikeData = data?.data;
   const { register, handleSubmit } = useForm<TBike>();
-  const handleDeleteBike = (id: string) => {
-    console.log(id);
+  const handleDeleteBike = async (id: string) => {
+    const res = await deleteBike(id);
+    const message = res?.data?.message;
+    toast(message);
   };
   const handleUpdateBike = (data: TBike, id: string) => {
     console.log(data, id);
