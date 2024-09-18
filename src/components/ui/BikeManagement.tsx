@@ -10,11 +10,12 @@ import {
 import {
   useDeleteBikeMutation,
   useGetAllBikesQuery,
+  useUpdateBikeMutation,
 } from "@/redux/Bikes/bikesApi";
 import { TBike } from "@/types";
 import BikeSearchAdminDashboard from "./BikeSearchAdminDashboard";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+
 import {
   Dialog,
   DialogContent,
@@ -27,19 +28,35 @@ import {
 import { Input } from "./input";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { useState } from "react";
 
 const BikeManagement = () => {
   const { data } = useGetAllBikesQuery({});
   const [deleteBike] = useDeleteBikeMutation();
+  const [updateBike] = useUpdateBikeMutation();
+  const [selectedBike, setSelectedBike] = useState<TBike | null>(null);
   const bikeData = data?.data;
-  const { register, handleSubmit } = useForm<TBike>();
+  const { register, handleSubmit, reset } = useForm<TBike>();
   const handleDeleteBike = async (id: string) => {
     const res = await deleteBike(id);
     const message = res?.data?.message;
     toast(message);
   };
-  const handleUpdateBike = (data: TBike, id: string) => {
-    console.log(data, id);
+  const openUpdateModal = (bike: TBike) => {
+    setSelectedBike(bike);
+    reset(bike);
+  };
+  const handleUpdateBike = async (data: TBike, id: string) => {
+    console.log(id);
+    const modifiedData = {
+      ...data,
+      pricePerHour: parseInt(data?.pricePerHour as unknown as string, 10),
+      year: parseInt(data?.year as unknown as string, 10),
+      cc: parseInt(data?.cc as unknown as string, 10),
+    };
+    const res = await updateBike({ updatedBike: modifiedData, id });
+    const message = res?.data?.message;
+    toast(message);
   };
 
   return (
@@ -85,9 +102,16 @@ const BikeManagement = () => {
                 <div className="flex gap-4 items-center justify-center">
                   {/* Update Dialog */}
 
-                  <Dialog>
+                  <Dialog
+                    onOpenChange={(open) =>
+                      open ? setSelectedBike(bike) : reset()
+                    }
+                  >
                     <DialogTrigger asChild>
-                      <button className="py-2 px-5 bg-[#428c34] text-white border-2 hover:bg-[#D7DFA3] hover:text-[#1A4862]">
+                      <button
+                        className="py-2 px-5 bg-[#428c34] text-white border-2 hover:bg-[#D7DFA3] hover:text-[#1A4862]"
+                        onClick={() => openUpdateModal(bike)} // Updating modal with bike data
+                      >
                         Update
                       </button>
                     </DialogTrigger>
@@ -100,94 +124,94 @@ const BikeManagement = () => {
                       </DialogHeader>
                       <form
                         onSubmit={handleSubmit((data) =>
-                          handleUpdateBike(data, bike._id as string)
+                          handleUpdateBike(data, selectedBike?._id as string)
                         )}
                         className="grid gap-4 py-4"
                       >
                         <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="name" className="text-right">
+                          <label htmlFor="name" className="text-right">
                             Name
-                          </Label>
+                          </label>
                           <Input
                             id="name"
-                            defaultValue={bike.name}
+                            defaultValue={selectedBike?.name}
                             {...register("name")}
                             className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                           />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="brand" className="text-right">
+                          <label htmlFor="brand" className="text-right">
                             Brand
-                          </Label>
+                          </label>
                           <Input
                             id="brand"
-                            defaultValue={bike.brand}
+                            defaultValue={selectedBike?.brand}
                             {...register("brand")}
                             className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                           />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="model" className="text-right">
+                          <label htmlFor="model" className="text-right">
                             Model
-                          </Label>
+                          </label>
                           <Input
                             id="model"
-                            defaultValue={bike.model}
+                            defaultValue={selectedBike?.model}
                             {...register("model")}
                             className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                           />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="year" className="text-right">
+                          <label htmlFor="year" className="text-right">
                             Year
-                          </Label>
+                          </label>
                           <Input
                             id="year"
-                            defaultValue={bike.year}
+                            defaultValue={selectedBike?.year}
                             {...register("year")}
                             className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                           />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="image" className="text-right">
+                          <label htmlFor="image" className="text-right">
                             Image (URL)
-                          </Label>
+                          </label>
                           <Input
                             id="image"
-                            defaultValue={bike.image}
+                            defaultValue={selectedBike?.image}
                             {...register("image")}
                             className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                           />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="pricePerHour" className="text-right">
+                          <label htmlFor="pricePerHour" className="text-right">
                             Price (Hour)
-                          </Label>
+                          </label>
                           <Input
                             id="pricePerHour"
-                            defaultValue={bike.pricePerHour}
+                            defaultValue={selectedBike?.pricePerHour}
                             {...register("pricePerHour")}
                             className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                           />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="description" className="text-right">
+                          <label htmlFor="description" className="text-right">
                             Description
-                          </Label>
+                          </label>
                           <textarea
                             id="description"
-                            defaultValue={bike.description}
+                            defaultValue={selectedBike?.description}
                             {...register("description")}
                             className="col-span-3 pl-2 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                           />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
-                          <Label htmlFor="cc" className="text-right">
+                          <label htmlFor="cc" className="text-right">
                             CC
-                          </Label>
+                          </label>
                           <Input
                             id="cc"
-                            defaultValue={bike.cc}
+                            defaultValue={selectedBike?.cc}
                             {...register("cc")}
                             className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                           />
