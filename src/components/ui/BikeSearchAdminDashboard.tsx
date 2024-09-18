@@ -12,14 +12,19 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { TBike } from "@/types";
+import { useForm } from "react-hook-form";
 
 const BikeSearchAdminDashboard = () => {
   const [searchName, setSearchName] = useState("");
+  const { register, handleSubmit } = useForm<TBike>();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchName(e.target.value);
   };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCreateBike = (data: TBike) => {
+    console.log(data);
+  };
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearchName("");
   };
@@ -29,7 +34,7 @@ const BikeSearchAdminDashboard = () => {
         All Bikes List
       </h1>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSearchSubmit}
         className="grid lg:grid-cols-2 grid-cols-1 lg:gap-5 gap-5 text-center lg:text-left items-center justify-center py-2 px-2"
       >
         <div>
@@ -65,14 +70,19 @@ const BikeSearchAdminDashboard = () => {
                   Add more bikes for customers to have their dream ride
                 </DialogDescription>
               </DialogHeader>
-              <div className="grid gap-4 py-4">
+              <form
+                onSubmit={handleSubmit(handleCreateBike)}
+                className="grid gap-4 py-4"
+              >
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="name" className="text-right">
                     Name
                   </Label>
                   <Input
                     id="name"
+                    required
                     placeholder="Enter the name of the Bike"
+                    {...register("name")}
                     className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                   />
                 </div>
@@ -82,7 +92,9 @@ const BikeSearchAdminDashboard = () => {
                   </Label>
                   <Input
                     id="brand"
+                    required
                     placeholder="Enter the Brand Name"
+                    {...register("brand")}
                     className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                   />
                 </div>
@@ -92,7 +104,9 @@ const BikeSearchAdminDashboard = () => {
                   </Label>
                   <Input
                     id="model"
+                    required
                     placeholder="Enter the Model Name"
+                    {...register("model")}
                     className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                   />
                 </div>
@@ -102,7 +116,9 @@ const BikeSearchAdminDashboard = () => {
                   </Label>
                   <Input
                     id="year"
+                    required
                     placeholder="Enter the Year"
+                    {...register("year")}
                     className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                   />
                 </div>
@@ -112,7 +128,9 @@ const BikeSearchAdminDashboard = () => {
                   </Label>
                   <Input
                     id="image"
+                    required
                     placeholder="Enter the Image URL"
+                    {...register("image")}
                     className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                   />
                 </div>
@@ -122,7 +140,9 @@ const BikeSearchAdminDashboard = () => {
                   </Label>
                   <Input
                     id="pricePerHour"
+                    required
                     placeholder="Enter the Price Per Hour"
+                    {...register("pricePerHour")}
                     className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                   />
                 </div>
@@ -130,9 +150,11 @@ const BikeSearchAdminDashboard = () => {
                   <Label htmlFor="description" className="text-right">
                     Description
                   </Label>
-                  <Input
+                  <textarea
                     id="description"
+                    required
                     placeholder="Enter the Description"
+                    {...register("description")}
                     className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                   />
                 </div>
@@ -142,19 +164,21 @@ const BikeSearchAdminDashboard = () => {
                   </Label>
                   <Input
                     id="cc"
+                    required
                     placeholder="Enter the the CC of the Bike"
+                    {...register("cc")}
                     className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
                   />
                 </div>
-              </div>
-              <DialogFooter>
-                <Button
-                  type="submit"
-                  className="bg-[#D7DFA3] text-[#1A4862] font-bold rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40"
-                >
-                  Create Bike
-                </Button>
-              </DialogFooter>
+                <DialogFooter>
+                  <Button
+                    type="submit"
+                    className="bg-[#D7DFA3] text-[#1A4862] font-bold rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40"
+                  >
+                    Create Bike
+                  </Button>
+                </DialogFooter>
+              </form>
             </DialogContent>
           </Dialog>
         </div>

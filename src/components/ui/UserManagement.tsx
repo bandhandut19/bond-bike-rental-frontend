@@ -12,7 +12,6 @@ import { TUser } from "@/types";
 
 const UserManagement = () => {
   const { data } = useGetAllUsersQuery({});
-  console.log(data);
   const usersData = data?.data;
   return (
     <div className="mx-auto lg:w-4/5 mb-5 w-full md:items-center flex flex-col lg:gap-5 gap-1 bg-gradient-to-tr border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5">

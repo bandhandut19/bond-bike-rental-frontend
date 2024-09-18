@@ -11,6 +11,7 @@ import { useGetAllBikesQuery } from "@/redux/Bikes/bikesApi";
 import { TBike } from "@/types";
 import BikeSearchAdminDashboard from "./BikeSearchAdminDashboard";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
@@ -21,14 +22,18 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
+import { Input } from "./input";
+import { useForm } from "react-hook-form";
+
 const BikeManagement = () => {
   const { data } = useGetAllBikesQuery({});
   const bikeData = data?.data;
+  const { register, handleSubmit } = useForm<TBike>();
   const handleDeleteBike = (id: string) => {
     console.log(id);
   };
-  const handleUpdateBike = (id: string) => {
-    console.log(id);
+  const handleUpdateBike = (data: TBike, id: string) => {
+    console.log(data, id);
   };
 
   return (
@@ -73,9 +78,126 @@ const BikeManagement = () => {
               <TableCell className="text-right">
                 <div className="flex gap-4 items-center justify-center">
                   {/* Update Dialog */}
-                  <button className="py-2 px-5 bg-[#428c34] text-white border-2 hover:bg-[#D7DFA3] hover:text-[#1A4862]">
-                    Update
-                  </button>
+
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="py-2 px-5 bg-[#428c34] text-white border-2 hover:bg-[#D7DFA3] hover:text-[#1A4862]">
+                        Update
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="w-full sm:min-w-[420px] bg-[#1A4862] bg-opacity-75 text-white">
+                      <DialogHeader>
+                        <DialogTitle>Update Bike</DialogTitle>
+                        <DialogDescription className="text-[#D7DFA3] font-bold text-opacity-70">
+                          Update Bike Informations
+                        </DialogDescription>
+                      </DialogHeader>
+                      <form
+                        onSubmit={handleSubmit((data) =>
+                          handleUpdateBike(data, bike._id as string)
+                        )}
+                        className="grid gap-4 py-4"
+                      >
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="name" className="text-right">
+                            Name
+                          </Label>
+                          <Input
+                            id="name"
+                            defaultValue={bike.name}
+                            {...register("name")}
+                            className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="brand" className="text-right">
+                            Brand
+                          </Label>
+                          <Input
+                            id="brand"
+                            defaultValue={bike.brand}
+                            {...register("brand")}
+                            className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="model" className="text-right">
+                            Model
+                          </Label>
+                          <Input
+                            id="model"
+                            defaultValue={bike.model}
+                            {...register("model")}
+                            className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="year" className="text-right">
+                            Year
+                          </Label>
+                          <Input
+                            id="year"
+                            defaultValue={bike.year}
+                            {...register("year")}
+                            className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="image" className="text-right">
+                            Image (URL)
+                          </Label>
+                          <Input
+                            id="image"
+                            defaultValue={bike.image}
+                            {...register("image")}
+                            className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="pricePerHour" className="text-right">
+                            Price (Hour)
+                          </Label>
+                          <Input
+                            id="pricePerHour"
+                            defaultValue={bike.pricePerHour}
+                            {...register("pricePerHour")}
+                            className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="description" className="text-right">
+                            Description
+                          </Label>
+                          <textarea
+                            id="description"
+                            defaultValue={bike.description}
+                            {...register("description")}
+                            className="col-span-3 pl-2 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="cc" className="text-right">
+                            CC
+                          </Label>
+                          <Input
+                            id="cc"
+                            defaultValue={bike.cc}
+                            {...register("cc")}
+                            className="col-span-3 bg-[#D7DFA3] opacity-80 text-[#1A4862] font-bold rounded-none"
+                          />
+                        </div>
+                        <DialogFooter>
+                          <Button
+                            type="submit"
+                            className="bg-[#D7DFA3] text-[#1A4862] font-bold rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40"
+                          >
+                            Update Bike
+                          </Button>
+                        </DialogFooter>
+                      </form>
+                    </DialogContent>
+                  </Dialog>
+
                   {/* Delete Dialog */}
                   <Dialog>
                     <DialogTrigger asChild>
