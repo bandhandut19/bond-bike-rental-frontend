@@ -44,7 +44,7 @@ const BikeManagement = () => {
   };
   const openUpdateModal = (bike: TBike) => {
     setSelectedBike(bike);
-    reset(bike);
+    reset(bike); // resetting with current bike data
   };
   const handleUpdateBike = async (data: TBike, id: string) => {
     console.log(id);

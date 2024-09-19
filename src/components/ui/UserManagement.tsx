@@ -7,12 +7,39 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetAllUsersQuery } from "@/redux/user/userApi";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  useDeleteUserMutation,
+  useGetAllUsersQuery,
+  useGetUserDetailsQuery,
+} from "@/redux/user/userApi";
 import { TUser } from "@/types";
+import { toast } from "sonner";
+import { Button } from "./button";
 
 const UserManagement = () => {
   const { data } = useGetAllUsersQuery({});
   const usersData = data?.data;
+  const { data: userData } = useGetUserDetailsQuery({});
+  const payload = { user_email: userData?.email, user_role: userData?.role };
+  const [deleteUser] = useDeleteUserMutation();
+  const handleDeleteUser = (id: string) => {
+    deleteUser({ id, payload })
+      .then((response) => {
+        toast(response?.data?.message);
+      })
+      .catch((error) => {
+        toast("Error deleting User:", error);
+      });
+  };
   return (
     <div className="mx-auto lg:w-4/5 mb-5 w-full md:items-center flex flex-col lg:gap-5 gap-1 bg-gradient-to-tr border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5">
       <Table>
@@ -54,9 +81,42 @@ const UserManagement = () => {
                   <button className="py-2 px-5 bg-[#428c34] text-white border-2 hover:bg-[#D7DFA3] hover:text-[#1A4862]">
                     Promote
                   </button>
-                  <button className="py-2 px-5 bg-[#db3c30] text-white border-2 hover:text-[#1A4862]">
-                    Delete
-                  </button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="py-2 px-5 bg-[#db3c30] text-white border-2 hover:text-[#1A4862]">
+                        Delete
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px] bg-[#db3c30] bg-opacity-80">
+                      <DialogHeader>
+                        <DialogTitle className="text-white">
+                          Delete User
+                        </DialogTitle>
+                        <DialogDescription className="text-white">
+                          Delete{" "}
+                          <span className="font-extrabold text-[#D7DFA3]">
+                            {" "}
+                            {user?.name}{" "}
+                          </span>{" "}
+                          from Bond Bike Rental
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="grid gap-4 py-4">
+                        <h1 className="text-center text-3xl font-bold text-[#D7DFA3]">
+                          ARE YOU SURE ?{" "}
+                        </h1>
+                      </div>
+                      <DialogFooter>
+                        <Button
+                          type="submit"
+                          onClick={() => handleDeleteUser(user._id as string)}
+                          className="bg-[#D7DFA3] text-[#1A4862] font-bold border-[#1A4862] rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40"
+                        >
+                          Delete User
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </TableCell>
             </TableRow>

@@ -53,6 +53,20 @@ const userApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [{ type: "UserInfo" as const, id: "DETAILS" }],
     }),
+    deleteUser: builder.mutation({
+      query: ({ id, payload }) => {
+        const token = Cookies.get("authToken");
+        return {
+          url: `/users/${id}`,
+          method: "DELETE",
+          user: payload,
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+        };
+      },
+      invalidatesTags: [{ type: "UserInfo" as const, id: "DETAILS" }],
+    }),
   }),
 });
 
@@ -60,5 +74,6 @@ export const {
   useGetUserDetailsQuery,
   useUpdateProfileMutation,
   useGetAllUsersQuery,
+  useDeleteUserMutation,
 } = userApi;
 export default userApi;
