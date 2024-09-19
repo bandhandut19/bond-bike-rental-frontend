@@ -1,10 +1,13 @@
 import { useGetSingleBikeQuery } from "@/redux/Bikes/bikesApi";
+import { useAppSelector } from "@/redux/hooks";
+import { RootState } from "@/redux/store";
 import { TBike } from "@/types";
 import { useParams } from "react-router-dom";
+import { toast } from "sonner";
 
 const SingleBikePage = () => {
   const { id } = useParams();
-
+  const email = useAppSelector((state: RootState) => state.user.email);
   const { data, isLoading } = useGetSingleBikeQuery(id);
 
   if (isLoading) {
@@ -13,6 +16,14 @@ const SingleBikePage = () => {
 
   console.log(data?.data);
   const bike = data?.data as TBike;
+
+  const handleBookNow = () => {
+    console.log("booking process started");
+  };
+  const handleBookNowNoUser = () => {
+    toast("Login To Start Booking Process of the Bike");
+  };
+
   return (
     <div className="mt-10 mb-20  mx-auto w-4/5 flex flex-col items-center justify-center rounded-none  bg-[#D7DFA3] border-2 text-[#1A4862]  shadow-lg shadow-[#D7DFA3]">
       <div className="lg:w-4/5">
@@ -79,9 +90,21 @@ const SingleBikePage = () => {
             )}
           </div>
           <div>
-            <button className="bg-[#30DB3C] py-2 px-5 font-bold border-2 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-[#28b531] hover:text-white">
-              Book Now !
-            </button>
+            {email ? (
+              <button
+                onClick={handleBookNow}
+                className="bg-[#30DB3C] py-2 px-5 font-bold border-2 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-[#28b531] hover:text-white"
+              >
+                Book Now !
+              </button>
+            ) : (
+              <button
+                onClick={handleBookNowNoUser}
+                className="bg-[#30DB3C] py-2 px-5 font-bold border-2 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-[#28b531] hover:text-white"
+              >
+                Book Now !
+              </button>
+            )}
           </div>
         </div>
       </div>
