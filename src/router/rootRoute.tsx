@@ -9,6 +9,7 @@ import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import PrivateRoute from "@/components/PrivateRoutes/PrivateRoute";
 import NotFound from "@/components/Error/NotFound";
+import SingleBikePage from "../components/SingleBikePage/SingleBikePage";
 
 const rootRoute = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const rootRoute = createBrowserRouter([
       {
         path: "/allbikes",
         element: <AllBikes></AllBikes>,
+      },
+      {
+        path: "/allbikes/:id",
+        element: <SingleBikePage></SingleBikePage>,
       },
       {
         path: "/contact",

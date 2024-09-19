@@ -28,7 +28,12 @@ const BikeCard = ({ bike }: { bike: TBike }) => {
           </div>
         </div>
         <div className=" justify-center flex flex-col">
-          <ButtonCard buttontext={"View Details"}></ButtonCard>
+          <ButtonCard
+            buttontext={"View Details"}
+            id={bike._id as string}
+          ></ButtonCard>
+
+          {/* is bike available or not, display button */}
           {isAvailable ? (
             <button className="bg-[#428c34] border-2 text-white hover:text-[#1A4862] py-2 px-4  hover:bg-[#6eea57] hover:bg-opacity-85  hover:border-[#1A4862] hover:font-extrabold hover:border-2 font-semibold">
               Available For Booking
