@@ -53,6 +53,13 @@ const bikesApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [{ type: "BikeInfo", id: "DETAILS" }],
     }),
+    getSingleBike: builder.query({
+      query: (id) => ({
+        url: `/bikes/${id}`,
+        method: "GET",
+      }),
+      providesTags: [{ type: "BikeInfo", id: "DETAILS" }],
+    }),
   }),
 });
 
@@ -61,6 +68,7 @@ export const {
   useCreateBikeMutation,
   useDeleteBikeMutation,
   useUpdateBikeMutation,
+  useGetSingleBikeQuery,
 } = bikesApi; // Export the mutation hook
 
 export default bikesApi;
