@@ -10,6 +10,7 @@ import Register from "../components/Register/Register";
 import PrivateRoute from "@/components/PrivateRoutes/PrivateRoute";
 import NotFound from "@/components/Error/NotFound";
 import SingleBikePage from "../components/SingleBikePage/SingleBikePage";
+import BookingProcess from "../components/BookingProcess/BookingProcess";
 
 const rootRoute = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const rootRoute = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/booking",
+        element: <BookingProcess></BookingProcess>,
       },
     ],
   },
