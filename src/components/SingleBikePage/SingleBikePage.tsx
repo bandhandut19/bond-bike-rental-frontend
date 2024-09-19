@@ -110,7 +110,7 @@ const SingleBikePage = () => {
               <button
                 disabled
                 onClick={handleBookNowNoUser}
-                className=" bg-[#30DB3C] py-2 px-5 font-bold border-2  "
+                className=" hidden bg-[#30DB3C] py-2 px-5 font-bold border-2  "
               >
                 Book Now !
               </button>
