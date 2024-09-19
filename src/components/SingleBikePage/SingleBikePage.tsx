@@ -90,17 +90,27 @@ const SingleBikePage = () => {
             )}
           </div>
           <div>
-            {email ? (
-              <button
-                onClick={handleBookNow}
-                className="bg-[#30DB3C] py-2 px-5 font-bold border-2 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-[#28b531] hover:text-white"
-              >
-                Book Now !
-              </button>
+            {bike?.isAvailable ? (
+              email ? (
+                <button
+                  onClick={handleBookNow}
+                  className="bg-[#30DB3C] py-2 px-5 font-bold border-2 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-[#28b531] hover:text-white"
+                >
+                  Book Now !
+                </button>
+              ) : (
+                <button
+                  onClick={handleBookNowNoUser}
+                  className=" cursor-pointer bg-[#30DB3C] py-2 px-5 font-bold border-2 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-[#28b531] hover:text-white"
+                >
+                  Book Now !
+                </button>
+              )
             ) : (
               <button
+                disabled
                 onClick={handleBookNowNoUser}
-                className="bg-[#30DB3C] py-2 px-5 font-bold border-2 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-[#28b531] hover:text-white"
+                className=" bg-[#30DB3C] py-2 px-5 font-bold border-2  "
               >
                 Book Now !
               </button>
