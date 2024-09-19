@@ -4,6 +4,7 @@ import Welcome from "../ui/Welcome";
 import Profile from "../ui/Profile";
 import BikeManagement from "../ui/BikeManagement";
 import UserManagement from "../ui/UserManagement";
+import ReturnBike from "../ui/ReturnBike";
 
 const AdminDashboard = () => {
   const { data } = useGetUserDetailsQuery({});
@@ -20,6 +21,9 @@ const AdminDashboard = () => {
   };
   const handleOptionUserManagement = () => {
     setOption("userManagement");
+  };
+  const handleReturnBike = () => {
+    setOption("returnBike");
   };
   return (
     <div>
@@ -64,6 +68,14 @@ const AdminDashboard = () => {
                   <span> User Management </span>
                 </button>
               </li>
+              <li>
+                <button
+                  className="lg:text-xl text-sm w-full py-2 border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
+                  onClick={handleReturnBike}
+                >
+                  <span> Return Bike </span>
+                </button>
+              </li>
             </ul>
           </div>
           <div className="bg-[#1A4862] w-full overflow-auto  text-white p-2 lg:p-0">
@@ -75,6 +87,8 @@ const AdminDashboard = () => {
               <BikeManagement></BikeManagement>
             ) : option === "userManagement" ? (
               <UserManagement></UserManagement>
+            ) : option === "returnBike" ? (
+              <ReturnBike></ReturnBike>
             ) : (
               <Welcome name={userInfo?.name}></Welcome>
             )}
