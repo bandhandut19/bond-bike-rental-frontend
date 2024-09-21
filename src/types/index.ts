@@ -18,3 +18,7 @@ export interface TUser {
   address?: string;
   role?: string;
 }
+
+export interface TStartTime {
+  startTime: String;
+}

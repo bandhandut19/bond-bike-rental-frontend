@@ -1,27 +1,39 @@
 import { useGetSingleBikeQuery } from "@/redux/Bikes/bikesApi";
 import { useAppSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
-import { TBike } from "@/types";
+import { TBike, TStartTime } from "@/types";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "../ui/input";
+import { useForm } from "react-hook-form";
+import { Button } from "../ui/button";
 const SingleBikePage = () => {
   const { id } = useParams();
   const email = useAppSelector((state: RootState) => state.user.email);
   const { data, isLoading } = useGetSingleBikeQuery(id);
-
+  const { register, handleSubmit, reset } = useForm<TStartTime>();
   if (isLoading) {
     return <div>Loading...</div>; // Show loading message while fetching
   }
 
-  console.log(data?.data);
   const bike = data?.data as TBike;
 
-  const handleBookNow = () => {
-    console.log("booking process started");
-  };
   const handleBookNowNoUser = () => {
     toast("Login To Start Booking Process of the Bike");
+  };
+  const handleBookNow = (data: TStartTime) => {
+    toast("process started");
+    console.log(data);
   };
 
   return (
@@ -92,12 +104,46 @@ const SingleBikePage = () => {
           <div>
             {bike?.isAvailable ? (
               email ? (
-                <button
-                  onClick={handleBookNow}
-                  className="bg-[#30DB3C] py-2 px-5 font-bold border-2 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-[#28b531] hover:text-white"
-                >
-                  Book Now !
-                </button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="bg-[#30DB3C] py-2 px-5 font-bold border-2 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-[#28b531] hover:text-white">
+                      Book Now !
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="w-full sm:min-w-[420px] bg-[#1A4862]  text-white">
+                    <DialogHeader>
+                      <DialogTitle>Rent this bike now</DialogTitle>
+                      <DialogDescription className="text-[#D7DFA3] font-bold text-2xl text-opacity-70">
+                        Advance Payment of 100tk is required
+                      </DialogDescription>
+                    </DialogHeader>
+                    <form
+                      onSubmit={handleSubmit(handleBookNow)}
+                      className="grid gap-4 py-4"
+                    >
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <label htmlFor="startTime" className="text-right">
+                          Start TIme
+                        </label>
+                        <Input
+                          id="startTime"
+                          type="time"
+                          {...register("startTime")}
+                          className="col-span-3 bg-[#D7DFA3]  text-[#1A4862] font-bold rounded-none"
+                        />
+                      </div>
+
+                      <DialogFooter>
+                        <Button
+                          type="submit"
+                          className="bg-[#D7DFA3] text-[#1A4862] font-bold rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40"
+                        >
+                          Pay Now
+                        </Button>
+                      </DialogFooter>
+                    </form>
+                  </DialogContent>
+                </Dialog>
               ) : (
                 <button
                   onClick={handleBookNowNoUser}
