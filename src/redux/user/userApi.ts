@@ -53,6 +53,21 @@ const userApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [{ type: "UserInfo" as const, id: "DETAILS" }],
     }),
+    promoteUserToAdmin: builder.mutation({
+      query: ({ id, payload }) => {
+        const token = Cookies.get("authToken");
+        return {
+          url: `/users/user/${id}`,
+          method: "PUT",
+          user: payload,
+          credentials: "include",
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+        };
+      },
+      invalidatesTags: [{ type: "UserInfo" as const, id: "DETAILS" }],
+    }),
     deleteUser: builder.mutation({
       query: ({ id, payload }) => {
         const token = Cookies.get("authToken");
@@ -75,5 +90,6 @@ export const {
   useUpdateProfileMutation,
   useGetAllUsersQuery,
   useDeleteUserMutation,
+  usePromoteUserToAdminMutation,
 } = userApi;
 export default userApi;

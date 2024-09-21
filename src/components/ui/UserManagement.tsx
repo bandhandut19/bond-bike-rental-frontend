@@ -20,10 +20,12 @@ import {
   useDeleteUserMutation,
   useGetAllUsersQuery,
   useGetUserDetailsQuery,
+  usePromoteUserToAdminMutation,
 } from "@/redux/user/userApi";
 import { TUser } from "@/types";
 import { toast } from "sonner";
 import { Button } from "./button";
+import { useState } from "react";
 
 const UserManagement = () => {
   const { data } = useGetAllUsersQuery({});
@@ -31,6 +33,8 @@ const UserManagement = () => {
   const { data: userData } = useGetUserDetailsQuery({});
   const payload = { user_email: userData?.email, user_role: userData?.role };
   const [deleteUser] = useDeleteUserMutation();
+  const [promoteUserToAdmin] = usePromoteUserToAdminMutation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const handleDeleteUser = (id: string) => {
     deleteUser({ id, payload })
       .then((response) => {
@@ -42,7 +46,14 @@ const UserManagement = () => {
   };
 
   const handlePromoteUser = (id: string) => {
-    console.log(id);
+    promoteUserToAdmin({ id, payload })
+      .then((response) => {
+        toast(response?.data?.message);
+        setIsModalOpen(false);
+      })
+      .catch((error) => {
+        toast("Error Promoting User: ", error);
+      });
   };
   return (
     <>
@@ -91,12 +102,7 @@ const UserManagement = () => {
                       {user?.role === "admin" ? (
                         <Dialog>
                           <DialogTrigger asChild>
-                            <button
-                              onClick={() =>
-                                handlePromoteUser(user?._id as string)
-                              }
-                              className="py-2 px-5 bg-[#428c34] text-white border-2 hover:bg-[#D7DFA3] hover:text-[#1A4862]"
-                            >
+                            <button className="py-2 px-5 bg-[#428c34] text-white border-2 hover:bg-[#D7DFA3] hover:text-[#1A4862]">
                               Promote
                             </button>
                           </DialogTrigger>
@@ -138,9 +144,15 @@ const UserManagement = () => {
                           </DialogContent>
                         </Dialog>
                       ) : (
-                        <Dialog>
+                        <Dialog
+                          open={isModalOpen}
+                          onOpenChange={setIsModalOpen}
+                        >
                           <DialogTrigger asChild>
-                            <button className="py-2 px-5 bg-[#428c34] text-white border-2 hover:bg-[#D7DFA3] hover:text-[#1A4862]">
+                            <button
+                              onClick={() => setIsModalOpen(true)}
+                              className="py-2 px-5 bg-[#428c34] text-white border-2 hover:bg-[#D7DFA3] hover:text-[#1A4862]"
+                            >
                               Promote
                             </button>
                           </DialogTrigger>
