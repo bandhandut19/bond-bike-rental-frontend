@@ -56,7 +56,11 @@ const rootRoute = createBrowserRouter([
       },
       {
         path: "/booking",
-        element: <BookingProcess></BookingProcess>,
+        element: (
+          <PrivateRoute>
+            <BookingProcess></BookingProcess>,
+          </PrivateRoute>
+        ),
       },
     ],
   },
