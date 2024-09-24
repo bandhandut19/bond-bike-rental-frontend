@@ -2,17 +2,20 @@ import { useGetUserDetailsQuery } from "@/redux/user/userApi";
 import { useState } from "react";
 import Welcome from "../ui/Welcome";
 import Profile from "../ui/Profile";
+import MyRentals from "../ui/MyRentals";
 
 const UserDashboard = () => {
   const { data } = useGetUserDetailsQuery({});
   const userInfo = data?.data;
-  console.log(userInfo);
   const [option, setOption] = useState("");
+  const handleOptionWelcome = () => {
+    setOption("welcome");
+  };
   const handleOptionProfile = () => {
     setOption("profile");
   };
-  const handleOptionWelcome = () => {
-    setOption("welcome");
+  const handleOptionMyRentals = () => {
+    setOption("myRentals");
   };
   return (
     <div>
@@ -41,6 +44,14 @@ const UserDashboard = () => {
                   <span> View Profile</span>
                 </button>
               </li>
+              <li>
+                <button
+                  className="lg:text-xl text-sm w-full py-2 border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
+                  onClick={handleOptionMyRentals}
+                >
+                  <span> My Rentals </span>
+                </button>
+              </li>
             </ul>
           </div>
           <div className="bg-[#1A4862] w-full text-white p-2 lg:p-0">
@@ -48,6 +59,8 @@ const UserDashboard = () => {
               <Profile></Profile>
             ) : option === "welcome" ? (
               <Welcome name={userInfo?.name}></Welcome>
+            ) : option === "myRentals" ? (
+              <MyRentals></MyRentals>
             ) : (
               <Welcome name={userInfo?.name}></Welcome>
             )}
