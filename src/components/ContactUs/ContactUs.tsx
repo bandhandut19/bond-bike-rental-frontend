@@ -1,18 +1,20 @@
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { TContactUs } from "@/types";
+import { toast } from "sonner";
 
 const ContactUs = () => {
-  const { register, handleSubmit } = useForm<TContactUs>();
+  const { register, handleSubmit, reset } = useForm<TContactUs>();
   const handleSubmitEmailFromContactUs = (data: TContactUs) => {
-    console.log(data);
+    toast(`Your Message :  ${data?.message} . Has been sent successfully`);
+    reset();
     //will use emailjs later on to send the email to bond-rentals
   };
   return (
     <div className="mt-10 mb-10 ">
       <form
         onSubmit={handleSubmit(handleSubmitEmailFromContactUs)}
-        className=" bg-[#D7DFA3] px-5 bg-opacity-20 shadow-md shadow-popover-foreground  border-2 lg:w-4/5 lg:mx-auto grid gap-5 grid-cols-1 pt-10 pb-20 items-center justify-center"
+        className=" bg-[#D7DFA3] px-5 bg-opacity-20 shadow-md shadow-white  border-2 lg:w-full lg:mx-auto grid gap-5 grid-cols-1 pt-10 pb-20 items-center justify-center"
       >
         <h1 className="mb-10 text-popover text-center lg:text-5xl text-3xl font-extrabold text-[#1A4862]">
           Contact Us
@@ -45,7 +47,7 @@ const ContactUs = () => {
         </div>
         <div className="mx-auto items-center text-center lg:flex-col flex-row">
           <button
-            className="bg-[#1A4862] text-[#D7DFA3] py-2 px-4 hover:text-[#1A4862] hover:bg-[#D7DFA3] hover:font-extrabold font-semibold"
+            className="bg-[#1A4862] text-[#D7DFA3] py-2 px-4 hover:border-black border-2 hover:text-[#1A4862] hover:bg-[#D7DFA3] hover:font-extrabold font-semibold"
             type="submit"
           >
             Send Message
