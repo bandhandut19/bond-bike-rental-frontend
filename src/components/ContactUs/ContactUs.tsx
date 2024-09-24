@@ -6,6 +6,7 @@ const ContactUs = () => {
   const { register, handleSubmit } = useForm<TContactUs>();
   const handleSubmitEmailFromContactUs = (data: TContactUs) => {
     console.log(data);
+    //will use emailjs later on to send the email to bond-rentals
   };
   return (
     <div className="mt-10 mb-10 ">
