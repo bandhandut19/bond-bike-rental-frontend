@@ -5,6 +5,7 @@ import { TBike, TStartTime } from "@/types";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 
+import "react-datetime/css/react-datetime.css";
 import {
   Dialog,
   DialogContent,
@@ -21,7 +22,7 @@ const SingleBikePage = () => {
   const { id } = useParams();
   const email = useAppSelector((state: RootState) => state.user.email);
   const { data, isLoading } = useGetSingleBikeQuery(id);
-  const { register, handleSubmit, reset } = useForm<TStartTime>();
+  const { register, handleSubmit } = useForm<TStartTime>();
   if (isLoading) {
     return <div>Loading...</div>; // Show loading message while fetching
   }
@@ -127,7 +128,7 @@ const SingleBikePage = () => {
                         </label>
                         <Input
                           id="startTime"
-                          type="time"
+                          type="datetime-local"
                           {...register("startTime")}
                           className="col-span-3 bg-[#D7DFA3]  text-[#1A4862] font-bold rounded-none"
                         />

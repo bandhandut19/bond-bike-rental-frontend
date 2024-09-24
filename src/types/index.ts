@@ -22,3 +22,18 @@ export interface TUser {
 export interface TStartTime {
   startTime: String;
 }
+
+export type TTestimonials = {
+  name: string;
+  quote: string;
+};
+export type TWhyChooseUs = {
+  title: string;
+  description: string;
+};
+
+export type TContactUs = {
+  name: string;
+  email: string;
+  message: string;
+};
