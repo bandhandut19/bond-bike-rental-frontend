@@ -9,7 +9,10 @@ const WhyChooseUs = () => {
       </h1>
       <div className="mt-10 mb-10 flex flex-col gap-5">
         {objectives.map((objective) => (
-          <WhyChooseUsCard objective={objective}></WhyChooseUsCard>
+          <WhyChooseUsCard
+            key={objective?.id}
+            objective={objective}
+          ></WhyChooseUsCard>
         ))}
       </div>
     </>

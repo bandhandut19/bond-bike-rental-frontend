@@ -8,7 +8,7 @@ const Testimonials = () => {
       </h1>
       <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 mt-10 mb-10">
         {customerQuotes.map((quote) => (
-          <Testimonial testimonial={quote}></Testimonial>
+          <Testimonial key={quote?.id} testimonial={quote}></Testimonial>
         ))}
       </div>
     </>

@@ -1,24 +1,30 @@
 [{
+        "id": 1,
         "title": "Best Prices",
         "description": "We offer the most competitive prices in the market, ensuring you get the best value for your money without compromising on quality."
     },
     {
+        "id": 2,
         "title": "Wide Selection",
         "description": "Our extensive range of bikes includes everything from road bikes to mountain bikes, hybrids, and e-bikes, catering to all your riding needs and preferences."
     },
     {
+        "id": 3,
         "title": "Excellent Customer Service",
         "description": "Our friendly and knowledgeable staff are always ready to assist you, ensuring a smooth and hassle-free rental experience from start to finish."
     },
     {
+        "id": 4,
         "title": "Flexible Rental Plans",
         "description": "Whether you need a bike for a few hours or several days, we offer flexible rental options to suit your schedule and budget."
     },
     {
+        "id": 5,
         "title": "High-Quality, Well-Maintained Bikes",
         "description": "All our bikes are regularly serviced and maintained to the highest standards, ensuring your safety and comfort on the road."
     },
     {
+        "id": 6,
         "title": "Convenient Locations",
         "description": "With multiple pickup points, renting a bike has never been more convenient. We’re just a short ride away from your next adventure!"
     }
