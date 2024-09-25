@@ -20,7 +20,8 @@ export interface TUser {
 }
 
 export interface TStartTime {
-  startTime: String;
+  startTime: string;
+  advancePayment: string;
 }
 
 export type TTestimonials = {

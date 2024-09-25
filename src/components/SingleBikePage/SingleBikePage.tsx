@@ -22,7 +22,11 @@ const SingleBikePage = () => {
   const { id } = useParams();
   const email = useAppSelector((state: RootState) => state.user.email);
   const { data, isLoading } = useGetSingleBikeQuery(id);
-  const { register, handleSubmit } = useForm<TStartTime>();
+  const { register, handleSubmit } = useForm<TStartTime>({
+    defaultValues: {
+      advancePayment: "100 BDT Only",
+    },
+  });
   if (isLoading) {
     return <div>Loading...</div>; // Show loading message while fetching
   }
@@ -33,8 +37,13 @@ const SingleBikePage = () => {
     toast("Login To Start Booking Process of the Bike");
   };
   const handleBookNow = (data: TStartTime) => {
-    toast("process started");
-    console.log(data);
+    const modifiedData = {
+      ...data,
+      startTime: `${data.startTime}:00Z`,
+      advancePayment: data.advancePayment.slice(0, 3),
+    };
+    toast(`${modifiedData.advancePayment} || ${modifiedData.startTime}`);
+    console.log(modifiedData);
   };
 
   return (
@@ -128,9 +137,22 @@ const SingleBikePage = () => {
                         </label>
                         <Input
                           id="startTime"
+                          step={60}
                           type="datetime-local"
+                          required
                           {...register("startTime")}
                           className="col-span-3 bg-[#D7DFA3]  text-[#1A4862] font-bold rounded-none"
+                        />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <label htmlFor="advancePayment" className="text-right">
+                          Advance Payment
+                        </label>
+                        <Input
+                          id="advancePayment"
+                          disabled
+                          {...register("advancePayment")}
+                          className="col-span-3 bg-[#D7DFA3] text-[#1A4862] font-bold rounded-none"
                         />
                       </div>
 
