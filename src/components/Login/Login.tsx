@@ -73,8 +73,11 @@ const Login = () => {
           ></Input>
         </div>
         <div className="mx-auto items-center text-center lg:flex-col flex-row">
-          <button type="submit">
-            <ButtonDefault buttontext="Login"></ButtonDefault>
+          <button
+            type="submit"
+            className="bg-[#1A4862] text-[#D7DFA3] py-2 px-4 hover:text-[#1A4862] hover:bg-[#D7DFA3] hover:font-extrabold font-semibold"
+          >
+            Login
           </button>
           <div className="mt-8">
             <span className="font-bold text-white">

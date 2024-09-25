@@ -18,10 +18,15 @@ import {
 import { Input } from "../ui/input";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
+import { useCreateBikeBookingMutation } from "@/redux/BikeRent/rentalApi";
+import { useGetUserDetailsQuery } from "@/redux/user/userApi";
 const SingleBikePage = () => {
   const { id } = useParams();
   const email = useAppSelector((state: RootState) => state.user.email);
   const { data, isLoading } = useGetSingleBikeQuery(id);
+  const { data: userData } = useGetUserDetailsQuery({});
+  const payload = { user_email: userData?.email, user_role: userData?.role };
+  const [createBikeBooking] = useCreateBikeBookingMutation();
   const { register, handleSubmit } = useForm<TStartTime>({
     defaultValues: {
       advancePayment: "100 BDT Only",
@@ -37,13 +42,25 @@ const SingleBikePage = () => {
     toast("Login To Start Booking Process of the Bike");
   };
   const handleBookNow = (data: TStartTime) => {
-    const modifiedData = {
+    const modifiedDate = {
       ...data,
       startTime: `${data.startTime}:00Z`,
       advancePayment: data.advancePayment.slice(0, 3),
     };
-    toast(`${modifiedData.advancePayment} || ${modifiedData.startTime}`);
-    console.log(modifiedData);
+    toast(`${modifiedDate.advancePayment} || ${modifiedDate.startTime}`);
+
+    const advanceBooking = {
+      bikeId: bike?._id,
+      startTime: modifiedDate.startTime,
+    };
+    createBikeBooking({ advanceBooking, payload })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        // toast("Error deleting User:", error);
+      });
   };
 
   return (

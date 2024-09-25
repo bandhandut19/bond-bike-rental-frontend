@@ -15,7 +15,7 @@ const AllBikes = () => {
       </div>
       <div className="grid lg:grid-cols-3 grid-cols-1 mb-20 gap-y-8 gap-x-5">
         {bikes?.map((bike: TBike) => (
-          <BikeCard bike={bike}></BikeCard>
+          <BikeCard key={bike?._id} bike={bike}></BikeCard>
         ))}
       </div>
     </div>
