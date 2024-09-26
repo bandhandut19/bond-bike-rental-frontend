@@ -49,6 +49,7 @@ const SingleBikePage = () => {
     };
     toast(`${modifiedDate.advancePayment} || ${modifiedDate.startTime}`);
 
+    // this route will take only payload to be redirected to payment url
     const advanceBooking = {
       bikeId: bike?._id,
       startTime: modifiedDate.startTime,
@@ -142,7 +143,7 @@ const SingleBikePage = () => {
                     <DialogHeader>
                       <DialogTitle>Rent this bike now</DialogTitle>
                       <DialogDescription className="text-[#D7DFA3] font-bold text-2xl text-opacity-70">
-                        Advance Payment of 100tk is required
+                        Advance Payment of 100tk is required For Booking a Bike
                       </DialogDescription>
                     </DialogHeader>
                     <form

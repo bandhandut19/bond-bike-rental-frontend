@@ -77,8 +77,11 @@ const Profile = () => {
           ></Input>
         </div>
         <div className="text-center">
-          <button type="submit">
-            <ButtonDefault buttontext={"Update Profile"}></ButtonDefault>
+          <button
+            className="bg-[#1A4862] text-[#D7DFA3] py-2 px-4 hover:text-[#1A4862] hover:bg-[#D7DFA3] hover:font-extrabold font-semibold"
+            type="submit"
+          >
+            Update Profile
           </button>
         </div>
       </form>
