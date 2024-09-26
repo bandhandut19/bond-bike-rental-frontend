@@ -21,30 +21,33 @@ const About = () => {
   //OUR TEAM
   const team = [
     {
+      id: "1",
       image: "https://i.postimg.cc/J4ZbsMdc/1684299110270.jpg",
       name: "Bondon Datta",
       designation: "Founder & CEO",
     },
     {
+      id: "2",
       image:
         "https://i.postimg.cc/QM2f20Bj/girl-with-long-hair-being-happy.jpg",
       name: "Maria Ray",
       designation: "Head of Rental Sales",
     },
     {
+      id: "3",
       image:
         "https://i.postimg.cc/8cVn6tDZ/portrait-young-african-american-man.jpg",
       name: "Jane Smith",
       designation: "Chief Marketing Officer",
     },
     {
+      id: "4",
       image:
         "https://i.postimg.cc/SsXprZBq/front-view-smiley-girl-looking-away.jpg",
       name: "Emily Davis",
       designation: "Bike Manager",
     },
   ];
-
   return (
     <div className="flex flex-col gap-16 mx-auto w-4/5 mt-10 mb-10">
       <section
@@ -112,7 +115,10 @@ const About = () => {
         <div className="mt-10 border-2 border-t-0 border-l-4 border-b-4 border-r-4  px-2 py-3 border-[#D7DFA3] border-opacity-70 rounded-md">
           <div className="grid lg:grid-cols-4 grid-cols-1 gap-5 mt-10 py-2">
             {team.map((member) => (
-              <div className="text-center flex flex-col justify-center items-center rounded-full border-4 border-t-0 border-l-0 border-b-4 border-r-0  px-5 py-2 border-white">
+              <div
+                key={member.id}
+                className="text-center flex flex-col justify-center items-center rounded-full border-4 border-t-0 border-l-0 border-b-4 border-r-0  px-5 py-2 border-white"
+              >
                 <div className="border-2 border-b-0 border-l-4 border-t-4 border-r-4 border-white rounded-full px-4 py-3 flex-2">
                   <img
                     className="rounded-full"
