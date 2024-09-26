@@ -22,8 +22,26 @@ const rentalApi = baseApi.injectEndpoints({
         { type: "UserInfo" as const, id: "DETAILS" },
       ],
     }),
+    getUserSpecificRentals: builder.query({
+      query: () => {
+        const token = Cookies.get("authToken");
+        return {
+          url: "/rentals",
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+        };
+      },
+      providesTags: [
+        { type: "BikeInfo" as const, id: "DETAILS" },
+        { type: "UserInfo" as const, id: "DETAILS" },
+      ],
+    }),
   }),
 });
-export const { useCreateBikeBookingMutation } = rentalApi;
+export const { useCreateBikeBookingMutation, useGetUserSpecificRentalsQuery } =
+  rentalApi;
 
 export default rentalApi;

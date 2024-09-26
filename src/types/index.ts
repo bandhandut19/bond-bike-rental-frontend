@@ -23,7 +23,17 @@ export interface TStartTime {
   startTime: string;
   advancePayment: string;
 }
-
+export type TBooking = {
+  _id: string;
+  userId: string;
+  bikeId: string;
+  startTime: string;
+  transactionID: string;
+  returnTime: string;
+  totalCost: number;
+  isReturned: boolean;
+  advancePayment: boolean;
+};
 export type TTestimonials = {
   name: string;
   quote: string;
