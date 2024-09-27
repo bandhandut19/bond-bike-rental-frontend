@@ -48,3 +48,7 @@ export type TContactUs = {
   email: string;
   message: string;
 };
+export type TCalculate = {
+  bookingId: string;
+  bikeReturnTime: string;
+};

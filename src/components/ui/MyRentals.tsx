@@ -25,7 +25,7 @@ const MyRentals = () => {
     <div>Loading.....</div>;
   }
   const myRentals = data?.data;
-  console.log(myRentals);
+
   return (
     <>
       <h1 className="text-center text-2xl  lg:text-4xl mt-5 font-extrabold">
@@ -69,12 +69,7 @@ const MyRentals = () => {
                       <TableHead className="text-[#1A4862] text-opacity-100 px-2 font-extrabold lg:text-lg">
                         Total Cost
                       </TableHead>
-                      <TableHead className="text-[#1A4862] text-opacity-100 px-2 font-extrabold lg:text-lg">
-                        Status
-                      </TableHead>
-                      <TableHead className="text-[#1A4862] text-opacity-100 px-2 font-extrabold lg:text-lg">
-                        Advance Payment
-                      </TableHead>
+
                       <TableHead className="text-[#1A4862]  text-opacity-100 px-5 font-extrabold lg:text-lg text-center">
                         <h1 className="text-center">Pay</h1>
                       </TableHead>
@@ -90,7 +85,7 @@ const MyRentals = () => {
                           className="hover:bg-[#1A4862] hover:text-white bg-[#D7DFA3] bg-opacity-35 font-bold"
                         >
                           <TableCell className="font-medium">
-                            {rental.bikeId}
+                            {rental.bikeId as string}
                           </TableCell>
                           <TableCell>{formatDate(rental.startTime)}</TableCell>
                           <TableCell>
@@ -99,23 +94,18 @@ const MyRentals = () => {
                           <TableCell>
                             {rental.totalCost === 0 ? "N/A" : rental.totalCost}
                           </TableCell>
-                          <TableCell>
-                            {rental.isReturned ? "Returned" : "Not Returned"}
-                          </TableCell>
-                          <TableCell>
-                            {rental.advancePayment ? "Done" : "Not Yet"}
-                          </TableCell>
+
                           <TableCell className="text-right">
-                            {rental?.isReturned ? (
+                            {rental.totalCost === 0 ? (
                               <button
                                 disabled
-                                className="bg-[#428c34] border-2 text-white py-2 px-4 hover:text-white hover:bg-[#30DB3C]  :font-extrabold"
+                                className="bg-[grey] border-2 text-white py-2 px-4 hover:text-white  font-extrabold"
                               >
                                 Pay Now
                               </button>
                             ) : (
-                              <button className="bg-[#428c34] border-2 text-white py-2 px-4 hover:text-white hover:bg-[#30DB3C]  :font-extrabold">
-                                Pay Now
+                              <button className="bg-[#428c34] border-2 text-white py-2 px-4 hover:text-white hover:bg-[#30DB3C]  font-extrabold">
+                                Pay Now {rental.isReturned}
                               </button>
                             )}
                           </TableCell>
@@ -190,9 +180,18 @@ const MyRentals = () => {
                             {rental.advancePayment ? "Done" : "Not Yet"}
                           </TableCell>
                           <TableCell className="text-right">
-                            <button className="bg-[#428c34] border-2 text-white py-2 px-4 hover:text-white hover:bg-[#30DB3C]  :font-extrabold">
-                              Pay Now
-                            </button>
+                            {rental.totalCost === 0 ? (
+                              <button
+                                disabled
+                                className="bg-[grey] border-2 text-white py-2 px-4 hover:text-white  font-extrabold"
+                              >
+                                Pay Now
+                              </button>
+                            ) : (
+                              <button className="bg-[#428c34] border-2 text-white py-2 px-4 hover:text-white hover:bg-[#30DB3C]  font-extrabold">
+                                Pay Now {rental.isReturned}
+                              </button>
+                            )}
                           </TableCell>
                         </TableRow>
                       ) : (

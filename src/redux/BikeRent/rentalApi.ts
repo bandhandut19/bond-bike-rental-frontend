@@ -18,8 +18,27 @@ const rentalApi = baseApi.injectEndpoints({
         };
       },
       invalidatesTags: [
+        { type: "BikeInfo", id: "DETAILS" },
+        { type: "UserInfo", id: "DETAILS" },
+      ],
+    }),
+    calculateCost: builder.mutation({
+      query: (payload) => {
+        const token = Cookies.get("authToken");
+        return {
+          url: "/rentals/calculate",
+          method: "PATCH",
+          body: payload,
+          credentials: "include",
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+        };
+      },
+      invalidatesTags: [
         { type: "BikeInfo" as const, id: "DETAILS" },
         { type: "UserInfo" as const, id: "DETAILS" },
+        { type: "BookingInfo" as const, id: "DETAILS" },
       ],
     }),
     getUserSpecificRentals: builder.query({
@@ -37,11 +56,34 @@ const rentalApi = baseApi.injectEndpoints({
       providesTags: [
         { type: "BikeInfo" as const, id: "DETAILS" },
         { type: "UserInfo" as const, id: "DETAILS" },
+        { type: "BookingInfo" as const, id: "DETAILS" },
+      ],
+    }),
+    getAllUsersRentals: builder.query({
+      query: () => {
+        const token = Cookies.get("authToken");
+        return {
+          url: "/rentals/all",
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+        };
+      },
+      providesTags: [
+        { type: "BikeInfo" as const, id: "DETAILS" },
+        { type: "UserInfo" as const, id: "DETAILS" },
+        { type: "BookingInfo" as const, id: "DETAILS" },
       ],
     }),
   }),
 });
-export const { useCreateBikeBookingMutation, useGetUserSpecificRentalsQuery } =
-  rentalApi;
+export const {
+  useCreateBikeBookingMutation,
+  useGetUserSpecificRentalsQuery,
+  useGetAllUsersRentalsQuery,
+  useCalculateCostMutation,
+} = rentalApi;
 
 export default rentalApi;
