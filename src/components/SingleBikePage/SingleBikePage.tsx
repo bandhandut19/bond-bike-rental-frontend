@@ -56,12 +56,11 @@ const SingleBikePage = () => {
     };
     createBikeBooking({ advanceBooking, payload })
       .then((response) => {
-        console.log(response);
         window.location.href = response?.data?.data?.booking?.payment_url;
       })
       .catch((error) => {
         console.log(error);
-        // toast("Error deleting User:", error);
+        // toast("Error creating booking:", error);
       });
   };
 

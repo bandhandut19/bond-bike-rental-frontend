@@ -16,7 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "./table";
-import { TBooking } from "@/types";
+import { TBooking, TPayDetails } from "@/types";
 import { formatDate } from "../../utils/dateFormat";
 import { toast } from "sonner";
 
@@ -26,7 +26,12 @@ const MyRentals = () => {
     <div>Loading.....</div>;
   }
   const myRentals = data?.data;
-  const handlePayNow = () => {
+  const handlePayNow = (amount: number, bookingId: string) => {
+    const payDetails: TPayDetails = {
+      amount,
+      bookingId,
+    };
+    console.log(payDetails);
     toast("Payment Processing...");
   };
   return (
@@ -80,7 +85,7 @@ const MyRentals = () => {
                   </TableHeader>
                   <TableBody>
                     {myRentals?.map((rental: TBooking) =>
-                      rental?.isReturned ? (
+                      rental?.payment ? (
                         ""
                       ) : (
                         <TableRow
@@ -92,7 +97,9 @@ const MyRentals = () => {
                           </TableCell>
                           <TableCell>{formatDate(rental.startTime)}</TableCell>
                           <TableCell>
-                            {rental.returnTime ? rental.returnTime : "N/A"}
+                            {rental.returnTime
+                              ? formatDate(rental.returnTime)
+                              : "N/A"}
                           </TableCell>
                           <TableCell>
                             {rental.totalCost !== 0
@@ -110,7 +117,9 @@ const MyRentals = () => {
                               </button>
                             ) : (
                               <button
-                                onClick={() => handlePayNow()}
+                                onClick={() =>
+                                  handlePayNow(rental.totalCost, rental._id)
+                                }
                                 className="bg-[#428c34] border-2 text-white py-2 px-4 hover:text-white hover:bg-[#30DB3C]  font-extrabold"
                               >
                                 Pay Now
@@ -166,7 +175,7 @@ const MyRentals = () => {
                   </TableHeader>
                   <TableBody>
                     {myRentals?.map((rental: TBooking) =>
-                      rental?.isReturned ? (
+                      rental?.payment ? (
                         <TableRow
                           key={rental?._id}
                           className="hover:bg-[#1A4862] hover:text-white bg-[#D7DFA3] bg-opacity-35 font-bold"
@@ -176,7 +185,9 @@ const MyRentals = () => {
                           </TableCell>
                           <TableCell>{formatDate(rental.startTime)}</TableCell>
                           <TableCell>
-                            {rental.returnTime ? rental.returnTime : "N/A"}
+                            {rental.returnTime
+                              ? formatDate(rental.returnTime)
+                              : "N/A"}
                           </TableCell>
                           <TableCell>
                             {rental.totalCost !== 0

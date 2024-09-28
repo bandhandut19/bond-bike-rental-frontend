@@ -33,6 +33,7 @@ export type TBooking = {
   totalCost: number;
   isReturned: boolean;
   advancePayment: boolean;
+  payment: boolean;
 };
 export type TTestimonials = {
   name: string;
@@ -51,4 +52,9 @@ export type TContactUs = {
 export type TCalculate = {
   bookingId: string;
   bikeReturnTime: string;
+};
+
+export type TPayDetails = {
+  amount: number;
+  bookingId: string;
 };

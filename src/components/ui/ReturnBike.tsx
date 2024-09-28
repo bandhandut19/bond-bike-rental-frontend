@@ -81,7 +81,10 @@ const ReturnBike = () => {
                 Selected Bike
               </TableHead>
               <TableHead className="text-[#1A4862] text-opacity-100 font-extrabold lg:text-lg">
-                Status
+                Pay Status
+              </TableHead>
+              <TableHead className="text-[#1A4862] text-opacity-100 font-extrabold lg:text-lg">
+                Return Status
               </TableHead>
               <TableHead className="text-[#1A4862] text-opacity-100 font-extrabold lg:text-lg">
                 Total Cost
@@ -102,7 +105,10 @@ const ReturnBike = () => {
               >
                 <TableCell className="font-medium">{booking.userId}</TableCell>
                 <TableCell>{booking.bikeId}</TableCell>
-                <TableCell>{booking.isReturned ? "Paid" : "Unpaid"}</TableCell>
+                <TableCell>{booking.payment ? "Paid" : "Unpaid"}</TableCell>
+                <TableCell>
+                  {booking.isReturned ? "Returned" : "Not yet"}
+                </TableCell>
                 <TableCell className="text-center">
                   {booking.totalCost} BDT
                 </TableCell>
@@ -111,9 +117,18 @@ const ReturnBike = () => {
                 <TableCell className="text-center">
                   <Dialog>
                     <DialogTrigger asChild>
-                      <button className="bg-[#30DB3C] text-white border-2 py-2 px-4 hover:text-[#1A4862] hover:bg-[#D7DFA3] hover:font-extrabold font-semibold">
-                        Calculate
-                      </button>
+                      {booking?.isReturned ? (
+                        <button
+                          disabled
+                          className="bg-[grey] text-white border-2 py-2 px-4 hover:text-[#1A4862]"
+                        >
+                          Already Returned
+                        </button>
+                      ) : (
+                        <button className="bg-[#30DB3C] text-white border-2 py-2 px-4 hover:text-[#1A4862] hover:bg-[#D7DFA3] hover:font-extrabold font-semibold">
+                          Calculate
+                        </button>
+                      )}
                     </DialogTrigger>
                     <DialogOverlay className="fixed inset-0 bg-black opacity-50" />
                     <DialogContent className="fixed inset-0 flex items-center justify-center p-4">
@@ -150,22 +165,12 @@ const ReturnBike = () => {
                             />
                           </div>
                           <DialogFooter className="gap-3 lg:flex-row flex-col">
-                            {booking.isReturned ? (
-                              <Button
-                                type="submit"
-                                disabled
-                                className="bg-[#D7DFA3] text-[#1A4862] font-bold rounded-none hover:font-extrabold"
-                              >
-                                Calculate Now
-                              </Button>
-                            ) : (
-                              <Button
-                                type="submit"
-                                className="bg-[#D7DFA3] text-[#1A4862] font-bold rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40"
-                              >
-                                Calculate Now
-                              </Button>
-                            )}
+                            <Button
+                              type="submit"
+                              className="bg-[#D7DFA3] text-[#1A4862] font-bold rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40"
+                            >
+                              Calculate Now
+                            </Button>
 
                             <DialogClose asChild>
                               <Button className="bg-red-500 text-[#1A4862] font-bold rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40">
