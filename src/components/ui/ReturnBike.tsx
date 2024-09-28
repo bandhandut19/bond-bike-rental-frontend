@@ -150,12 +150,22 @@ const ReturnBike = () => {
                             />
                           </div>
                           <DialogFooter className="gap-3 lg:flex-row flex-col">
-                            <Button
-                              type="submit"
-                              className="bg-[#D7DFA3] text-[#1A4862] font-bold rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40"
-                            >
-                              Calculate Now
-                            </Button>
+                            {booking.isReturned ? (
+                              <Button
+                                type="submit"
+                                disabled
+                                className="bg-[#D7DFA3] text-[#1A4862] font-bold rounded-none hover:font-extrabold"
+                              >
+                                Calculate Now
+                              </Button>
+                            ) : (
+                              <Button
+                                type="submit"
+                                className="bg-[#D7DFA3] text-[#1A4862] font-bold rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40"
+                              >
+                                Calculate Now
+                              </Button>
+                            )}
 
                             <DialogClose asChild>
                               <Button className="bg-red-500 text-[#1A4862] font-bold rounded-none hover:font-extrabold hover:text-white border-2 hover:bg-[#D7DFA3] hover:bg-opacity-40">
