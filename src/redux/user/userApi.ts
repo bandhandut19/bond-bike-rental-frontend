@@ -82,6 +82,16 @@ const userApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [{ type: "UserInfo" as const, id: "DETAILS" }],
     }),
+    refreshToken: builder.query({
+      query: () => {
+        const token = Cookies.get("refreshToken");
+        return {
+          url: `/auth/refresh-token`,
+          method: "GET",
+          Cookies: token,
+        };
+      },
+    }),
   }),
 });
 
@@ -91,5 +101,6 @@ export const {
   useGetAllUsersQuery,
   useDeleteUserMutation,
   usePromoteUserToAdminMutation,
+  useRefreshTokenQuery,
 } = userApi;
 export default userApi;
