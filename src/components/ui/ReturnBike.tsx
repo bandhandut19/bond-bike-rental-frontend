@@ -40,9 +40,20 @@ const ReturnBike = () => {
   const handleCalculateNow = async (data: TCalculate, id: string) => {
     console.log(data, id);
     toast("Calculating Total Cost...");
+    const date = new Date(data?.bikeReturnTime);
+
+    // Add 6 hours (6 * 60 * 60 * 1000 milliseconds)
+    date.setTime(date.getTime() + 6 * 60 * 60 * 1000);
+
+    const modifiedDate = date.toISOString();
+
+    const modifiedData = {
+      ...data,
+      bikeReturnTime: modifiedDate,
+    };
     const payload: TCalculate = {
       bookingId: id,
-      bikeReturnTime: data.bikeReturnTime,
+      bikeReturnTime: modifiedData.bikeReturnTime,
     };
     const res = await calculateCost(payload);
     console.log(res);
@@ -96,6 +107,7 @@ const ReturnBike = () => {
                   {booking.totalCost} BDT
                 </TableCell>
                 <TableCell>{formatDate(booking.startTime)}</TableCell>
+
                 <TableCell className="text-center">
                   <Dialog>
                     <DialogTrigger asChild>
