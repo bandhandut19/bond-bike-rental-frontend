@@ -6,7 +6,10 @@ import {
 } from "@/components/ui/card";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useGetUserSpecificRentalsQuery } from "@/redux/BikeRent/rentalApi";
+import {
+  useGetUserSpecificRentalsQuery,
+  usePayRentalMutation,
+} from "@/redux/BikeRent/rentalApi";
 import {
   Table,
   TableBody,
@@ -16,12 +19,18 @@ import {
   TableHeader,
   TableRow,
 } from "./table";
-import { TBooking, TPayDetails } from "@/types";
+import { TBike, TBooking, TPayDetails } from "@/types";
 import { formatDate } from "../../utils/dateFormat";
 import { toast } from "sonner";
+import { useGetUserDetailsQuery } from "@/redux/user/userApi";
+import { useGetAllBikesQuery } from "@/redux/Bikes/bikesApi";
 
 const MyRentals = () => {
   const { data, isLoading } = useGetUserSpecificRentalsQuery({});
+  const { data: userData } = useGetUserDetailsQuery({});
+  const payload = { user_email: userData?.email, user_role: userData?.role };
+  const [payRental] = usePayRentalMutation();
+  const { data: bikeData } = useGetAllBikesQuery({});
   if (isLoading) {
     <div>Loading.....</div>;
   }
@@ -31,7 +40,14 @@ const MyRentals = () => {
       amount,
       bookingId,
     };
-    console.log(payDetails);
+    payRental({ payDetails, payload })
+      .then((response) => {
+        window.location.href = response?.data?.data?.payment_url;
+      })
+      .catch((error) => {
+        console.log(error);
+        // toast("Error creating booking:", error);
+      });
     toast("Payment Processing...");
   };
   return (
@@ -72,7 +88,7 @@ const MyRentals = () => {
                         Start Time
                       </TableHead>
                       <TableHead className="text-[#1A4862] text-opacity-100 font-extrabold lg:text-lg">
-                        Returned Time
+                        Return Time
                       </TableHead>
                       <TableHead className="text-[#1A4862] text-opacity-100 px-2 font-extrabold lg:text-lg">
                         Total Cost
@@ -93,7 +109,11 @@ const MyRentals = () => {
                           className="hover:bg-[#1A4862] hover:text-white bg-[#D7DFA3] bg-opacity-35 font-bold"
                         >
                           <TableCell className="font-medium">
-                            {rental.bikeId as string}
+                            {bikeData?.data
+                              ? bikeData?.data.map((bike: TBike) =>
+                                  bike?._id === rental?.bikeId ? bike.name : ""
+                                )
+                              : ""}
                           </TableCell>
                           <TableCell>{formatDate(rental.startTime)}</TableCell>
                           <TableCell>
@@ -157,7 +177,7 @@ const MyRentals = () => {
                         Start Time
                       </TableHead>
                       <TableHead className="text-[#1A4862] text-opacity-100 font-extrabold lg:text-lg">
-                        Returned Time
+                        Return Time
                       </TableHead>
                       <TableHead className="text-[#1A4862] text-opacity-100 px-2 font-extrabold lg:text-lg">
                         Total Cost
@@ -169,7 +189,7 @@ const MyRentals = () => {
                         Advance Payment
                       </TableHead>
                       <TableHead className="text-[#1A4862]  text-opacity-100 px-5 font-extrabold lg:text-lg text-center">
-                        <h1 className="text-center">Pay</h1>
+                        <h1 className="text-center">Payment Status</h1>
                       </TableHead>
                     </TableRow>
                   </TableHeader>
@@ -181,7 +201,11 @@ const MyRentals = () => {
                           className="hover:bg-[#1A4862] hover:text-white bg-[#D7DFA3] bg-opacity-35 font-bold"
                         >
                           <TableCell className="font-medium">
-                            {rental.bikeId}
+                            {bikeData?.data
+                              ? bikeData?.data.map((bike: TBike) =>
+                                  bike?._id === rental?.bikeId ? bike.name : ""
+                                )
+                              : ""}
                           </TableCell>
                           <TableCell>{formatDate(rental.startTime)}</TableCell>
                           <TableCell>
@@ -197,22 +221,11 @@ const MyRentals = () => {
                           <TableCell>
                             {rental.isReturned ? "Returned" : "Not Returned"}
                           </TableCell>
-                          <TableCell>
-                            {rental.advancePayment ? "Done" : "Not Yet"}
+                          <TableCell className="text-center">
+                            {rental.advancePayment ? "Paid" : "Not Yet"}
                           </TableCell>
-                          <TableCell className="text-right">
-                            {rental.totalCost === 0 ? (
-                              <button
-                                disabled
-                                className="bg-[grey] border-2 text-white py-2 px-4 hover:text-white  font-extrabold"
-                              >
-                                Pay Now
-                              </button>
-                            ) : (
-                              <button className="bg-[#428c34] border-2 text-white py-2 px-4 hover:text-white hover:bg-[#30DB3C]  font-extrabold">
-                                Pay Now {rental.isReturned}
-                              </button>
-                            )}
+                          <TableCell className="text-center">
+                            {rental.payment === true ? "Paid" : "Not Yet"}
                           </TableCell>
                         </TableRow>
                       ) : (

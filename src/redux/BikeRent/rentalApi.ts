@@ -22,6 +22,26 @@ const rentalApi = baseApi.injectEndpoints({
         { type: "UserInfo", id: "DETAILS" },
       ],
     }),
+    payRental: builder.mutation({
+      query: ({ payDetails, payload }) => {
+        const token = Cookies.get("authToken");
+        console.log(payDetails.amount);
+        return {
+          url: `/rentals/${payDetails.bookingId}/payRental/${payDetails.amount}`,
+          method: "POST",
+          user: payload,
+          credentials: "include",
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+        };
+      },
+      invalidatesTags: [
+        { type: "BikeInfo", id: "DETAILS" },
+        { type: "UserInfo", id: "DETAILS" },
+        { type: "BookingInfo", id: "DETAILS" },
+      ],
+    }),
     calculateCost: builder.mutation({
       query: (payload) => {
         const token = Cookies.get("authToken");
@@ -84,6 +104,7 @@ export const {
   useGetUserSpecificRentalsQuery,
   useGetAllUsersRentalsQuery,
   useCalculateCostMutation,
+  usePayRentalMutation,
 } = rentalApi;
 
 export default rentalApi;

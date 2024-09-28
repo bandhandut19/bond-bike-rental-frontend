@@ -47,7 +47,7 @@ const SingleBikePage = () => {
       startTime: `${data.startTime}:00Z`,
       advancePayment: data.advancePayment.slice(0, 3),
     };
-    toast(`${modifiedDate.advancePayment} || ${modifiedDate.startTime}`);
+    toast(`Booking Payment Processing....`);
 
     // this route will take only payload to be redirected to payment url
     const advanceBooking = {

@@ -11,7 +11,7 @@ import {
   useCalculateCostMutation,
   useGetAllUsersRentalsQuery,
 } from "@/redux/BikeRent/rentalApi";
-import { TBooking, TCalculate } from "@/types";
+import { TBike, TBooking, TCalculate, TUser } from "@/types";
 import { formatDate } from "@/utils/dateFormat";
 import {
   Dialog,
@@ -27,12 +27,16 @@ import { Input } from "./input";
 import { useForm } from "react-hook-form";
 import { Button } from "./button";
 import { toast } from "sonner";
+import { useGetAllBikesQuery } from "@/redux/Bikes/bikesApi";
+import { useGetAllUsersQuery } from "@/redux/user/userApi";
 
 const ReturnBike = () => {
   const { data, isLoading } = useGetAllUsersRentalsQuery({});
   const { register, handleSubmit, reset } = useForm<TCalculate>();
   const userRentals = data?.data;
   const [calculateCost] = useCalculateCostMutation();
+  const { data: bikeData } = useGetAllBikesQuery({});
+  const { data: userData } = useGetAllUsersQuery({});
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -59,6 +63,8 @@ const ReturnBike = () => {
     console.log(res);
 
     reset();
+
+    toast("Bike Returned Successfully");
   };
 
   return (
@@ -103,8 +109,20 @@ const ReturnBike = () => {
                 key={booking._id}
                 className="hover:bg-[#1A4862] bg-[#D7DFA3] bg-opacity-35 font-bold"
               >
-                <TableCell className="font-medium">{booking.userId}</TableCell>
-                <TableCell>{booking.bikeId}</TableCell>
+                <TableCell className="font-medium">
+                  {userData?.data
+                    ? userData?.data.map((user: TUser) =>
+                        user?._id === booking?.userId ? user.name : ""
+                      )
+                    : ""}
+                </TableCell>
+                <TableCell>
+                  {bikeData?.data
+                    ? bikeData?.data.map((bike: TBike) =>
+                        bike?._id === booking?.bikeId ? bike.name : ""
+                      )
+                    : ""}
+                </TableCell>
                 <TableCell>{booking.payment ? "Paid" : "Unpaid"}</TableCell>
                 <TableCell>
                   {booking.isReturned ? "Returned" : "Not yet"}
