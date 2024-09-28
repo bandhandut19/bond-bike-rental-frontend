@@ -18,6 +18,7 @@ import {
 } from "./table";
 import { TBooking } from "@/types";
 import { formatDate } from "../../utils/dateFormat";
+import { toast } from "sonner";
 
 const MyRentals = () => {
   const { data, isLoading } = useGetUserSpecificRentalsQuery({});
@@ -25,7 +26,9 @@ const MyRentals = () => {
     <div>Loading.....</div>;
   }
   const myRentals = data?.data;
-
+  const handlePayNow = () => {
+    toast("Payment Processing...");
+  };
   return (
     <>
       <h1 className="text-center text-2xl  lg:text-4xl mt-5 font-extrabold">
@@ -92,7 +95,9 @@ const MyRentals = () => {
                             {rental.returnTime ? rental.returnTime : "N/A"}
                           </TableCell>
                           <TableCell>
-                            {rental.totalCost === 0 ? "N/A" : rental.totalCost}
+                            {rental.totalCost !== 0
+                              ? `${rental.totalCost} BDT`
+                              : "N/A"}
                           </TableCell>
 
                           <TableCell className="text-right">
@@ -104,8 +109,11 @@ const MyRentals = () => {
                                 Pay Now
                               </button>
                             ) : (
-                              <button className="bg-[#428c34] border-2 text-white py-2 px-4 hover:text-white hover:bg-[#30DB3C]  font-extrabold">
-                                Pay Now {rental.isReturned}
+                              <button
+                                onClick={() => handlePayNow()}
+                                className="bg-[#428c34] border-2 text-white py-2 px-4 hover:text-white hover:bg-[#30DB3C]  font-extrabold"
+                              >
+                                Pay Now
                               </button>
                             )}
                           </TableCell>
@@ -171,7 +179,9 @@ const MyRentals = () => {
                             {rental.returnTime ? rental.returnTime : "N/A"}
                           </TableCell>
                           <TableCell>
-                            {rental.totalCost === 0 ? "N/A" : rental.totalCost}
+                            {rental.totalCost !== 0
+                              ? `${rental.totalCost} BDT`
+                              : "N/A"}
                           </TableCell>
                           <TableCell>
                             {rental.isReturned ? "Returned" : "Not Returned"}
