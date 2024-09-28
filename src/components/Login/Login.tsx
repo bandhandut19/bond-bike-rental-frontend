@@ -8,6 +8,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { addUser } from "@/redux/user/useSlice";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
+import { useState } from "react";
 interface FetchBaseQueryError {
   status: number;
   data: any;
@@ -23,18 +24,21 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
   const navigate = useNavigate();
+  const [passwordError, setPasswordError] = useState("");
   const handleLogin = async (data: FormValues) => {
     // e.preventDefault();
 
     const res = await login(data);
     if (res?.error) {
       const error = res?.error as FetchBaseQueryError;
+      setPasswordError(error.data.errorMessage[0].message);
       toast(error.data.errorMessage[0].message);
     } else {
       if (res?.data?.success) {
         toast(res?.data?.message);
         const token = res?.data?.token;
         dispatch(addUser(token));
+        console.log(token);
         const decodedToken: any = jwtDecode(token);
         const userRole = decodedToken?.user_role;
         if (userRole) {
@@ -63,7 +67,7 @@ const Login = () => {
             {...register("email")}
           ></Input>
         </div>
-        <div className="">
+        <div className="text-center">
           <Input
             className="bg-[#1A4862] w-4/5 lg:w-1/2 mx-auto bg-opacity-80 text-opacity-100 font-semibold text-[#D7DFA3] placeholder:text-opacity-80 placeholder:text-[#D7DFA3] placeholder:font-bold"
             placeholder="Enter Your Password"
@@ -71,6 +75,9 @@ const Login = () => {
             required
             {...register("password")}
           ></Input>
+          <span className="text-[#db3c30] lg:text-lg text-[.8rem] font-bold">
+            {passwordError ? passwordError : ""}
+          </span>
         </div>
         <div className="mx-auto items-center text-center lg:flex-col flex-row">
           <button

@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
-import ButtonDefault from "../ui/buttonDefault";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserRegisterMutation } from "@/redux/auth/register";
 import { toast } from "sonner";
+import { useState } from "react";
 interface FormValues {
   name: string;
   email: string;
@@ -21,13 +21,15 @@ interface FetchBaseQueryError {
 const Register = () => {
   const { register, handleSubmit, reset } = useForm<FormValues>();
   const [userRegister] = useUserRegisterMutation();
+  const [emailError, setEmailError] = useState("");
   const navigate = useNavigate();
   const handleLogin = async (data: FormValues) => {
     // e.preventDefault()
-    const modifiedData = { ...data, role: "user" }; // Ensure 'role' is added
+    const modifiedData = { ...data, role: "user" }; // Ensuring 'role' is added
     const res = await userRegister(modifiedData);
     if (res?.error) {
       const error = res?.error as FetchBaseQueryError;
+      setEmailError(error.data.errorMessage[0].message);
       toast(error.data.errorMessage[0].message);
     } else {
       if (res?.data?.success) {
@@ -56,7 +58,7 @@ const Register = () => {
             {...register("name")}
           ></Input>
         </div>
-        <div className="">
+        <div className="text-center">
           <Input
             className="bg-[#1A4862] w-4/5 lg:w-1/2 mx-auto bg-opacity-80 text-opacity-100 font-semibold text-[#D7DFA3] placeholder:text-opacity-80 placeholder:text-[#D7DFA3] placeholder:font-bold"
             placeholder="Enter Your Email"
@@ -64,6 +66,9 @@ const Register = () => {
             required
             {...register("email")}
           ></Input>
+          <span className="text-[#db3c30] lg:text-lg text-[.8rem] font-bold">
+            {emailError ? emailError : ""}
+          </span>
         </div>
         <div className="">
           <Input

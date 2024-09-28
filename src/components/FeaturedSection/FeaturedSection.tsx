@@ -14,14 +14,16 @@ const FeaturedSection = () => {
         Featured Bikes
       </h1>
       <div className="grid lg:grid-cols-3 grid-cols-1 gap-5">
-        {/* only available bikes will be featured*/}
-        {bikes.map((bike: TBike) =>
-          bike.isAvailable ? (
-            <BikeCard key={bike?._id} bike={bike}></BikeCard>
-          ) : (
-            ""
-          )
-        )}
+        {/* only latest added available bikes will be featured*/}
+        {bikes
+          .slice(bikes.length - 3, bikes.length)
+          .map((bike: TBike) =>
+            bike.isAvailable ? (
+              <BikeCard key={bike?._id} bike={bike}></BikeCard>
+            ) : (
+              ""
+            )
+          )}
       </div>
     </div>
   );
