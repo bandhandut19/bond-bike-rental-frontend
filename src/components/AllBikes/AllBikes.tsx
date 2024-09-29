@@ -87,7 +87,7 @@ const AllBikes = () => {
         </h1>
         <form
           onSubmit={handleSubmit}
-          className="grid lg:grid-cols-2 grid-cols-1 lg:gap-5 gap-5 text-center lg:text-left items-center justify-center py-2 px-2"
+          className="grid lg:grid-cols-2 grid-cols-1 lg:gap-8 gap-8 text-center lg:text-left items-center justify-center py-2 px-2"
         >
           <div>
             <Input
