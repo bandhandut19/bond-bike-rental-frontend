@@ -67,7 +67,13 @@ const AllBikes = () => {
       searchByModel === "" ||
       bike.model.toLowerCase().includes(searchByModel.toLowerCase());
 
-    return matchesName && matchesBrand && matchesModel;
+    // availability filter logic
+    const matchesAvailability =
+      searchByAvailability === "" ||
+      (searchByAvailability === "Available" && bike.isAvailable === true) ||
+      (searchByAvailability === "Not Available" && bike.isAvailable === false);
+
+    return matchesName && matchesBrand && matchesModel && matchesAvailability;
   });
   return (
     <>
@@ -171,7 +177,12 @@ const AllBikes = () => {
               <BikeCard key={bike?._id} bike={bike} />
             ))
           ) : (
-            <div>No bikes found</div>
+            <div className="text-center col-span-3 w-full">
+              <h1 className="font-bold text-3xl text-white">
+                No bikes found. <br />
+                Try Searching anything else..
+              </h1>
+            </div>
           )}
         </div>
       </div>

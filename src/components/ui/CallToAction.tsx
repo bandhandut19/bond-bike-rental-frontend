@@ -148,7 +148,12 @@ const CallToAction = () => {
               return null;
             })
           ) : (
-            <div>No bikes found</div>
+            <div className="text-center col-span-3 w-full">
+              <h1 className="font-bold text-3xl text-white">
+                No bikes found. <br />
+                Try Searching anything else..
+              </h1>
+            </div>
           )
         ) : (
           ""
