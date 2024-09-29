@@ -18,10 +18,12 @@ const AllBikes = () => {
   const [searchByName, setSearchName] = useState("");
   const [searchByBrand, setBrandName] = useState("");
   const [searchByModel, setModelName] = useState("");
+  const [searchByAvailability, setAvailability] = useState("");
   const { data, isLoading } = useGetAllBikesQuery({
     searchByName,
     searchByBrand,
     searchByModel,
+    searchByAvailability,
   });
   const { data: brandName } = useGetAllBikesQuery({});
   const brandData = brandName?.data;
@@ -38,11 +40,15 @@ const AllBikes = () => {
   const handleModel = (value: string) => {
     setModelName(value);
   };
+  const handleAvailability = (value: string) => {
+    setAvailability(value);
+  };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearchName("");
     setBrandName("");
     setModelName("");
+    setAvailability("");
   };
   const uniqueBrands = Array.from(
     new Set(brandData?.map((bike: TBike) => bike.brand))
@@ -134,9 +140,26 @@ const AllBikes = () => {
             </Select>
           </div>
           <div>
+            <Select
+              value={searchByAvailability}
+              onValueChange={handleAvailability}
+            >
+              <SelectTrigger className="w-full bg-[#1A4862] text-[#D7DFA3]">
+                <SelectValue placeholder="Search Availability" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Availability</SelectLabel>
+                  <SelectItem value="Available">Available</SelectItem>
+                  <SelectItem value="Not Available">Not Available</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="lg:col-span-2">
             <button
               type="submit"
-              className="bg-[#1A4862] text-[#D7DFA3] py-2 px-4 hover:text-[#1A4862] hover:bg-[#D7DFA3] hover:font-extrabold font-semibold"
+              className="bg-[#1A4862] w-full text-[#D7DFA3] py-2 px-4 hover:text-[#1A4862] hover:bg-[#D7DFA3] hover:font-extrabold font-semibold"
             >
               Clear Filters
             </button>

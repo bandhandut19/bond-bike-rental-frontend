@@ -58,3 +58,10 @@ export type TPayDetails = {
   amount: number;
   bookingId: string;
 };
+
+export type TSearchableFields = {
+  searchByName?: string;
+  searchByBrand?: string;
+  searchByModel?: string;
+  searchByAvailability?: string;
+};

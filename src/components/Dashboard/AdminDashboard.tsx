@@ -10,6 +10,7 @@ const AdminDashboard = () => {
   const { data } = useGetUserDetailsQuery({});
   const userInfo = data?.data;
   const [option, setOption] = useState("");
+  const [hideSidebar, setHideSidebar] = useState(true);
   const handleOptionProfile = () => {
     setOption("profile");
   };
@@ -25,59 +26,78 @@ const AdminDashboard = () => {
   const handleReturnBike = () => {
     setOption("returnBike");
   };
+  const handleSidebar = () => {
+    setHideSidebar(!hideSidebar);
+  };
   return (
     <div>
       <div>
         <div className="bg-[#D7DFA3]">
-          <h1 className="text-center lg:ml-52  ml-20 text-lg lg:text-3xl py-4 font-extrabold text-[#1A4862]">
-            Admin Dashboard
-          </h1>
+          {hideSidebar ? (
+            <h1 className="text-center lg:ml-56  ml-20 text-lg lg:text-3xl py-4 font-extrabold text-[#1A4862]">
+              Admin Dashboard
+            </h1>
+          ) : (
+            <h1 className="text-center text-lg lg:text-3xl py-4 font-extrabold text-[#1A4862]">
+              Admin Dashboard
+            </h1>
+          )}
+          <button
+            onClick={handleSidebar}
+            className="bg-[#1A4862] text-[#D7DFA3] lg:text-lg text-sm py-2 px-4 hover:text-[#1A4862] hover:bg-white hover:font-extrabold font-semibold"
+          >
+            {hideSidebar ? "Hide Sidebar" : "Show Sidebar"}
+          </button>
         </div>
         <div className=" text-[#1A4862] min-h-screen flex">
-          <div className="bg-[#D7DFA3] lg:w-1/5">
-            <ul className="flex flex-col gap-5 pt-5">
-              <li>
-                <button
-                  className="lg:text-xl text-sm py-2 w-full border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
-                  onClick={handleOptionWelcome}
-                >
-                  <span> Welcome Page</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  className="lg:text-xl text-sm w-full py-2 border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
-                  onClick={handleOptionProfile}
-                >
-                  <span> View Profile</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  className="lg:text-xl text-sm w-full py-2 border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
-                  onClick={handleOptionBikeManagement}
-                >
-                  <span> Bike Management </span>
-                </button>
-              </li>
-              <li>
-                <button
-                  className="lg:text-xl text-sm w-full py-2 border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
-                  onClick={handleOptionUserManagement}
-                >
-                  <span> User Management </span>
-                </button>
-              </li>
-              <li>
-                <button
-                  className="lg:text-xl text-sm w-full py-2 border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
-                  onClick={handleReturnBike}
-                >
-                  <span> Return Bike </span>
-                </button>
-              </li>
-            </ul>
-          </div>
+          {hideSidebar ? (
+            <div className="bg-[#D7DFA3] lg:w-1/5">
+              <ul className="flex flex-col gap-5 pt-5">
+                <li>
+                  <button
+                    className="lg:text-xl text-sm py-2 w-full border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
+                    onClick={handleOptionWelcome}
+                  >
+                    <span> Welcome Page</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="lg:text-xl text-sm w-full py-2 border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
+                    onClick={handleOptionProfile}
+                  >
+                    <span> View Profile</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="lg:text-xl text-sm w-full py-2 border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
+                    onClick={handleOptionBikeManagement}
+                  >
+                    <span> Bike Management </span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="lg:text-xl text-sm w-full py-2 border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
+                    onClick={handleOptionUserManagement}
+                  >
+                    <span> User Management </span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="lg:text-xl text-sm w-full py-2 border-r-0 border-l-0 hover:text-[#1A4862] hover:bg-white hover:border-[#1A4862] text-center bg-[#1A4862] text-[#D7DFA3] font-bold cursor-pointer border-2"
+                    onClick={handleReturnBike}
+                  >
+                    <span> Return Bike </span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            ""
+          )}
           <div className="bg-[#1A4862] w-full overflow-auto  text-white p-2 lg:p-0">
             {option === "profile" ? (
               <Profile></Profile>

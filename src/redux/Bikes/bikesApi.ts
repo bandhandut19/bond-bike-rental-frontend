@@ -1,15 +1,11 @@
 import Cookies from "js-cookie";
 import { baseApi } from "../api/baseApi";
-import { TBike } from "@/types";
+import { TBike, TSearchableFields } from "@/types";
 
 const bikesApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllBikes: builder.query({
-      query: (params: {
-        searchByName?: string;
-        searchByBrand?: string;
-        searchByModel?: string;
-      }) => ({
+      query: (params: TSearchableFields) => ({
         url: "/bikes",
         method: "GET",
         params,

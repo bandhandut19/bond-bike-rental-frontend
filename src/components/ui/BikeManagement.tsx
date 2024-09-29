@@ -13,9 +13,7 @@ import {
   useUpdateBikeMutation,
 } from "@/redux/Bikes/bikesApi";
 import { TBike } from "@/types";
-import BikeSearchAdminDashboard from "./BikeSearchAdminDashboard";
 import { Button } from "@/components/ui/button";
-
 import {
   Dialog,
   DialogContent,
@@ -29,13 +27,21 @@ import { Input } from "./input";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useState } from "react";
-
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { SelectLabel } from "@radix-ui/react-select";
 const BikeManagement = () => {
-  const { data } = useGetAllBikesQuery({});
+  // const { data } = useGetAllBikesQuery({});
   const [deleteBike] = useDeleteBikeMutation();
   const [updateBike] = useUpdateBikeMutation();
   const [selectedBike, setSelectedBike] = useState<TBike | null>(null);
-  const bikeData = data?.data;
+  // const bikeData = data?.data;
   const { register, handleSubmit, reset } = useForm<TBike>();
   const handleDeleteBike = async (id: string) => {
     const res = await deleteBike(id);
@@ -59,6 +65,49 @@ const BikeManagement = () => {
     toast(message);
   };
 
+  // search functinalities
+
+  const [searchByName, setSearchName] = useState("");
+  const [searchByBrand, setBrandName] = useState("");
+  const [searchByModel, setModelName] = useState("");
+  const [searchByAvailability, setAvailability] = useState("");
+  const { data, isLoading } = useGetAllBikesQuery({
+    searchByName,
+    searchByBrand,
+    searchByModel,
+    searchByAvailability,
+  });
+  const { data: allBikeData } = useGetAllBikesQuery({});
+  const exactData = allBikeData?.data;
+  const bikeData = data?.data;
+  if (isLoading) {
+    <div>Loading...</div>;
+  }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchName(e.target.value);
+  };
+  const handleBrand = (value: string) => {
+    setBrandName(value);
+  };
+  const handleModel = (value: string) => {
+    setModelName(value);
+  };
+  const handleAvailability = (value: string) => {
+    setAvailability(value);
+  };
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSearchName("");
+    setBrandName("");
+    setModelName("");
+    setAvailability("");
+  };
+  const uniqueBrands = Array.from(
+    new Set(exactData?.map((bike: TBike) => bike.brand))
+  );
+  const uniqueModels = Array.from(
+    new Set(bikeData?.map((bike: TBike) => bike.model))
+  );
   return (
     <>
       <h1 className="text-center text-2xl  lg:text-4xl mt-5 font-extrabold">
@@ -66,7 +115,100 @@ const BikeManagement = () => {
       </h1>
       <div className="mx-auto lg:w-4/5 mb-5 w-full md:items-center flex flex-col lg:gap-5 gap-1 bg-gradient-to-tr border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5">
         <div className="w-full">
-          <BikeSearchAdminDashboard></BikeSearchAdminDashboard>
+          <h1 className="text-4xl font-bold lg:text-[#1A4862] text-[#D7DFA3] mb-5 mt-3 text-center">
+            Search Bikes
+          </h1>
+          <form
+            onSubmit={handleFormSubmit}
+            className="grid lg:grid-cols-2 grid-cols-1 lg:gap-5 gap-5 text-center lg:text-left items-center justify-center py-2 px-2"
+          >
+            <div>
+              <Input
+                className="bg-[#1A4862] bg-opacity-80 text-opacity-100 font-semibold text-[#D7DFA3] placeholder:text-opacity-80 placeholder:text-[#D7DFA3] placeholder:font-bold"
+                placeholder="Search by name"
+                // onChange={handleChange}
+                onChange={handleChange}
+                value={searchByName}
+              ></Input>
+            </div>
+            <div>
+              <Select value={searchByBrand} onValueChange={handleBrand}>
+                <SelectTrigger className="w-full bg-[#1A4862] text-[#D7DFA3]">
+                  <SelectValue placeholder="Search By Your Desired Brand" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Brands</SelectLabel>
+                    {/* only unique bike brands will be added dynamically*/}
+                    {uniqueBrands && uniqueBrands.length > 0 ? (
+                      uniqueBrands.map((brand, index) => (
+                        <SelectItem key={index} value={brand as string}>
+                          {brand as string}
+                        </SelectItem>
+                      ))
+                    ) : (
+                      <SelectItem key="no-brands" value="no-brands" disabled>
+                        No Brands Available
+                      </SelectItem>
+                    )}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Select value={searchByModel} onValueChange={handleModel}>
+                <SelectTrigger className="w-full bg-[#1A4862] text-[#D7DFA3]">
+                  <SelectValue placeholder="Search By Your Desired Model" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Models</SelectLabel>
+                    {/* only unique bike brands will be added dynamically*/}
+                    {uniqueModels && uniqueModels.length > 0 ? (
+                      uniqueModels.map((model) => (
+                        <SelectItem
+                          key={model as string}
+                          value={model as string}
+                        >
+                          {model as string}
+                        </SelectItem>
+                      ))
+                    ) : (
+                      <SelectItem key="no-models" value="no-models" disabled>
+                        No Models Available
+                      </SelectItem>
+                    )}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Select
+                value={searchByAvailability}
+                onValueChange={handleAvailability}
+              >
+                <SelectTrigger className="w-full bg-[#1A4862] text-[#D7DFA3]">
+                  <SelectValue placeholder="Search Availability" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Availability</SelectLabel>
+                    <SelectItem value="Available">Available</SelectItem>
+                    <SelectItem value="Not Available">Not Available</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="lg:col-span-2">
+              <button
+                type="submit"
+                className="bg-[#1A4862] text-[#D7DFA3] w-full py-2 px-4 hover:text-[#1A4862] hover:bg-[#D7DFA3] hover:font-extrabold font-semibold"
+              >
+                Clear Filters
+              </button>
+            </div>
+          </form>
         </div>
         <Table>
           <TableCaption className="text-white text-left py-2 px-1 md:hidden lg:hidden font-extrabold text-sm border-2">
