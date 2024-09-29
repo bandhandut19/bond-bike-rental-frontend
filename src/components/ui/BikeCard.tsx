@@ -5,7 +5,7 @@ const BikeCard = ({ bike }: { bike: TBike }) => {
   const { name, description, image, brand, isAvailable, pricePerHour } = bike;
 
   return (
-    <div className="card rounded-none card-compact bg-[#D7DFA3] border-2 text-[#1A4862]  shadow-lg shadow-[#D7DFA3]">
+    <div className="card rounded-none card-compact bg-[#D7DFA3] hover:-translate-y-8  hover:bg-[#1A4862] border-2 hover:text-[#D7DFA3]  text-[#1A4862] hover:border-[#1A4862] hover:shadow-[#1A4862 ]  shadow-lg shadow-[#D7DFA3]">
       <figure className="flex justify-center">
         <img src={image} alt="Bike Image" className="max-w-full h-auto" />
       </figure>
