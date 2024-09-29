@@ -3,7 +3,6 @@ import {
   useUpdateProfileMutation,
 } from "@/redux/user/userApi";
 import { Input } from "./input";
-import ButtonDefault from "./buttonDefault";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { TUser } from "@/types";

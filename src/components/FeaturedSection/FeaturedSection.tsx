@@ -20,8 +20,8 @@ const FeaturedSection = () => {
         {bikes?.length === 0
           ? "Bikes Will be Added Soon"
           : bikes
-              .slice(bikes.length - 3, bikes.length)
-              .map((bike: TBike) =>
+              ?.slice(bikes.length - 3, bikes.length)
+              ?.map((bike: TBike) =>
                 bike.isAvailable ? (
                   <BikeCard key={bike?._id} bike={bike}></BikeCard>
                 ) : (
