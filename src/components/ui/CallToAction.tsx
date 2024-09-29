@@ -141,9 +141,12 @@ const CallToAction = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10">
         {hasSearchValues ? (
           filteredBikes?.length > 0 ? (
-            filteredBikes.map((bike: TBike) => (
-              <BikeCard key={bike?._id} bike={bike} />
-            ))
+            filteredBikes.map((bike: TBike) => {
+              if (bike.isAvailable === true) {
+                return <BikeCard key={bike?._id} bike={bike} />;
+              }
+              return null;
+            })
           ) : (
             <div>No bikes found</div>
           )
