@@ -17,12 +17,13 @@ const CallToAction = () => {
   const [searchByName, setSearchName] = useState("");
   const [searchByBrand, setBrandName] = useState("");
   const [searchByModel, setModelName] = useState("");
-  console.log(searchByName);
   const { data, isLoading } = useGetAllBikesQuery({
     searchByName,
     searchByBrand,
     searchByModel,
   });
+  const { data: brandName } = useGetAllBikesQuery({});
+  const brandData = brandName?.data;
   const bikeData = data?.data;
   if (isLoading) {
     <div>Loading...</div>;
@@ -45,7 +46,7 @@ const CallToAction = () => {
     setModelName("");
   };
   const uniqueBrands = Array.from(
-    new Set(bikeData?.map((bike: TBike) => bike.brand))
+    new Set(brandData?.map((bike: TBike) => bike.brand))
   );
   const uniqueModels = Array.from(
     new Set(bikeData?.map((bike: TBike) => bike.model))
