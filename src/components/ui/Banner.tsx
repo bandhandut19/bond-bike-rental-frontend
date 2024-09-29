@@ -1,12 +1,12 @@
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
-
+import bannerVideo from "../../../public/coverr-bikers-driving-away-down-a-path-9981-1080p.mp4";
 const Banner = () => {
   return (
     <div className="">
       <div className="overflow-hidden z-1 h-auto">
         <ReactPlayer
-          url="/coverr-bikers-driving-away-down-a-path-9981-1080p.mp4"
+          url={bannerVideo}
           playing
           loop
           muted
