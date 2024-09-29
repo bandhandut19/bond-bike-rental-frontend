@@ -16,29 +16,53 @@ import { SelectLabel } from "@radix-ui/react-select";
 const CallToAction = () => {
   const [searchByName, setSearchName] = useState("");
   const [searchByBrand, setBrandName] = useState("");
+  const [searchByModel, setModelName] = useState("");
   console.log(searchByName);
   const { data, isLoading } = useGetAllBikesQuery({
     searchByName,
     searchByBrand,
+    searchByModel,
   });
   const bikeData = data?.data;
   if (isLoading) {
     <div>Loading...</div>;
   }
+  const hasSearchValues =
+    searchByName !== "" || searchByBrand !== "" || searchByModel !== "";
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchName(e.target.value);
   };
   const handleBrand = (value: string) => {
     setBrandName(value);
   };
+  const handleModel = (value: string) => {
+    setModelName(value);
+  };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearchName("");
     setBrandName("");
+    setModelName("");
   };
   const uniqueBrands = Array.from(
     new Set(bikeData?.map((bike: TBike) => bike.brand))
   );
+  const uniqueModels = Array.from(
+    new Set(bikeData?.map((bike: TBike) => bike.model))
+  );
+  const filteredBikes = bikeData?.filter((bike: TBike) => {
+    const matchesName =
+      searchByName === "" ||
+      bike.name.toLowerCase().includes(searchByName.toLowerCase());
+    const matchesBrand =
+      searchByBrand === "" ||
+      bike.brand.toLowerCase() === searchByBrand.toLowerCase();
+    const matchesModel =
+      searchByModel === "" ||
+      bike.model.toLowerCase().includes(searchByModel.toLowerCase());
+
+    return matchesName && matchesBrand && matchesModel;
+  });
   return (
     <div>
       <h1 className="text-4xl font-bold lg:text-[#1A4862] text-[#D7DFA3] mb-5 mt-3 text-center">
@@ -60,7 +84,7 @@ const CallToAction = () => {
         <div>
           <Select value={searchByBrand} onValueChange={handleBrand}>
             <SelectTrigger className="w-full bg-[#1A4862] text-[#D7DFA3]">
-              <SelectValue placeholder="Select Your Desired Brand" />
+              <SelectValue placeholder="Search By Your Desired Brand" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
@@ -80,7 +104,26 @@ const CallToAction = () => {
           </Select>
         </div>
         <div>
-          <Input></Input>
+          <Select value={searchByModel} onValueChange={handleModel}>
+            <SelectTrigger className="w-full bg-[#1A4862] text-[#D7DFA3]">
+              <SelectValue placeholder="Search By Your Desired Model" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Models</SelectLabel>
+                {/* only unique bike brands will be added dynamically*/}
+                {uniqueModels && uniqueModels.length > 0 ? (
+                  uniqueModels.map((model) => (
+                    <SelectItem key={model as string} value={model as string}>
+                      {model as string}
+                    </SelectItem>
+                  ))
+                ) : (
+                  <SelectItem value="">No Models Available</SelectItem>
+                )}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </div>
         <div>
           <button
@@ -92,16 +135,17 @@ const CallToAction = () => {
         </div>
       </form>
       <div className="grid grid-cols-3 gap-5 mt-10">
-        {searchByName === ""
-          ? ""
-          : bikeData?.map((bike: TBike) => (
-              <BikeCard key={bike?._id} bike={bike}></BikeCard>
-            ))}
-        {searchByBrand === ""
-          ? ""
-          : bikeData?.map((bike: TBike) => (
-              <BikeCard key={bike?._id} bike={bike}></BikeCard>
-            ))}
+        {hasSearchValues ? (
+          filteredBikes?.length > 0 ? (
+            filteredBikes.map((bike: TBike) => (
+              <BikeCard key={bike?._id} bike={bike} />
+            ))
+          ) : (
+            <div>No bikes found</div>
+          )
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
