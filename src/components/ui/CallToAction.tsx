@@ -91,13 +91,15 @@ const CallToAction = () => {
                 <SelectLabel>Brands</SelectLabel>
                 {/* only unique bike brands will be added dynamically*/}
                 {uniqueBrands && uniqueBrands.length > 0 ? (
-                  uniqueBrands.map((brand) => (
-                    <SelectItem key={brand as string} value={brand as string}>
+                  uniqueBrands.map((brand, index) => (
+                    <SelectItem key={index} value={brand as string}>
                       {brand as string}
                     </SelectItem>
                   ))
                 ) : (
-                  <SelectItem value="">No Brands Available</SelectItem>
+                  <SelectItem key="no-brands" value="no-brands" disabled>
+                    No Brands Available
+                  </SelectItem>
                 )}
               </SelectGroup>
             </SelectContent>
@@ -119,7 +121,9 @@ const CallToAction = () => {
                     </SelectItem>
                   ))
                 ) : (
-                  <SelectItem value="">No Models Available</SelectItem>
+                  <SelectItem key="no-models" value="no-models" disabled>
+                    No Models Available
+                  </SelectItem>
                 )}
               </SelectGroup>
             </SelectContent>
@@ -134,7 +138,7 @@ const CallToAction = () => {
           </button>
         </div>
       </form>
-      <div className="grid grid-cols-3 gap-5 mt-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10">
         {hasSearchValues ? (
           filteredBikes?.length > 0 ? (
             filteredBikes.map((bike: TBike) => (
