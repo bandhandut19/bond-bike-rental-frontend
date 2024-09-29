@@ -4,12 +4,22 @@ import { Input } from "./input";
 import { useGetAllBikesQuery } from "@/redux/Bikes/bikesApi";
 import { TBike } from "@/types";
 import BikeCard from "./BikeCard";
-
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { SelectLabel } from "@radix-ui/react-select";
 const CallToAction = () => {
   const [searchByName, setSearchName] = useState("");
+  const [searchByBrand, setBrandName] = useState("");
   console.log(searchByName);
   const { data, isLoading } = useGetAllBikesQuery({
     searchByName,
+    searchByBrand,
   });
   const bikeData = data?.data;
   if (isLoading) {
@@ -18,11 +28,17 @@ const CallToAction = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchName(e.target.value);
   };
-
+  const handleBrand = (value: string) => {
+    setBrandName(value);
+  };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearchName("");
+    setBrandName("");
   };
+  const uniqueBrands = Array.from(
+    new Set(bikeData?.map((bike: TBike) => bike.brand))
+  );
   return (
     <div>
       <h1 className="text-4xl font-bold lg:text-[#1A4862] text-[#D7DFA3] mb-5 mt-3 text-center">
@@ -42,7 +58,26 @@ const CallToAction = () => {
           ></Input>
         </div>
         <div>
-          <Input></Input>
+          <Select value={searchByBrand} onValueChange={handleBrand}>
+            <SelectTrigger className="w-full bg-[#1A4862] text-[#D7DFA3]">
+              <SelectValue placeholder="Select Your Desired Brand" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Brands</SelectLabel>
+                {/* only unique bike brands will be added dynamically*/}
+                {uniqueBrands && uniqueBrands.length > 0 ? (
+                  uniqueBrands.map((brand) => (
+                    <SelectItem key={brand as string} value={brand as string}>
+                      {brand as string}
+                    </SelectItem>
+                  ))
+                ) : (
+                  <SelectItem value="">No Brands Available</SelectItem>
+                )}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </div>
         <div>
           <Input></Input>
@@ -58,6 +93,11 @@ const CallToAction = () => {
       </form>
       <div className="grid grid-cols-3 gap-5 mt-10">
         {searchByName === ""
+          ? ""
+          : bikeData?.map((bike: TBike) => (
+              <BikeCard key={bike?._id} bike={bike}></BikeCard>
+            ))}
+        {searchByBrand === ""
           ? ""
           : bikeData?.map((bike: TBike) => (
               <BikeCard key={bike?._id} bike={bike}></BikeCard>
