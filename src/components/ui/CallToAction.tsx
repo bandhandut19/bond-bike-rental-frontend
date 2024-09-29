@@ -1,10 +1,20 @@
 import { useState } from "react";
-import ButtonDefault from "./buttonDefault";
 
 import { Input } from "./input";
+import { useGetAllBikesQuery } from "@/redux/Bikes/bikesApi";
+import { TBike } from "@/types";
+import BikeCard from "./BikeCard";
 
 const CallToAction = () => {
-  const [searchName, setSearchName] = useState("");
+  const [searchByName, setSearchName] = useState("");
+  console.log(searchByName);
+  const { data, isLoading } = useGetAllBikesQuery({
+    searchByName,
+  });
+  const bikeData = data?.data;
+  if (isLoading) {
+    <div>Loading...</div>;
+  }
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchName(e.target.value);
   };
@@ -26,8 +36,9 @@ const CallToAction = () => {
           <Input
             className="bg-[#1A4862] bg-opacity-80 text-opacity-100 font-semibold text-[#D7DFA3] placeholder:text-opacity-80 placeholder:text-[#D7DFA3] placeholder:font-bold"
             placeholder="Search by name"
+            // onChange={handleChange}
             onChange={handleChange}
-            value={searchName}
+            value={searchByName}
           ></Input>
         </div>
         <div>
@@ -45,6 +56,13 @@ const CallToAction = () => {
           </button>
         </div>
       </form>
+      <div className="grid grid-cols-3 gap-5 mt-10">
+        {searchByName === ""
+          ? ""
+          : bikeData?.map((bike: TBike) => (
+              <BikeCard key={bike?._id} bike={bike}></BikeCard>
+            ))}
+      </div>
     </div>
   );
 };

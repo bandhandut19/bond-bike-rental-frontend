@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
-import ButtonDefault from "../ui/buttonDefault";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "@/redux/auth/loginApi";
 import { toast } from "sonner";
@@ -9,7 +8,6 @@ import { addUser } from "@/redux/user/useSlice";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { useRefreshTokenQuery } from "@/redux/user/userApi";
 interface FetchBaseQueryError {
   status: number;
   data: any;
@@ -25,11 +23,9 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const [login] = useLoginMutation();
   const navigate = useNavigate();
-
   const [passwordError, setPasswordError] = useState("");
   const handleLogin = async (data: FormValues) => {
     // e.preventDefault();
-
     const res = await login(data);
     if (res?.error) {
       const error = res?.error as FetchBaseQueryError;

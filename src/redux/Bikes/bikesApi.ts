@@ -5,7 +5,11 @@ import { TBike } from "@/types";
 const bikesApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllBikes: builder.query({
-      query: (params) => ({
+      query: (params: {
+        searchByName?: string;
+        searchByBrand?: string;
+        searchByModel?: string;
+      }) => ({
         url: "/bikes",
         method: "GET",
         params,
