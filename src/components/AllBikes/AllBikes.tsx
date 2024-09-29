@@ -14,6 +14,7 @@ import {
 import { SelectLabel } from "@radix-ui/react-select";
 import { Input } from "../ui/input";
 import BikeCard from "../ui/BikeCard";
+import LoadingAnimation from "../ui/LoadingAnimation";
 const AllBikes = () => {
   const [searchByName, setSearchName] = useState("");
   const [searchByBrand, setBrandName] = useState("");
@@ -29,7 +30,7 @@ const AllBikes = () => {
   const brandData = brandName?.data;
   const bikeData = data?.data;
   if (isLoading) {
-    <div>Loading...</div>;
+    return <LoadingAnimation></LoadingAnimation>;
   }
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchName(e.target.value);

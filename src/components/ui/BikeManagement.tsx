@@ -36,6 +36,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { SelectLabel } from "@radix-ui/react-select";
+import LoadingAlterAnimation from "./LoadingAlterAnimation";
 const BikeManagement = () => {
   // const { data } = useGetAllBikesQuery({});
   const [deleteBike] = useDeleteBikeMutation();
@@ -78,7 +79,7 @@ const BikeManagement = () => {
   const exactData = allBikeData?.data || [];
   const bikeData: TBike[] = data?.data;
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingAlterAnimation></LoadingAlterAnimation>;
   }
   const handleBrand = (value: string) => {
     setBrandName(value);

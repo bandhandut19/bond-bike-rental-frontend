@@ -20,6 +20,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { useCreateBikeBookingMutation } from "@/redux/BikeRent/rentalApi";
 import { useGetUserDetailsQuery } from "@/redux/user/userApi";
+import LoadingAnimation from "../ui/LoadingAnimation";
 const SingleBikePage = () => {
   const { id } = useParams();
   const email = useAppSelector((state: RootState) => state.user.email);
@@ -33,7 +34,7 @@ const SingleBikePage = () => {
     },
   });
   if (isLoading) {
-    return <div>Loading...</div>; // Show loading message while fetching
+    return <LoadingAnimation></LoadingAnimation>;
   }
 
   const bike = data?.data as TBike;

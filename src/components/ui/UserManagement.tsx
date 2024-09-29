@@ -26,11 +26,12 @@ import { TUser } from "@/types";
 import { toast } from "sonner";
 import { Button } from "./button";
 import { useState } from "react";
+import LoadingAlterAnimation from "./LoadingAlterAnimation";
 
 const UserManagement = () => {
   const { data } = useGetAllUsersQuery({});
   const usersData = data?.data;
-  const { data: userData } = useGetUserDetailsQuery({});
+  const { data: userData, isLoading } = useGetUserDetailsQuery({});
   const payload = { user_email: userData?.email, user_role: userData?.role };
   const [deleteUser] = useDeleteUserMutation();
   const [promoteUserToAdmin] = usePromoteUserToAdminMutation();
@@ -55,6 +56,9 @@ const UserManagement = () => {
         toast("Error Promoting User: ", error);
       });
   };
+  if (isLoading) {
+    return <LoadingAlterAnimation></LoadingAlterAnimation>;
+  }
   return (
     <>
       <h1 className="text-center text-2xl  lg:text-4xl mt-5 font-extrabold">

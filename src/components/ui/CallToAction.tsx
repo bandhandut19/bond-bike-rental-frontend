@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { SelectLabel } from "@radix-ui/react-select";
+import LoadingAnimation from "./LoadingAnimation";
 const CallToAction = () => {
   const [searchByName, setSearchName] = useState("");
   const [searchByBrand, setBrandName] = useState("");
@@ -25,7 +26,7 @@ const CallToAction = () => {
   const brandData = brandName?.data;
   const bikeData = data?.data;
   if (isLoading) {
-    <div>Loading...</div>;
+    return <LoadingAnimation></LoadingAnimation>;
   }
   const hasSearchValues =
     searchByName !== "" || searchByBrand !== "" || searchByModel !== "";
