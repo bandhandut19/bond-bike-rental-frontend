@@ -41,7 +41,7 @@ const UserDashboard = () => {
             {hideSidebar ? "Hide Sidebar" : "Show Sidebar"}
           </button>
         </div>
-        <div className=" text-[#1A4862] min-h-screen flex">
+        <div className=" text-[#1A4862] min-h-screen flex overflow-auto">
           {hideSidebar ? (
             <div className="bg-[#D7DFA3] lg:w-1/5">
               <ul className="flex flex-col gap-5 pt-5">

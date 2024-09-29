@@ -1,12 +1,13 @@
 import { useGetAllBikesQuery } from "@/redux/Bikes/bikesApi";
 import { TBike } from "@/types";
 import BikeCard from "../ui/BikeCard";
+import LoadingAlterAnimation from "../ui/LoadingAlterAnimation";
 
 const FeaturedSection = () => {
   const { data, isLoading } = useGetAllBikesQuery({});
   const bikes = data?.data;
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingAlterAnimation></LoadingAlterAnimation>;
   }
   return (
     <div className="mb-10">

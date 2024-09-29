@@ -10,17 +10,20 @@ import {
   REGISTER,
 } from "redux-persist";
 import userReducer from "./user/useSlice";
+import bondThemeReducer from "./theme/themeSlice";
 import storage from "redux-persist/lib/storage";
 const persistConfig = {
   key: "root",
   storage,
 };
 const persistedUserReducer = persistReducer(persistConfig, userReducer);
+const persistedThemeReducer = persistReducer(persistConfig, bondThemeReducer);
 
 export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     user: persistedUserReducer,
+    theme: persistedThemeReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

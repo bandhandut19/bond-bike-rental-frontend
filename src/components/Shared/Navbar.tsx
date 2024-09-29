@@ -1,19 +1,26 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
+import { changeTheme } from "@/redux/theme/themeSlice";
 import { removeUser } from "@/redux/user/useSlice";
 import Cookies from "js-cookie";
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const userEmail = useAppSelector((state: RootState) => state.user.email);
+  const [themeMode, setThemeMode] = useState(true);
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(removeUser());
     Cookies.remove("authToken");
     window.location.reload(); // removing cookies instanlty after logout
   };
+  const handleThemeMode = () => {
+    setThemeMode(!themeMode);
+    dispatch(changeTheme(themeMode));
+  };
   return (
-    <div className="navbar bg-[#1A4862] ">
+    <div className={`navbar bg-[#1A4862] `}>
       <div className="navbar-start">
         <div className="dropdown z-10 ">
           <div tabIndex={0} role="button" className="btn btn-ghost   lg:hidden">
@@ -37,7 +44,7 @@ const Navbar = () => {
             className="menu gap-2 menu-sm text-[#D7DFA3] font-bold bg-[#1A4862] dropdown-content mt-3 w-52 p-2 shadow"
           >
             <li className="">
-              <Link to={"/allbikes"} className="rounded-none text-white">
+              <Link to={"/allbikes"} className="rounded-none text-white ">
                 All Bikes
               </Link>
             </li>
@@ -71,7 +78,7 @@ const Navbar = () => {
             <NavLink
               to={"/allbikes"}
               className={({ isActive }) =>
-                `nav-link hover:bg-[#D7DFA3]  rounded-none text-xl  hover:text-[#1A4862] ${
+                `nav-link hover:bg-[#D7DFA3] dark:text-black rounded-none text-xl  hover:text-[#1A4862] ${
                   isActive ? "nav-link-active" : ""
                 }`
               }
@@ -118,6 +125,14 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end ">
+        <div className="px-5">
+          <input
+            type="checkbox"
+            value="synthwave"
+            onClick={handleThemeMode}
+            className="toggle theme-controller col-span-2 col-start-1 row-start-1 border-white bg-[#D7DFA3] [--tglbg:theme(colors.sky.500)] checked:border-white checked:bg-blue-300 checked:[--tglbg:theme(colors.blue.900)]"
+          />
+        </div>
         {userEmail ? (
           <Link
             onClick={handleLogout}
