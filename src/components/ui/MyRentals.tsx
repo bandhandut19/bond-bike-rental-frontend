@@ -34,7 +34,7 @@ const MyRentals = () => {
   if (isLoading) {
     <div>Loading.....</div>;
   }
-  const myRentals = data?.data;
+  const myRentals: TBooking[] = data?.data || [];
   const handlePayNow = (amount: number, bookingId: string) => {
     const payDetails: TPayDetails = {
       amount,
@@ -50,6 +50,8 @@ const MyRentals = () => {
       });
     toast("Payment Processing...");
   };
+  const unpaidRentals = myRentals.filter((rental) => !rental?.payment);
+  const paidRentals = myRentals.filter((rental) => rental?.payment);
   return (
     <>
       <h1 className="text-center text-2xl  lg:text-4xl mt-5 font-extrabold">
@@ -100,53 +102,68 @@ const MyRentals = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {myRentals?.map((rental: TBooking) =>
-                      rental?.payment ? (
-                        ""
-                      ) : (
-                        <TableRow
-                          key={rental?._id}
-                          className="hover:bg-[#1A4862] hover:text-white bg-[#D7DFA3] bg-opacity-35 font-bold"
+                    {unpaidRentals.length === 0 ? (
+                      <TableRow>
+                        <TableCell
+                          colSpan={5}
+                          className="text-center font-bold lg:text-xl"
                         >
-                          <TableCell className="font-medium">
-                            {bikeData?.data
-                              ? bikeData?.data.map((bike: TBike) =>
-                                  bike?._id === rental?.bikeId ? bike.name : ""
-                                )
-                              : ""}
-                          </TableCell>
-                          <TableCell>{formatDate(rental.startTime)}</TableCell>
-                          <TableCell>
-                            {rental.returnTime
-                              ? formatDate(rental.returnTime)
-                              : "N/A"}
-                          </TableCell>
-                          <TableCell>
-                            {rental.totalCost !== 0
-                              ? `${rental.totalCost} BDT`
-                              : "N/A"}
-                          </TableCell>
+                          No unpaid data to show
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      myRentals?.map((rental: TBooking) =>
+                        rental?.payment ? (
+                          ""
+                        ) : (
+                          <TableRow
+                            key={rental?._id}
+                            className="hover:bg-[#1A4862] hover:text-white bg-[#D7DFA3] bg-opacity-35 font-bold"
+                          >
+                            <TableCell className="font-medium">
+                              {bikeData?.data
+                                ? bikeData?.data.map((bike: TBike) =>
+                                    bike?._id === rental?.bikeId
+                                      ? bike.name
+                                      : ""
+                                  )
+                                : ""}
+                            </TableCell>
+                            <TableCell>
+                              {formatDate(rental.startTime)}
+                            </TableCell>
+                            <TableCell>
+                              {rental.returnTime
+                                ? formatDate(rental.returnTime)
+                                : "N/A"}
+                            </TableCell>
+                            <TableCell>
+                              {rental.totalCost !== 0
+                                ? `${rental.totalCost} BDT`
+                                : "N/A"}
+                            </TableCell>
 
-                          <TableCell className="text-right">
-                            {rental.totalCost === 0 ? (
-                              <button
-                                disabled
-                                className="bg-[grey] border-2 text-white py-2 px-4 hover:text-white  font-extrabold"
-                              >
-                                Pay Now
-                              </button>
-                            ) : (
-                              <button
-                                onClick={() =>
-                                  handlePayNow(rental.totalCost, rental._id)
-                                }
-                                className="bg-[#428c34] border-2 text-white py-2 px-4 hover:text-white hover:bg-[#30DB3C]  font-extrabold"
-                              >
-                                Pay Now
-                              </button>
-                            )}
-                          </TableCell>
-                        </TableRow>
+                            <TableCell className="text-right">
+                              {rental.totalCost === 0 ? (
+                                <button
+                                  disabled
+                                  className="bg-[grey] border-2 text-white py-2 px-4 hover:text-white  font-extrabold"
+                                >
+                                  Pay Now
+                                </button>
+                              ) : (
+                                <button
+                                  onClick={() =>
+                                    handlePayNow(rental.totalCost, rental._id)
+                                  }
+                                  className="bg-[#428c34] border-2 text-white py-2 px-4 hover:text-white hover:bg-[#30DB3C]  font-extrabold"
+                                >
+                                  Pay Now
+                                </button>
+                              )}
+                            </TableCell>
+                          </TableRow>
+                        )
                       )
                     )}
                   </TableBody>
@@ -194,42 +211,57 @@ const MyRentals = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {myRentals?.map((rental: TBooking) =>
-                      rental?.payment ? (
-                        <TableRow
-                          key={rental?._id}
-                          className="hover:bg-[#1A4862] hover:text-white bg-[#D7DFA3] bg-opacity-35 font-bold"
+                    {paidRentals.length === 0 ? (
+                      <TableRow>
+                        <TableCell
+                          colSpan={7}
+                          className="text-center text-white  font-bold lg:text-xl"
                         >
-                          <TableCell className="font-medium">
-                            {bikeData?.data
-                              ? bikeData?.data.map((bike: TBike) =>
-                                  bike?._id === rental?.bikeId ? bike.name : ""
-                                )
-                              : ""}
-                          </TableCell>
-                          <TableCell>{formatDate(rental.startTime)}</TableCell>
-                          <TableCell>
-                            {rental.returnTime
-                              ? formatDate(rental.returnTime)
-                              : "N/A"}
-                          </TableCell>
-                          <TableCell>
-                            {rental.totalCost !== 0
-                              ? `${rental.totalCost} BDT`
-                              : "N/A"}
-                          </TableCell>
-                          <TableCell>
-                            {rental.isReturned ? "Returned" : "Not Returned"}
-                          </TableCell>
-                          <TableCell className="text-center">
-                            {rental.advancePayment ? "Paid" : "Not Yet"}
-                          </TableCell>
-                          <TableCell className="text-center">
-                            {rental.payment === true ? "Paid" : "Not Yet"}
-                          </TableCell>
-                        </TableRow>
-                      ) : (
-                        ""
+                          No paid data to show
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      myRentals?.map((rental: TBooking) =>
+                        rental?.payment ? (
+                          <TableRow
+                            key={rental?._id}
+                            className="hover:bg-[#1A4862] hover:text-white bg-[#D7DFA3] bg-opacity-35 font-bold"
+                          >
+                            <TableCell className="font-medium">
+                              {bikeData?.data
+                                ? bikeData?.data.map((bike: TBike) =>
+                                    bike?._id === rental?.bikeId
+                                      ? bike.name
+                                      : ""
+                                  )
+                                : ""}
+                            </TableCell>
+                            <TableCell>
+                              {formatDate(rental.startTime)}
+                            </TableCell>
+                            <TableCell>
+                              {rental.returnTime
+                                ? formatDate(rental.returnTime)
+                                : "N/A"}
+                            </TableCell>
+                            <TableCell>
+                              {rental.totalCost !== 0
+                                ? `${rental.totalCost} BDT`
+                                : "N/A"}
+                            </TableCell>
+                            <TableCell>
+                              {rental.isReturned ? "Returned" : "Not Returned"}
+                            </TableCell>
+                            <TableCell className="text-center">
+                              {rental.advancePayment ? "Paid" : "Not Yet"}
+                            </TableCell>
+                            <TableCell className="text-center">
+                              {rental.payment === true ? "Paid" : "Not Yet"}
+                            </TableCell>
+                          </TableRow>
+                        ) : (
+                          ""
+                        )
                       )
                     )}
                   </TableBody>
