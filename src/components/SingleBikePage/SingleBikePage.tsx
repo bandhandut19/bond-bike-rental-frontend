@@ -66,7 +66,7 @@ const SingleBikePage = () => {
   };
 
   return (
-    <div className="mt-10 mb-20  mx-auto w-4/5 flex flex-col items-center justify-center rounded-none  bg-[#D7DFA3] border-2 text-[#1A4862]  shadow-lg shadow-[#D7DFA3]">
+    <div className="pt-10 pb-20 min-h-screen mx-auto w-4/5 flex flex-col items-center justify-center rounded-none  bg-transparent border-t-0 border-b-0 border-2 text-[#1A4862]  shadow-lg shadow-[#D7DFA3]">
       <div className="lg:w-4/5">
         <img src={bike.image} alt="" />
       </div>

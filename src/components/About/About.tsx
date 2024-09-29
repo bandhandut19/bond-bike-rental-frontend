@@ -49,7 +49,7 @@ const About = () => {
     },
   ];
   return (
-    <div className="flex flex-col gap-16 mx-auto w-4/5 mt-10 mb-10">
+    <div className="flex flex-col gap-16 mx-auto w-4/5 pt-10 pb-10">
       <section
         id="tag-lines"
         className="bg-[#D7DFA3] bg-opacity-20 p-10 text-white border-2"

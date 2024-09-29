@@ -11,10 +11,10 @@ const ContactUs = () => {
     //will use emailjs later on to send the email to bond-rentals
   };
   return (
-    <div className="mt-10 mb-10 ">
+    <div className="pt-10 pb-10 ">
       <form
         onSubmit={handleSubmit(handleSubmitEmailFromContactUs)}
-        className=" bg-[#D7DFA3] px-5 bg-opacity-20 shadow-md shadow-white  border-2 lg:w-full lg:mx-auto grid gap-5 grid-cols-1 pt-10 pb-20 items-center justify-center"
+        className=" bg-[#D7DFA3] dark:bg-slate-600 px-5 bg-opacity-20 dark:bg-opacity-70 shadow-md shadow-white  border-2 lg:w-full lg:mx-auto grid gap-5 grid-cols-1 pt-10 pb-20 items-center justify-center"
       >
         <h1 className="mb-10 text-popover text-center lg:text-5xl text-3xl font-extrabold text-[#1A4862]">
           Contact Us

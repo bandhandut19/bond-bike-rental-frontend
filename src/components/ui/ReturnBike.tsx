@@ -29,6 +29,7 @@ import { Button } from "./button";
 import { toast } from "sonner";
 import { useGetAllBikesQuery } from "@/redux/Bikes/bikesApi";
 import { useGetAllUsersQuery } from "@/redux/user/userApi";
+import LoadingAlterAnimation from "./LoadingAlterAnimation";
 
 const ReturnBike = () => {
   const { data, isLoading } = useGetAllUsersRentalsQuery({});
@@ -38,7 +39,7 @@ const ReturnBike = () => {
   const { data: bikeData } = useGetAllBikesQuery({});
   const { data: userData } = useGetAllUsersQuery({});
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingAlterAnimation></LoadingAlterAnimation>;
   }
 
   const handleCalculateNow = async (data: TCalculate, id: string) => {

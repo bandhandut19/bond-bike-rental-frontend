@@ -78,16 +78,16 @@ const AllBikes = () => {
   });
   return (
     <>
-      <div className="pt-5 mb-10 text-center text-4xl font-extrabold text-[#1A4862] bg-[#D7DFA3] pb-5">
+      <div className="pt-5  text-center text-4xl font-extrabold text-[#1A4862]  bg-[#D7DFA3] pb-5">
         <h1>All Bikes</h1>
       </div>
-      <div className="w-4/5 mx-auto mb-10">
-        <h1 className="text-4xl font-bold lg:text-[#D7DFA3] text-[#D7DFA3] mb-5 mt-3 text-center">
+      <div className="w-4/5 mx-auto pb-10">
+        <h1 className="text-4xl font-bold lg:text-[#D7DFA3] text-[#D7DFA3] mb-5 pt-3 text-center">
           Search Your Desired Bikes
         </h1>
         <form
           onSubmit={handleSubmit}
-          className="grid lg:grid-cols-2 grid-cols-1 lg:gap-8 gap-8 text-center lg:text-left items-center justify-center py-2 px-2"
+          className="grid lg:grid-cols-2 grid-cols-1 lg:gap-8 gap-10 text-center lg:text-left items-center justify-center py-2 px-2"
         >
           <div>
             <Input

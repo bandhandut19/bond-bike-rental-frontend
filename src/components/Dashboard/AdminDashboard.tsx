@@ -32,7 +32,7 @@ const AdminDashboard = () => {
   return (
     <div>
       <div>
-        <div className="bg-[#D7DFA3]">
+        <div className="bg-[#D7DFA3] ">
           {hideSidebar ? (
             <h1 className="text-center lg:ml-56  ml-20 text-lg lg:text-3xl py-4 font-extrabold text-[#1A4862]">
               Admin Dashboard
@@ -98,7 +98,7 @@ const AdminDashboard = () => {
           ) : (
             ""
           )}
-          <div className="bg-[#1A4862] w-full overflow-auto  text-white p-2 lg:p-0">
+          <div className="bg-[#1A4862] dark:bg-slate-600 w-full overflow-auto  text-white p-2 lg:p-0">
             {option === "profile" ? (
               <Profile></Profile>
             ) : option === "welcome" ? (

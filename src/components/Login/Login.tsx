@@ -48,7 +48,7 @@ const Login = () => {
   };
 
   return (
-    <div className="mx-auto mt-20 w-4/5">
+    <div className="mx-auto pt-20 w-4/5">
       <form
         onSubmit={handleSubmit(handleLogin)}
         className=" bg-[#D7DFA3] border-2 lg:w-4/5 lg:mx-auto bg-opacity-40 grid gap-5 grid-cols-1 pt-10 pb-20 items-center justify-center"
