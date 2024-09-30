@@ -1,3 +1,4 @@
+import { TCoupon } from "@/types";
 import coupons from "../../../public/couponsAndDiscounts.json";
 const CouponsAndDiscounts = () => {
   return (
@@ -6,7 +7,7 @@ const CouponsAndDiscounts = () => {
         Coupons & Discounts
       </h1>
       <div className="grid lg:grid-cols-3 grid-cols-2 gap-5 lg:gap-10 items-center">
-        {coupons?.map((coupon) => (
+        {coupons?.map((coupon: TCoupon) => (
           <div
             key={coupon.code}
             className="bg-[#D7DFA3] hover:scale-110 duration-300  shadow-white border-2 border-white p-4 mb-4 rounded shadow-md text-center"
@@ -15,7 +16,7 @@ const CouponsAndDiscounts = () => {
             <p className="lg:text-lg text-[#1A4862] font-extrabold">
               Discount: {coupon.discount}%
             </p>
-            <p className="text-gray-600">Use this code at checkout!</p>
+            <p className="text-gray-600">{coupon.details}</p>
           </div>
         ))}
       </div>

@@ -71,4 +71,5 @@ export type TCoupon = {
   bikeId?: string;
   userId?: string;
   code: string;
+  details: string;
 };
