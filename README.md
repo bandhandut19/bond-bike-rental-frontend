@@ -1,4 +1,4 @@
-## Initial admin credentials for PH TEAM checking purposes.. will delete it later on.
+## Initial admin and user credentials for PH TEAM checking purposes.. will delete it later on.
  - admin: ibond1673@gmail.com
  - password: 123
  - user: bondon_002@gmail.com
