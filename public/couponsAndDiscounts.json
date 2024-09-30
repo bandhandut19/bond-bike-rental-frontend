@@ -3,41 +3,47 @@
         "bikeId": "",
         "userId": "",
         "code": "DIWALI10",
-        "details": "Minimum 200tk Rental Fees"
+        "details": "Minimum 200tk Rental Fees",
+        "status": true
     },
     {
         "discount": 15,
         "bikeId": "",
         "userId": "",
         "code": "NEWYEAR15",
-        "details": "Minimum 400tk Rental Fees"
+        "details": "Minimum 400tk Rental Fees",
+        "status": true
     },
     {
         "discount": 20,
         "bikeId": "",
         "userId": "",
         "code": "HOLI20",
-        "details": "Minimum 599tk Rental Fees"
+        "details": "Minimum 599tk Rental Fees",
+        "status": false
     },
     {
         "discount": 25,
         "bikeId": "",
         "userId": "",
         "code": "EID25",
-        "details": "Minimum 399tk Rental Fees"
+        "details": "Minimum 399tk Rental Fees",
+        "status": true
     },
     {
         "discount": 30,
         "bikeId": "",
         "userId": "",
         "code": "CHRISTMAS30",
-        "details": "Minimum 650tk Rental Fees"
+        "details": "Minimum 650tk Rental Fees",
+        "status": false
     },
     {
         "discount": 50,
         "bikeId": "",
         "userId": "",
         "code": "SAVE50",
-        "details": "Minimum 999tk Rental Fees"
+        "details": "Minimum 999tk Rental Fees",
+        "status": true
     }
 ]

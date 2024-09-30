@@ -72,4 +72,5 @@ export type TCoupon = {
   userId?: string;
   code: string;
   details: string;
+  status: boolean;
 };
