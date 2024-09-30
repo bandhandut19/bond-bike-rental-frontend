@@ -2,13 +2,35 @@ import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { TContactUs } from "@/types";
 import { toast } from "sonner";
-
+import emailjs from "@emailjs/browser";
 const ContactUs = () => {
   const { register, handleSubmit, reset } = useForm<TContactUs>();
   const handleSubmitEmailFromContactUs = (data: TContactUs) => {
-    toast(`Your Message :  ${data?.message} . Has been sent successfully`);
-    reset();
-    //will use emailjs later on to send the email to bond-rentals
+    const contactTemplate = {
+      from_name: data.name as string,
+      from_email: data.email as string,
+      to_name: "BonDeV | 2024" as string,
+      message: data.message as string,
+    };
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        contactTemplate,
+        {
+          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        }
+      )
+      .then(
+        () => {
+          console.log("SUCCESS!");
+          reset();
+          toast(`Thank You ${data?.name} ! For Messaging Us`);
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
   };
   return (
     <div className="pt-10 pb-10 ">
