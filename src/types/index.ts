@@ -65,3 +65,10 @@ export type TSearchableFields = {
   searchByModel?: string;
   searchByAvailability?: string;
 };
+
+export type TCoupon = {
+  discount: number;
+  bikeId?: string;
+  userId?: string;
+  code: string;
+};

@@ -1,0 +1,37 @@
+[{
+        "discount": 10,
+        "bikeId": "",
+        "userId": "",
+        "code": "DIWALI10"
+    },
+    {
+        "discount": 15,
+        "bikeId": "",
+        "userId": "",
+        "code": "NEWYEAR15"
+    },
+    {
+        "discount": 20,
+        "bikeId": "",
+        "userId": "",
+        "code": "HOLI20"
+    },
+    {
+        "discount": 25,
+        "bikeId": "",
+        "userId": "",
+        "code": "EID25"
+    },
+    {
+        "discount": 30,
+        "bikeId": "",
+        "userId": "",
+        "code": "CHRISTMAS30"
+    },
+    {
+        "discount": 50,
+        "bikeId": "",
+        "userId": "",
+        "code": "SAVE50"
+    }
+]
