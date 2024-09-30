@@ -24,6 +24,7 @@ import LoadingAnimation from "../ui/LoadingAnimation";
 const SingleBikePage = () => {
   const { id } = useParams();
   const email = useAppSelector((state: RootState) => state.user.email);
+  const role = useAppSelector((state: RootState) => state.user.role);
   const { data, isLoading } = useGetSingleBikeQuery(id);
   const { data: userData } = useGetUserDetailsQuery({});
   const payload = { user_email: userData?.email, user_role: userData?.role };
@@ -40,7 +41,12 @@ const SingleBikePage = () => {
   const bike = data?.data as TBike;
 
   const handleBookNowNoUser = () => {
-    toast("Login To Start Booking Process of the Bike");
+    if (role === "admin") {
+      toast("Admin is not allowed to book a bike");
+    }
+    if (role === "user") {
+      toast("Login To Start Booking Process of the Bike");
+    }
   };
   const handleBookNow = (data: TStartTime) => {
     const modifiedDate = {
@@ -132,7 +138,7 @@ const SingleBikePage = () => {
           </div>
           <div>
             {bike?.isAvailable ? (
-              email ? (
+              email && role === "user" ? (
                 <Dialog>
                   <DialogTrigger asChild>
                     <button className="bg-[#30DB3C] py-2 px-5 font-bold border-2 transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-[#28b531] hover:text-white">

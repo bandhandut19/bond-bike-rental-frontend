@@ -26,8 +26,12 @@ import { useGetUserDetailsQuery } from "@/redux/user/userApi";
 import { useGetAllBikesQuery } from "@/redux/Bikes/bikesApi";
 
 const MyRentals = () => {
-  const { data, isLoading } = useGetUserSpecificRentalsQuery({});
-  const { data: userData } = useGetUserDetailsQuery({});
+  const { data, isLoading } = useGetUserSpecificRentalsQuery({
+    pollingInterval: 5000, // Auto refetch every 5 seconds
+  });
+  const { data: userData } = useGetUserDetailsQuery({
+    pollingInterval: 5000, // Auto refetch every 5 seconds
+  });
   const payload = { user_email: userData?.email, user_role: userData?.role };
   const [payRental] = usePayRentalMutation();
   const { data: bikeData } = useGetAllBikesQuery({});
@@ -138,13 +142,19 @@ const MyRentals = () => {
                                 : "N/A"}
                             </TableCell>
                             <TableCell>
-                              {rental.totalCost !== 0
-                                ? `${rental.totalCost} BDT`
-                                : "N/A"}
+                              {rental.totalCost > 0
+                                ? ` ${rental.totalCost} BDT`
+                                : `${Math.abs(rental.totalCost)} BDT`}
+                              {rental.totalCost < 0 && (
+                                <span>
+                                  {" "}
+                                  <br /> Will be returned
+                                </span>
+                              )}
                             </TableCell>
 
                             <TableCell className="text-right">
-                              {rental.totalCost === 0 ? (
+                              {rental?.totalCost <= 0 ? (
                                 <button
                                   disabled
                                   className="bg-[grey] border-2 text-white py-2 px-4 hover:text-white  font-extrabold"
