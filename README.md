@@ -1,6 +1,9 @@
 ## Initial admin credentials for PH TEAM checking purposes.. will delete it later on.
-## ibond1673@gmail.com
-## password: 123
+ - ibond1673@gmail.com
+ - password: 123
+## User Initial 
+- bondon_002@gmail.com
+ - password: 12345
 ![Bond Bike Rental](https://i.postimg.cc/hGYYRjQt/screenshot-4.png) 
 ![Bond Bike Rental](https://i.postimg.cc/tRvQgZNz/all-Bikes-Page.png) 
 
