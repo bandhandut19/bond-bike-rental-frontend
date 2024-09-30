@@ -61,7 +61,7 @@ const MyRentals = () => {
       <h1 className="text-center text-2xl  lg:text-4xl mt-5 font-extrabold">
         My Rentals
       </h1>
-      <div className="mx-auto lg:w-4/5 mb-5 w-full md:items-center flex flex-col lg:gap-5 gap-1 bg-gradient-to-tr border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5">
+      <div className="mx-auto shadow-md shadow-[white] lg:w-4/5 mb-5 w-full md:items-center flex flex-col lg:gap-5 gap-1 bg-gradient-to-tr border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5">
         <Tabs defaultValue="unpaid" className="w-full">
           <TabsList className="grid w-full grid-cols-2 bg-[#1A4862] dark:bg-slate-600 gap-2">
             <TabsTrigger value="unpaid" className=" text-white ">

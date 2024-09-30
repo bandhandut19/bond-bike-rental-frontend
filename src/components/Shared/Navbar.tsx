@@ -74,7 +74,7 @@ const Navbar = () => {
         </div>
         <Link
           to={"/"}
-          className="lg:text-xl md:text-2xl text-sm text-[#D7DFA3]  font-extrabold lg:ml-5"
+          className="lg:text-xl hover:scale-110 duration-300 md:text-2xl text-sm text-[#D7DFA3]  font-extrabold lg:ml-5"
         >
           Bond Bike Rentals
         </Link>
@@ -85,7 +85,7 @@ const Navbar = () => {
             <NavLink
               to={"/allbikes"}
               className={({ isActive }) =>
-                `nav-link hover:bg-[#D7DFA3] dark:text-black rounded-none text-xl  hover:text-[#1A4862] ${
+                `nav-link hover:bg-[#D7DFA3] hover:scale-110 duration-300 dark:text-black rounded-none text-xl  hover:text-[#1A4862] ${
                   isActive ? "nav-link-active" : ""
                 }`
               }
@@ -97,7 +97,7 @@ const Navbar = () => {
             <NavLink
               to={"/dashboard"}
               className={({ isActive }) =>
-                `nav-link hover:bg-[#D7DFA3] dark:text-black rounded-none text-xl  hover:text-[#1A4862] ${
+                `nav-link hover:bg-[#D7DFA3] hover:scale-110 duration-300 dark:text-black rounded-none text-xl  hover:text-[#1A4862] ${
                   isActive ? "nav-link-active" : ""
                 }`
               }
@@ -109,7 +109,7 @@ const Navbar = () => {
             <NavLink
               to={"/contact"}
               className={({ isActive }) =>
-                `nav-link hover:bg-[#D7DFA3] dark:text-black hover:text-[#1A4862] text-xl rounded-none ${
+                `nav-link hover:bg-[#D7DFA3] hover:scale-110 duration-300 dark:text-black hover:text-[#1A4862] text-xl rounded-none ${
                   isActive ? "nav-link-active" : ""
                 }`
               }
@@ -121,7 +121,7 @@ const Navbar = () => {
             <NavLink
               to={"/about"}
               className={({ isActive }) =>
-                `nav-link hover:bg-[#D7DFA3] dark:text-black hover:text-[#1A4862] text-xl rounded-none  ${
+                `nav-link hover:bg-[#D7DFA3] hover:scale-110 duration-300 dark:text-black hover:text-[#1A4862] text-xl rounded-none  ${
                   isActive ? "nav-link-active" : ""
                 }`
               }
@@ -132,7 +132,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end ">
-        <div className="px-2 text-center lg:px-5 pt-1">
+        <div className="px-2 text-center lg:px-5 pt-1 hover:scale-125 duration-300">
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
             <input
@@ -144,7 +144,7 @@ const Navbar = () => {
 
             {/* sun icon */}
             <svg
-              className="swap-off h-10 lg:w-10 w-7 fill-current text-white"
+              className="swap-off h-10 lg:w-10 w-7 fill-current  text-white"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
@@ -165,14 +165,14 @@ const Navbar = () => {
           <Link
             onClick={handleLogout}
             to={"/login"}
-            className="lg:mr-5 py-1 px-2 dark:text-white dark:bg-black lg:py-2 lg:px-4 md:text-xl  lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
+            className="lg:mr-5 py-1 px-2 hover:scale-105 duration-300 dark:text-white dark:bg-black lg:py-2 lg:px-4 md:text-xl  lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
           >
             Logout
           </Link>
         ) : (
           <Link
             to={"/login"}
-            className="lg:mr-5 py-1 px-2 lg:py-2 lg:px-4 dark:text-white dark:bg-black  lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
+            className="lg:mr-5 py-1 px-2 hover:scale-105 duration-300 lg:py-2 lg:px-4 dark:text-white dark:bg-black  lg:text-lg text-sm bg-white text-[#1A4862] font-bold"
           >
             Login Now !
           </Link>

@@ -66,7 +66,7 @@ const CallToAction = () => {
   });
   return (
     <div>
-      <h1 className="text-4xl font-bold lg:text-[#1A4862] text-[#D7DFA3] mb-5 mt-3 text-center">
+      <h1 className="text-4xl font-bold text-white lg:font-extrabold  mb-5 mt-3 text-center">
         Search Your Aqauinted Bike
       </h1>
       <form

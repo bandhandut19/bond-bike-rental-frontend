@@ -22,7 +22,7 @@ const Banner = () => {
         <h1 className="text-center">
           <Link
             to={"/allbikes"}
-            className="bg-[#D7DFA3] bg-opacity-90 lg:text-xl text-sm animate-pulse hover:bg-[#1A4862] hover:text-[#D7DFA3] text-[#1A4862] font-extrabold py-4 px-4 lg:py-4 lg:px-10"
+            className="bg-[#D7DFA3] duration-400 bg-opacity-90 lg:text-xl text-sm animate-pulse hover:bg-[#1A4862] hover:text-[#D7DFA3] text-[#1A4862] font-extrabold py-4 px-4 lg:py-4 lg:px-10"
           >
             Rent a Bike Now !
           </Link>

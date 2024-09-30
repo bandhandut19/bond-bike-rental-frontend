@@ -52,7 +52,7 @@ const About = () => {
     <div className="flex flex-col gap-16 mx-auto w-4/5 pt-10 pb-10">
       <section
         id="tag-lines"
-        className="bg-[#D7DFA3] bg-opacity-20 p-10 text-white border-2"
+        className="bg-[#D7DFA3] hover:scale-105 duration-300 shadow-md shadow-[white] bg-opacity-20 p-10 text-white border-2"
       >
         <h1 className="text-center text-4xl font-bold border-4 rounded-lg py-3 border-b-0 border-l-4 border-t-4 border-r-4 border-[#1A4862]">
           Bond Bike Rental
@@ -79,7 +79,7 @@ const About = () => {
 
       <section
         id="mission"
-        className="bg-[#D7DFA3] bg-opacity-20 p-10 border-2"
+        className="bg-[#D7DFA3] hover:scale-105 duration-300 shadow-md shadow-[white] bg-opacity-20 p-10 border-2"
       >
         <h1 className="text-center lg:hidden text-white text-4xl font-bold border-4 py-3 border-b-0 border-l-4 rounded-lg border-t-4 border-r-4 border-[#1A4862]">
           Our Mission <br /> & <br /> Vision
@@ -108,7 +108,10 @@ const About = () => {
         </div>
       </section>
 
-      <section id="team" className="bg-[#D7DFA3] bg-opacity-20 p-10  border-2">
+      <section
+        id="team"
+        className="bg-[#D7DFA3] hover:scale-105 duration-300 shadow-md shadow-[white] bg-opacity-20 p-10  border-2"
+      >
         <h1 className="text-center text-white text-4xl font-bold border-4 py-3 border-b-0 border-l-4 rounded-lg border-t-4 border-r-4 border-[#1A4862]">
           Our Team
         </h1>
@@ -139,7 +142,7 @@ const About = () => {
 
       <section
         id="mission"
-        className="bg-[#D7DFA3] bg-opacity-20 p-10 border-2"
+        className="bg-[#D7DFA3] hover:scale-105 duration-300  shadow-md shadow-[white] bg-opacity-20 p-10 border-2"
       >
         <h1 className="text-center lg:hidden text-white text-4xl font-bold border-4 py-3 border-b-0 border-l-4 rounded-lg border-t-4 border-r-4 border-[#1A4862]">
           Our History <br /> & <br /> Milestones
@@ -199,7 +202,7 @@ const About = () => {
 
       <section
         id="contact"
-        className="bg-[#D7DFA3] bg-opacity-20 p-10 border-2 "
+        className="bg-[#D7DFA3] hover:scale-105 duration-300 shadow-md shadow-[white] bg-opacity-20 p-10 border-2 "
       >
         <h1 className="text-center text-white text-4xl font-bold border-4 py-4 border-b-0 border-l-4 rounded-lg border-t-4 border-r-4 border-[#1A4862]">
           Our Contact Information
@@ -241,7 +244,7 @@ const About = () => {
 
       <section
         id="location"
-        className="bg-[#D7DFA3] bg-opacity-20 border-2 p-10"
+        className="bg-[#D7DFA3] shadow-md shadow-[white] hover:scale-105 duration-300 bg-opacity-20 border-2 p-10"
       >
         <h1 className="text-center text-white text-4xl font-bold border-4 py-3 border-b-0 border-l-4 rounded-lg border-t-4 border-r-4 border-[#1A4862]">
           Our Shop Location

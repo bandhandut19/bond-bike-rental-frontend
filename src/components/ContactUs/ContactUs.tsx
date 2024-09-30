@@ -33,7 +33,7 @@ const ContactUs = () => {
       );
   };
   return (
-    <div className="pt-10 pb-10 ">
+    <div className="pt-10 pb-10 hover:scale-105 hover:duration-400 ">
       <form
         onSubmit={handleSubmit(handleSubmitEmailFromContactUs)}
         className=" bg-[#D7DFA3] dark:bg-slate-600 px-5 bg-opacity-20 dark:bg-opacity-70 shadow-md shadow-white  border-2 lg:w-full lg:mx-auto grid gap-5 grid-cols-1 pt-10 pb-20 items-center justify-center"

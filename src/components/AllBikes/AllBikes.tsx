@@ -78,7 +78,7 @@ const AllBikes = () => {
   });
   return (
     <>
-      <div className="pt-5  text-center text-4xl font-extrabold text-[#1A4862]  bg-[#D7DFA3] pb-5">
+      <div className="pt-5 text-center text-4xl font-extrabold text-[#1A4862]  bg-[#D7DFA3] pb-5">
         <h1>All Bikes</h1>
       </div>
       <div className="w-4/5 mx-auto pb-10">
