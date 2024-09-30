@@ -17,6 +17,7 @@
 
 ## 💡Project Overview
   - User can Login/Register to rent a bike.
+  - User can switch between Dark & Light Mode.
   - Admin can promote users to admin.
   - User can book a bike for rent with start time of his/her ride and advance payment of 100tk.
   - Only Admin can return bike.That means while returning the bike the...
