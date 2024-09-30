@@ -63,7 +63,7 @@ const MyRentals = () => {
       </h1>
       <div className="mx-auto lg:w-4/5 mb-5 w-full md:items-center flex flex-col lg:gap-5 gap-1 bg-gradient-to-tr border-2 to-[#D7DFA3] from-[#1A4862] py-5 px-2 mt-5">
         <Tabs defaultValue="unpaid" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 bg-[#1A4862] gap-2">
+          <TabsList className="grid w-full grid-cols-2 bg-[#1A4862] dark:bg-slate-600 gap-2">
             <TabsTrigger value="unpaid" className=" text-white ">
               Unpaid
             </TabsTrigger>
@@ -159,7 +159,9 @@ const MyRentals = () => {
                                   disabled
                                   className="bg-[grey] border-2 text-white py-2 px-4 hover:text-white  font-extrabold"
                                 >
-                                  Pay Now
+                                  {rental.totalCost < 0
+                                    ? "Money will be returned"
+                                    : "Pay Now"}
                                 </button>
                               ) : (
                                 <button
