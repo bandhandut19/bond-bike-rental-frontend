@@ -1,8 +1,10 @@
 // import OfferSection from "../OfferSection/OfferSection";
 
-import ContactUs from "../ContactUs/ContactUs";
+// import ContactUs from "../ContactUs/ContactUs";
+import Blogs from "../Blogs/Blogs";
 import CouponsAndDiscounts from "../CouponsAndDiscounts/CouponsAndDiscounts";
 import FeaturedSection from "../FeaturedSection/FeaturedSection";
+import Offers from "../Offers/Offers";
 import Testimonials from "../Testimonials/Testimonials";
 import Banner from "../ui/Banner";
 import CallToAction from "../ui/CallToAction";
@@ -32,9 +34,16 @@ const Home = () => {
         <div className="mt-20 border-4 border-l-0 border-[#1A4862] border-r-0 border-b-0 rounded-md">
           <CouponsAndDiscounts></CouponsAndDiscounts>
         </div>
-        <div className="mt-20 border-4 border-l-0 border-[#1A4862] border-r-0 border-b-0 rounded-md">
+        {/* <div className="mt-20 border-4 border-l-0 border-[#1A4862] border-r-0 border-b-0 rounded-md">
           <ContactUs></ContactUs>
+        </div> */}
+        <div className="mt-20 border-4 border-l-0 border-[#1A4862] border-r-0 border-b-0 rounded-md">
+          <Offers></Offers>
         </div>
+        <div className="mt-20 border-4 border-l-0 border-[#1A4862] border-r-0 border-b-0 rounded-md">
+          <Blogs></Blogs>
+        </div>
+        <div className="mb-20"></div>
       </div>
     </div>
   );

@@ -74,3 +74,10 @@ export type TCoupon = {
   details: string;
   status: boolean;
 };
+
+export type TBlogs = {
+  title: string;
+  description: string;
+  image: string;
+  url: string;
+};
