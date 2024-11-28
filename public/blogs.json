@@ -1,0 +1,85 @@
+[{
+        "id": 1,
+        "title": "The Ultimate Guide to Choosing the Perfect Rental Bike",
+        "description": "Learn how to pick the right bike for your needs, whether you're exploring the city or taking on mountain trails.",
+        "image": "https://i.postimg.cc/SKfL9F34/view-cool-powerful-motorcycle.jpg",
+        "url": "/blogs/choosing-perfect-rental-bike"
+    },
+    {
+        "id": 2,
+        "title": "Top 10 Scenic Bike Routes to Explore This Summer Of 2024",
+        "description": "Discover the most breathtaking bike routes perfect for a summer adventure.",
+        "image": "https://i.postimg.cc/5Nrs9Jdk/cool-motorcycle-outdoors.jpg",
+        "url": "/blogs/scenic-bike-routes"
+    },
+    {
+        "id": 3,
+        "title": "Why Renting a Bike Is the Best Way to Explore the City With Your Family",
+        "description": "Keep your bike in top condition with these easy maintenance tips.",
+        "image": "https://i.postimg.cc/cHDq1zc1/view-cool-motorcycle-1.jpg",
+        "url": "/blogs/bike-maintenance"
+    },
+    {
+        "id": 4,
+        "title": "How to Maintain Your Bike for a Smooth Ride In Any Circumstance",
+        "description": "Discover the freedom and flexibility of city exploration on a rental bike.",
+        "image": "https://i.postimg.cc/YCSdMSsF/view-cool-motorcycle-2.jpg",
+        "url": "/blogs/city-exploration-bike"
+    },
+    {
+        "id": 5,
+        "title": "Essential Safety Tips for Bike Riders",
+        "description": "Stay safe while riding with these crucial tips for beginners and pros alike.",
+        "image": "/images/blogs/bike-safety-tips.jpg",
+        "url": "/blogs/bike-safety-tips"
+    },
+    {
+        "id": 6,
+        "title": "How Electric Bikes Are Changing the Rental Scene",
+        "description": "Explore the rise of electric bikes and why they are a game-changer for bike rentals.",
+        "image": "/images/blogs/electric-bikes.jpg",
+        "url": "/blogs/electric-bikes"
+    },
+    {
+        "id": 7,
+        "title": "The Environmental Benefits of Choosing Bike Rentals",
+        "description": "Learn how renting bikes helps reduce carbon footprints and promotes sustainability.",
+        "image": "/images/blogs/environmental-benefits.jpg",
+        "url": "/blogs/environmental-benefits"
+    },
+    {
+        "id": 8,
+        "title": "Tips for Planning a Weekend Bike Adventure",
+        "description": "Make the most of your weekend with a well-planned bike trip.",
+        "image": "/images/blogs/weekend-bike-adventure.jpg",
+        "url": "/blogs/weekend-bike-adventure"
+    },
+    {
+        "id": 9,
+        "title": "The History and Evolution of Bike Rentals",
+        "description": "Dive into the fascinating history of bike rentals and how they’ve evolved over time.",
+        "image": "/images/blogs/history-bike-rentals.jpg",
+        "url": "/blogs/history-bike-rentals"
+    },
+    {
+        "id": 10,
+        "title": "Must-Have Accessories for Your Next Bike Ride",
+        "description": "Gear up with the best accessories for a comfortable and safe ride.",
+        "image": "/images/blogs/bike-accessories.jpg",
+        "url": "/blogs/bike-accessories"
+    },
+    {
+        "id": 11,
+        "title": "How to Choose the Right Bike for Kids",
+        "description": "Find the perfect bike for young riders with our helpful guide.",
+        "image": "/images/blogs/kids-bike.jpg",
+        "url": "/blogs/kids-bike"
+    },
+    {
+        "id": 12,
+        "title": "Benefits of Group Bike Rentals for Team Building",
+        "description": "Discover how group bike rentals can strengthen bonds and improve teamwork.",
+        "image": "/images/blogs/group-bike-rentals.jpg",
+        "url": "/blogs/group-bike-rentals"
+    }
+]
