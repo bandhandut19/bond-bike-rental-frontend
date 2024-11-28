@@ -1,0 +1,49 @@
+[{
+        "id": 1,
+        "title": "Weekend Special Offer",
+        "description": "Enjoy 25% off on mountain bikes this weekend. Hit the trails in style and save big!",
+        "image": "https://i.postimg.cc/sXtKwCLB/harley-davidson-wx-Sb4-Lxt3-Y-unsplash.jpg",
+        "discount": "25% Off",
+        "validity": "Offer ends Sunday night"
+    },
+    {
+        "id": 2,
+        "title": "Ride More, Pay Less",
+        "description": "Book for 3 days or longer and save 20% on your rental. More days, more savings!",
+        "image": "https://i.postimg.cc/9M4JdQL5/will-h-mcmahan-99-Z7-QGwy-B0-A-unsplash.jpg",
+        "discount": "20% Off",
+        "validity": "Valid through December 31st"
+    },
+    {
+        "id": 3,
+        "title": "New Customer Offer",
+        "description": "First-time renters can enjoy 15% off their initial rental. Welcome to the ride!",
+        "image": "https://i.postimg.cc/8cM4Yn8Z/taras-chernus-O9rstx-Di-Cts-unsplash.jpg",
+        "discount": "15% Off",
+        "validity": "For first-time users only"
+    },
+    {
+        "id": 4,
+        "title": "Electric Bike Discount",
+        "description": "Get 30% off on electric bike rentals this month. Make your rides smooth and easy!",
+        "image": "https://i.postimg.cc/sDCwWySq/harley-davidson-6-OBa-II5-Go-unsplash.jpg",
+        "discount": "30% Off",
+        "validity": "Offer ends November 30th"
+    },
+    {
+        "id": 5,
+        "title": "Family Ride Deal",
+        "description": "Book for 4 family members and get 1 bike free. Perfect for family adventures!",
+        "image": "https://i.ibb.co/BrzkVPK/family-ride.jpg",
+        "discount": "1 Free Rental",
+        "validity": "Valid until December 15th"
+    },
+    {
+        "id": 6,
+        "title": "Evening Rider Special",
+        "description": "Get 10% off for bike rentals after 5 PM. Evening rides just got more affordable!",
+        "image": "https://i.ibb.co/Cw5My2P/evening-rider.jpg",
+        "discount": "10% Off",
+        "validity": "Offer valid daily post 5 PM"
+    }
+]

@@ -82,3 +82,12 @@ export type TBlogs = {
   image: string;
   url: string;
 };
+
+export type TOffer = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  discount: string;
+  validity: string;
+};
