@@ -2,6 +2,15 @@ import { TBlogs } from "@/types";
 import blogs from "../../../public/blogs.json";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
 const Blogs = () => {
   return (
     <div>
@@ -12,23 +21,23 @@ const Blogs = () => {
       </div>
       <div className="grid lg:grid-cols-4 grid-cols-1 gap-5 lg:gap-10 items-center">
         {blogs.slice(0, 4).map((blog: TBlogs) => (
-          <div
+          <Card
             key={blog.id}
-            className="card bg-[#D7DFA3] border-2 border-white mb-4 rounded shadow-md text-center cursor-pointer  hover:scale-110 duration-300"
+            className="bg-[#1A4862] rounded-none hover:scale-105"
           >
-            <div className="card-body flex">
-              <h2 className="card-title flex-1">{blog.title}</h2>
-              <p className="flex-2">{blog.description}</p>
-            </div>
-            <div className="flex items-center justify-center mb-5">
-              <Button className="hover:bg-[#1A4862]">
-                <Link to={blog.url}>Read Full Blog</Link>
-              </Button>
-            </div>
-            <div className="">
-              <img src={blog.image} alt="Shoes" />
-            </div>
-          </div>
+            <CardHeader>
+              <div>
+                <img className="" src={blog.image} alt={blog.title} />
+              </div>
+              <CardTitle className="text-white font-bold py-1">
+                {blog.title}
+              </CardTitle>
+              <CardDescription className="text-white">
+                {blog.description}
+              </CardDescription>
+              <button className="btn rounded-none">Read Full Blog</button>
+            </CardHeader>
+          </Card>
         ))}
       </div>
     </div>
