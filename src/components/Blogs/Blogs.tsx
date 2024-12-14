@@ -15,7 +15,7 @@ const Blogs = () => {
           Blogs
         </h1>
       </div>
-      <div className="grid lg:grid-cols-4 grid-cols-1 gap-5 lg:gap-10 items-center">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5 lg:gap-10 items-center">
         {blogs.slice(0, 4).map((blog: TBlogs) => (
           <Card
             key={blog.id}

@@ -15,7 +15,7 @@ const FeaturedSection = () => {
         Featured Bikes
       </h1>
 
-      <div className="grid lg:grid-cols-4 grid-cols-1 gap-5">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5">
         {/* only latest added available bikes will be featured*/}
         {bikes?.length === 0
           ? "Bikes Will be Added Soon"
