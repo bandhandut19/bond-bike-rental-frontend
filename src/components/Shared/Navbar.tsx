@@ -65,7 +65,7 @@ const Navbar = () => {
                 About Us
               </Link>
             </li>
-            <li className="">
+            <li className={userEmail ? "block" : "hidden"}>
               <Link to={"/dashboard"} className="rounded-none ">
                 Dashboard
               </Link>
@@ -93,7 +93,7 @@ const Navbar = () => {
               All Bikes
             </NavLink>
           </li>
-          <li className="">
+          <li className={userEmail ? "block" : "hidden"}>
             <NavLink
               to={"/dashboard"}
               className={({ isActive }) =>
