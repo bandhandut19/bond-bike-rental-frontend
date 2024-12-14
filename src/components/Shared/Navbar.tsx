@@ -5,7 +5,7 @@ import { removeUser } from "@/redux/user/useSlice";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { toast } from "sonner";
+// import { toast } from "sonner";
 const logo = "/logo_bkr.png";
 const Navbar = () => {
   const userEmail = useAppSelector((state: RootState) => state.user.email);
@@ -19,12 +19,12 @@ const Navbar = () => {
   const handleThemeMode = () => {
     setThemeMode(!themeMode);
     dispatch(changeTheme(themeMode));
-    if (themeMode) {
-      toast("Dark Theme Mode On");
-    }
-    if (themeMode === false) {
-      toast("Light Theme Mode On");
-    }
+    // if (themeMode) {
+    //   toast("Dark Theme Mode On");
+    // }
+    // if (themeMode === false) {
+    //   toast("Light Theme Mode On");
+    // }
   };
   return (
     <div className={`navbar bg-[#1A4862] dark:bg-slate-600`}>
