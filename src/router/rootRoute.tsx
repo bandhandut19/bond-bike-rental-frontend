@@ -11,6 +11,7 @@ import PrivateRoute from "@/components/PrivateRoutes/PrivateRoute";
 import NotFound from "@/components/Error/NotFound";
 import SingleBikePage from "../components/SingleBikePage/SingleBikePage";
 import BookingProcess from "../components/BookingProcess/BookingProcess";
+import DashboardLayout from "@/components/Layouts/DashboardLayout";
 
 const rootRoute = createBrowserRouter([
   {
@@ -39,14 +40,6 @@ const rootRoute = createBrowserRouter([
         element: <About></About>,
       },
       {
-        path: "/dashboard",
-        element: (
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "/login",
         element: <Login></Login>,
       },
@@ -59,6 +52,21 @@ const rootRoute = createBrowserRouter([
         element: (
           <PrivateRoute>
             <BookingProcess></BookingProcess>,
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    errorElement: <NotFound></NotFound>,
+    children: [
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard />
           </PrivateRoute>
         ),
       },

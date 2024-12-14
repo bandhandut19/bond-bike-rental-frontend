@@ -5,10 +5,12 @@ import Profile from "../ui/Profile";
 import BikeManagement from "../ui/BikeManagement";
 import UserManagement from "../ui/UserManagement";
 import ReturnBike from "../ui/ReturnBike";
+import { Link, useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
   const { data } = useGetUserDetailsQuery({});
   const userInfo = data?.data;
+  const navigate = useNavigate();
   const [option, setOption] = useState("");
   const [hideSidebar, setHideSidebar] = useState(true);
   const handleOptionProfile = () => {
@@ -34,20 +36,28 @@ const AdminDashboard = () => {
       <div>
         <div className="bg-[#D7DFA3] ">
           {hideSidebar ? (
-            <h1 className="text-center lg:ml-56  ml-20 text-lg lg:text-3xl py-4 font-extrabold text-[#1A4862]">
+            <div className="text-center lg:ml-56  ml-20 text-lg lg:text-3xl py-4 font-extrabold text-[#1A4862]">
               Admin Dashboard
-            </h1>
+            </div>
           ) : (
-            <h1 className="text-center text-lg lg:text-3xl py-4 font-extrabold text-[#1A4862]">
+            <div className="text-center text-lg lg:text-3xl py-4 font-extrabold text-[#1A4862]">
               Admin Dashboard
-            </h1>
+            </div>
           )}
-          <button
-            onClick={handleSidebar}
-            className="bg-[#1A4862] text-[#D7DFA3] lg:text-lg text-sm py-2 px-4 hover:text-[#1A4862] hover:bg-white hover:font-extrabold font-semibold"
-          >
-            {hideSidebar ? "Hide Sidebar" : "Show Sidebar"}
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={handleSidebar}
+              className="bg-[#1A4862] text-[#D7DFA3] lg:text-lg text-sm py-2 px-4 hover:text-[#1A4862] hover:bg-white hover:font-extrabold font-semibold"
+            >
+              {hideSidebar ? "Hide Sidebar" : "Show Sidebar"}
+            </button>
+            <button
+              onClick={() => navigate("/")}
+              className="bg-[#1A4862] text-[#D7DFA3] lg:text-lg text-sm py-2 px-4 hover:text-[#1A4862] hover:bg-white hover:font-extrabold font-semibold"
+            >
+              Go back to home
+            </button>
+          </div>
         </div>
         <div className=" text-[#1A4862] min-h-screen flex">
           {hideSidebar ? (
