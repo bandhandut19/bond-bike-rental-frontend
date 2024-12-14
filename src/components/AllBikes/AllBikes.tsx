@@ -78,11 +78,11 @@ const AllBikes = () => {
   });
   return (
     <>
-      <div className="pt-5 text-center text-4xl font-extrabold text-[#1A4862]  bg-[#D7DFA3] pb-5">
+      {/* <div className="pt-5 text-center text-4xl font-extrabold text-[#1A4862]  bg-[#D7DFA3] pb-5">
         <h1>All Bikes</h1>
-      </div>
+      </div> */}
       <div className="w-4/5 mx-auto pb-10">
-        <h1 className="text-4xl font-bold lg:text-[#D7DFA3] text-[#D7DFA3] mb-5 pt-3 text-center">
+        <h1 className="text-4xl font-bold lg:text-[#1A4862] text-[#D7DFA3] mb-5 pt-3 text-center">
           Search Your Desired Bikes
         </h1>
         <form
@@ -91,7 +91,7 @@ const AllBikes = () => {
         >
           <div>
             <Input
-              className="bg-[#1A4862] bg-opacity-80 text-opacity-100 font-semibold text-[#D7DFA3] placeholder:text-opacity-80 placeholder:text-[#D7DFA3] placeholder:font-bold"
+              className="bg-[#1A4862] bg-opacity-100 text-opacity-100 font-semibold text-[#D7DFA3] placeholder:text-opacity-80 placeholder:text-[#D7DFA3] placeholder:font-bold"
               placeholder="Search by name"
               // onChange={handleChange}
               onChange={handleChange}

@@ -51,14 +51,14 @@ const Login = () => {
     <div className="mx-auto pt-20 w-4/5">
       <form
         onSubmit={handleSubmit(handleLogin)}
-        className=" bg-[#D7DFA3] border-2 lg:w-4/5 lg:mx-auto bg-opacity-40 grid gap-5 grid-cols-1 pt-10 pb-20 items-center justify-center"
+        className=" bg-[#1A4862] border-2 lg:w-4/5 lg:mx-auto bg-opacity-80 grid gap-5 grid-cols-1 pt-10 pb-20 items-center justify-center"
       >
         <h1 className="mb-10 text-popover text-center lg:text-5xl text-3xl font-extrabold text-[#1A4862]">
           Login Now!
         </h1>
         <div className="">
           <Input
-            className="bg-[#1A4862] w-4/5 lg:w-1/2 mx-auto bg-opacity-80 text-opacity-100 font-semibold text-[#D7DFA3] placeholder:text-opacity-80 placeholder:text-[#D7DFA3] placeholder:font-bold"
+            className="bg-[#D7DFA3] w-4/5 lg:w-1/2 mx-auto bg-opacity-80 text-opacity-100 font-semibold text-[#1A4862] placeholder:text-opacity-80 placeholder:text-[#1A4862] placeholder:font-bold"
             placeholder="Enter Your Email"
             type="email"
             required
@@ -67,7 +67,7 @@ const Login = () => {
         </div>
         <div className="text-center">
           <Input
-            className="bg-[#1A4862] w-4/5 lg:w-1/2 mx-auto bg-opacity-80 text-opacity-100 font-semibold text-[#D7DFA3] placeholder:text-opacity-80 placeholder:text-[#D7DFA3] placeholder:font-bold"
+            className="bg-[#D7DFA3] w-4/5 lg:w-1/2 mx-auto bg-opacity-80 text-opacity-100 font-semibold text-[#1A4862] placeholder:text-opacity-80 placeholder:text-[#1A4862] placeholder:font-bold"
             placeholder="Enter Your Password"
             type="password"
             required
@@ -80,7 +80,7 @@ const Login = () => {
         <div className="mx-auto items-center text-center lg:flex-col flex-row">
           <button
             type="submit"
-            className="bg-[#1A4862] text-[#D7DFA3] py-2 px-4 hover:text-[#1A4862] hover:bg-[#D7DFA3] hover:font-extrabold font-semibold"
+            className="bg-[#D7DFA3] text-[#1A4862] py-2 px-4 hover:text-[#1A4862] hover:bg-[#D7DFA3] hover:font-extrabold font-semibold"
           >
             Login
           </button>

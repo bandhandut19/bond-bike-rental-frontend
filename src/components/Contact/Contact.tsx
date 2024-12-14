@@ -18,7 +18,7 @@ const Contact = () => {
       <ContactUs></ContactUs>
       <section
         id="contact"
-        className="bg-[#D7DFA3] shadow-md shadow-[white] bg-opacity-20 lg:p-10 py-5 px-1 border-2 hover:scale-105 duration-300 "
+        className="bg-[#D7DFA3] shadow-md shadow-[white] bg-opacity-100 lg:p-10 py-5 px-1 border-2 hover:scale-105 duration-300 "
       >
         <h1 className="text-center dark:text-black   font-bold text-white lg:text-4xl text-2xl lg:font-bold lg:border-4 lg:py-4 lg:border-b-0 lg:border-l-4 rounded-lg lg:border-t-4 lg:border-r-4 lg:border-[#1A4862]">
           Our Contact Information
