@@ -3,10 +3,11 @@ import { useState } from "react";
 import Welcome from "../ui/Welcome";
 import Profile from "../ui/Profile";
 import MyRentals from "../ui/MyRentals";
-
+import { useNavigate } from "react-router-dom";
 const UserDashboard = () => {
   const { data } = useGetUserDetailsQuery({});
   const userInfo = data?.data;
+  const navigate = useNavigate();
   const [option, setOption] = useState("");
   const [hideSidebar, setHideSidebar] = useState(true);
   const handleOptionWelcome = () => {
@@ -34,12 +35,20 @@ const UserDashboard = () => {
               User Dashboard
             </h1>
           )}
-          <button
-            onClick={handleSidebar}
-            className="bg-[#1A4862] text-[#D7DFA3] lg:text-lg text-sm py-2 px-4 hover:text-[#1A4862] hover:bg-white hover:font-extrabold font-semibold"
-          >
-            {hideSidebar ? "Hide Sidebar" : "Show Sidebar"}
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={handleSidebar}
+              className="bg-[#1A4862] text-[#D7DFA3] lg:text-lg text-sm py-2 px-4 hover:text-[#1A4862] hover:bg-white hover:font-extrabold font-semibold"
+            >
+              {hideSidebar ? "Hide Sidebar" : "Show Sidebar"}
+            </button>
+            <button
+              onClick={() => navigate("/")}
+              className="bg-[#1A4862] text-[#D7DFA3] lg:text-lg text-sm py-2 px-4 hover:text-[#1A4862] hover:bg-white hover:font-extrabold font-semibold"
+            >
+              Go back to home
+            </button>
+          </div>
         </div>
         <div className=" text-[#1A4862] min-h-screen flex overflow-auto">
           {hideSidebar ? (

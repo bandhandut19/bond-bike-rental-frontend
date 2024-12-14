@@ -5,7 +5,7 @@ import Profile from "../ui/Profile";
 import BikeManagement from "../ui/BikeManagement";
 import UserManagement from "../ui/UserManagement";
 import ReturnBike from "../ui/ReturnBike";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
   const { data } = useGetUserDetailsQuery({});
