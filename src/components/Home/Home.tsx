@@ -18,10 +18,10 @@ const Home = () => {
         <Banner></Banner>
       </div>
 
-      <div className="mx-auto  w-4/5 border-4 border-l-0 border-[#1A4862] border-r-0 border-b-0 rounded-md">
-        <div className="">
+      <div className="mx-auto  w-4/5">
+        {/* <div className="">
           <CallToAction></CallToAction>
-        </div>
+        </div> */}
         <div className="mt-20 border-4 border-l-0 border-[#1A4862] border-r-0 border-b-0 rounded-md">
           <FeaturedSection></FeaturedSection>
         </div>
