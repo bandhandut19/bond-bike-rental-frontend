@@ -13,8 +13,8 @@ const Footer = () => {
             <span className="">bondon21081@gmail.com</span>
           </div>
         </nav>
-        <nav className="flex flex-col mt-10 text-center lg:ml-10 ">
-          <h6 className="footer-title text-center font-extrabold opacity-100 ">
+        <nav className="flex flex-col mt-10 text-left lg:ml-10 ">
+          <h6 className="footer-title text-left font-extrabold opacity-100 ">
             Quick Navigation
           </h6>
           <Link to={"/allbikes"} className="link link-hover text-white">
@@ -27,7 +27,7 @@ const Footer = () => {
             Contact Us
           </Link>
         </nav>
-        <nav className="flex flex-col mt-10 text-center lg:ml-10 ">
+        <nav className="flex flex-col mt-10 text-left lg:ml-10 ">
           <h6 className="footer-title opacity-100 text-center font-extrabold ">
             Company Policies
           </h6>
@@ -39,7 +39,7 @@ const Footer = () => {
           </Link>
         </nav>
         <nav className="lg:ml-10 ml-5 ">
-          <h6 className="footer-title text-center opacity-100">Social Links</h6>
+          <h6 className="footer-title text-left opacity-100">Social Links</h6>
           <div className="grid grid-flow-col gap-4  ml-2">
             {/* Linkedin */}
             <Link
@@ -71,11 +71,6 @@ const Footer = () => {
           iBondeV(Bondon). All rights reserved.
         </p>
       </h1>
-      {/* <div className="text-center">
-        <h1 className="lg:text-7xl text-5xl font-bold font-name mb-10">
-          Alyssa Runge
-        </h1>
-      </div> */}
     </footer>
   );
 };
