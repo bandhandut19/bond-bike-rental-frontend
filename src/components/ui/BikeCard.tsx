@@ -2,7 +2,7 @@ import { TBike } from "@/types";
 import ButtonCard from "./buttonCard";
 
 const BikeCard = ({ bike }: { bike: TBike }) => {
-  const { name, description, image, brand, isAvailable, pricePerHour } = bike;
+  const { name, image, brand, isAvailable, pricePerHour } = bike;
 
   return (
     <div className="card rounded-none card-compact bg-[#D7DFA3] hover:scale-105  border-2  hover:border-[#1A4862] text-[#1A4862] hover:duration-400  shadow-lg shadow-[#D7DFA3]">
