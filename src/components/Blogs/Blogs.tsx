@@ -1,12 +1,8 @@
 import { TBlogs } from "@/types";
 import blogs from "../../../public/blogs.json";
-import { Link } from "react-router-dom";
-import { Button } from "../ui/button";
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";

@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { toast } from "sonner";
-
+const logo = "/logo_bkr.png";
 const Navbar = () => {
   const userEmail = useAppSelector((state: RootState) => state.user.email);
   const [themeMode, setThemeMode] = useState(true);
@@ -76,7 +76,7 @@ const Navbar = () => {
           to={"/"}
           className="lg:text-xl hover:scale-110 duration-300 md:text-2xl text-sm text-[#D7DFA3]  font-extrabold lg:ml-5"
         >
-          Bond Bike Rentals
+          <img src={logo} width={70} alt="" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex   text-[#D7DFA3] font-bold ">

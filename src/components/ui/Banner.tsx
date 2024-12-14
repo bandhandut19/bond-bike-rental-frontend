@@ -1,14 +1,27 @@
 import ReactPlayer from "react-player";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import bannerVideo from "../../../public/coverr-bikers-driving-away-down-a-path-9981-1080p.mp4";
-const bannerVideo = "/coverr-bikers-driving-away-down-a-path-9981-1080p.mp4";
+const bannerVideo = "/banner_pc.mp4";
+const bannerMobileVideo = "/banner_mobile.mp4";
 
 const Banner = () => {
   return (
     <div className="">
-      <div className="overflow-hidden z-1 h-auto">
+      <div className="overflow-hidden z-1 lg:block hidden">
         <ReactPlayer
           url={bannerVideo}
+          playing
+          loop
+          muted
+          width="auto"
+          height="auto"
+          controls={false}
+        />
+      </div>
+      {/* Mobile Banner Video */}
+      <div className="overflow-hidden z-1 lg:hidden block">
+        <ReactPlayer
+          url={bannerMobileVideo}
           playing
           loop
           muted
