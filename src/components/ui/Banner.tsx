@@ -18,7 +18,7 @@ const Banner = () => {
         />
       </div>
 
-      <div className=" bg-black z-2 top-[4rem] lg:top-[4.7rem] w-full absolute py-8 bg-opacity-40 lg:bg-opacity-15">
+      {/* <div className=" bg-black z-2 top-[4rem] lg:top-[4.7rem] w-full absolute py-8 bg-opacity-40 lg:bg-opacity-15">
         <h1 className="text-center">
           <Link
             to={"/allbikes"}
@@ -27,7 +27,7 @@ const Banner = () => {
             Rent a Bike Now !
           </Link>
         </h1>
-      </div>
+      </div> */}
     </div>
   );
 };
