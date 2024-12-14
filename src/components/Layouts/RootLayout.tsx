@@ -10,7 +10,7 @@ const RootLayout = () => {
     <div
       className={`${
         theme ? "dark" : ""
-      }  bg-gradient-to-bl from-[#1A4862] to-[#D7DFA3] dark:bg-gradient-to-bl dark:from-slate-400 dark:bg-slate-600`}
+      }   dark:bg-gradient-to-bl dark:from-slate-400 dark:bg-slate-600`}
     >
       <Navbar></Navbar>
       <div

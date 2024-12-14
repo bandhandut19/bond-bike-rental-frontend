@@ -13,7 +13,7 @@ const CouponsAndDiscounts = () => {
   return (
     <div>
       <div className="pb-10">
-        <h1 className="text-4xl py-2 font-bold text-white lg:font-extrabold mb-5 mt-3 text-center">
+        <h1 className="text-4xl py-2 font-bold bg-[#1A4862] text-white lg:font-extrabold mb-5 mt-3 text-center">
           Coupons & Discounts
         </h1>
         <p className="text-center text-lg font-bold text-[#1A4862] bg-white rounded-md py-2 animate-pulse duration-500">

@@ -11,7 +11,7 @@ const FeaturedSection = () => {
   }
   return (
     <div className="mb-10">
-      <h1 className="text-4xl font-bold text-white lg:font-extrabold  mb-16 mt-3 text-center">
+      <h1 className="text-4xl font-bold text-white bg-[#1A4862] py-2 lg:font-extrabold  mb-16 mt-3 text-center">
         Featured Bikes
       </h1>
 
