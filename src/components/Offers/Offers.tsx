@@ -15,17 +15,17 @@ const Offers = () => {
         {offers.slice(0, 4).map((offer: TOffer) => (
           <div
             key={offer.id}
-            className="card bg-slate-400 border-2 border-white mb-4 rounded shadow-md text-center cursor-pointer  hover:scale-110 duration-300"
+            className="card bg-[#1A4862] border-2 border-white hover:border-[#1A4862] mb-2 rounded shadow-md text-center cursor-pointer  hover:scale-105 hover:duration-600"
           >
             <div className="">
-              <img src={offer.image} alt="Shoes" />
+              <img src={offer.image} alt="offers" />
             </div>
-            <div className="card-body flex">
-              <h2 className="card-title flex-1">{offer.title}</h2>
+            <div className="card-body flex text-white items-center justify-center">
+              <h2 className="card-title -mt-5 flex-1">{offer.title}</h2>
               <p className="flex-2">{offer.description}</p>
             </div>
             <div className="flex items-center justify-center mb-5">
-              <Button className="hover:bg-[#1A4862] hover:text-white bg-[#D7DFA3] text-black animate-pulse">
+              <Button className="hover:scale-125 hover:bg-[#D7DFA3] bg-[#D7DFA3] -mt-5 text-black animate-pulse">
                 <Link to={"/allbikes"}>Hurry Up ! Take A Rent Now..</Link>
               </Button>
             </div>

@@ -4,10 +4,10 @@ import WhyChooseUsCard from "../ui/WhyChooseUsCard";
 const WhyChooseUs = () => {
   return (
     <>
-      <h1 className="text-4xl font-bold text-white lg:font-extrabold mb-5 mt-3 text-center">
+      <h1 className="text-4xl font-bold bg-[#1A4862] py-2 text-white lg:font-extrabold mb-5 mt-3 text-center">
         Why Choose Us
       </h1>
-      <div className="mt-10 mb-10 flex flex-col gap-8">
+      <div className="mt-10 mb-10 grid lg:grid-cols-2 gap-8">
         {objectives.map((objective) => (
           <WhyChooseUsCard
             key={objective?.id}

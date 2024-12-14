@@ -16,11 +16,11 @@ const CouponsAndDiscounts = () => {
         <h1 className="text-4xl py-2 font-bold bg-[#1A4862] text-white lg:font-extrabold mb-5 mt-3 text-center">
           Coupons & Discounts
         </h1>
-        <p className="text-center text-lg font-bold text-[#1A4862] bg-white rounded-md py-2 animate-pulse duration-500">
+        {/* <p className="text-center text-lg font-bold text-[#1A4862] bg-white rounded-md py-2 animate-pulse duration-500">
           Click on coupons to get details on which bikes you can use them to get
           discounts on your ride. <br />
           Each Coupon Code have specific polices for applying. <br />
-        </p>
+        </p> */}
       </div>
       <div className="grid lg:grid-cols-3 grid-cols-2 gap-5 lg:gap-10 items-center">
         {coupons?.map((coupon: TCoupon) => (
